@@ -794,17 +794,17 @@ svg {
 .coming-soon__wordmark {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 1.2rem;
   color: var(--ink);
   font-family: var(--font-fraunces), Georgia, serif;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 3rem;
   margin-bottom: 1.5rem;
 }
 
 .coming-soon__logo {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
 }
 
 .coming-soon__body {

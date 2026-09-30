@@ -26,18 +26,13 @@ export const metadata: Metadata = {
 export default function ComingSoonPage() {
   return (
     <main className="coming-soon">
-      <div className="coming-soon__mark">
+      <div className="coming-soon__wordmark">
         <Logo className="coming-soon__logo" />
+        <span>StrataCouncil.ca</span>
       </div>
-      <p className="coming-soon__eyebrow">StrataCouncil.ca</p>
-      <h1 className="coming-soon__headline">Something&rsquo;s coming.</h1>
       <p className="coming-soon__body">
         Practical education and governance tools for BC strata council
         members &mdash; launching soon.
-      </p>
-      <p className="coming-soon__contact">
-        In the meantime, reach us at{" "}
-        <a href="mailto:support@stratacouncil.ca">support@stratacouncil.ca</a>
       </p>
     </main>
   );

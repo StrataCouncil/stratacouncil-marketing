@@ -5,10 +5,10 @@ import { Logo } from "@/components/Logo";
 export const metadata: Metadata = {
   title: "Privacy Policy — StrataCouncil.ca",
   description:
-    "How StrataCouncil.ca collects, uses, stores and protects personal information, mapped against BC's PIPA and Canada's PIPEDA.",
+    "How StrataCouncil.ca collects, uses, discloses and protects personal information, under BC's PIPA and Canada's PIPEDA.",
 };
 
-const EFFECTIVE_DATE = "[Effective date — set before publishing]";
+const EFFECTIVE_DATE = "September 29, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -36,459 +36,733 @@ export default function PrivacyPage() {
             Effective date: {EFFECTIVE_DATE} &middot; Last updated: {EFFECTIVE_DATE}
           </p>
 
-          <div className="legal__placeholder">
-            <strong>Before publishing:</strong> the effective date still
-            needs a real value. This
-            draft is organized around PIPA/PIPEDA&rsquo;s ten fair
-            information principles (§§2&ndash;11) so a lawyer can check it
-            principle by principle, but it has not yet been reviewed by one —
-            have counsel confirm it, especially §9 (secondary use of
-            de-identified data) and §5 (cross-border transfers), before this
-            page is linked from signup.
-          </div>
-
           <p className="legal__intro">
             StrataCouncil.ca (&ldquo;StrataCouncil,&rdquo; &ldquo;we,&rdquo;
-            &ldquo;us,&rdquo; or &ldquo;our&rdquo;) provides free strata
-            council education and the StrataSphere&trade; governance
-            platform to strata corporations, council members, and owners in
-            British Columbia. This policy explains what personal information
-            we collect, why, who we share it with, and the choices and
-            rights you have. It applies to the marketing site
-            (stratacouncil.ca), the application (app.stratacouncil.ca), and
-            StrataSphere.
+            &ldquo;us,&rdquo; or &ldquo;our&rdquo;) provides strata council
+            education and governance tools, including the StrataSphere&trade;
+            platform, to strata corporations, council members, owners, and
+            other users in British Columbia.
           </p>
           <p className="legal__intro">
-            We&rsquo;re committed to complying with British
-            Columbia&rsquo;s <em>Personal Information Protection Act</em>{" "}
-            (&ldquo;PIPA&rdquo;) and, where it applies, the federal{" "}
+            This Privacy Policy explains what personal information we
+            collect, why we collect it, how we use and disclose it, how we
+            protect it, and the rights available to you.
+          </p>
+          <p>This policy applies to information collected through:</p>
+          <ul>
+            <li>the StrataCouncil.ca website;</li>
+            <li>the StrataCouncil.ca training platform;</li>
+            <li>the StrataSphere application; and</li>
+            <li>related services, communications, and support.</li>
+          </ul>
+          <p>
+            We handle personal information in accordance with applicable
+            privacy laws, including British Columbia&rsquo;s{" "}
+            <em>Personal Information Protection Act</em> (&ldquo;PIPA&rdquo;)
+            where it applies, and the federal{" "}
             <em>Personal Information Protection and Electronic Documents
-            Act</em> (&ldquo;PIPEDA&rdquo;). Both are built on the same ten
-            principles, and this policy is organized around them so it&rsquo;s
-            easy to check that we&rsquo;ve actually addressed each one, not
-            just written something that sounds like a privacy policy.
+            Act</em> (&ldquo;PIPEDA&rdquo;) where it applies.
           </p>
 
           <h2>1. What information we collect</h2>
+          <p>The information we collect depends on how you use our services.</p>
+
+          <h3>Account information</h3>
+          <p>When you create an account, we collect:</p>
+          <ul>
+            <li>your name;</li>
+            <li>your email address; and</li>
+            <li>information necessary to operate and secure your account.</li>
+          </ul>
           <p>
-            StrataCouncil.ca is open to anyone &mdash; you don&rsquo;t need
-            to be a licensed professional, a council member, or connected to
-            any strata corporation to use the free training platform. What
-            we collect depends on how far you go: creating a free account,
-            connecting to a strata corporation, or subscribing to
-            StrataSphere.
+            We use passwordless authentication. When you sign in, we send a
+            one-time sign-in link to your email address rather than requiring
+            you to create or maintain a password.
           </p>
 
-          <h3>To create an account</h3>
+          <h3>Two-factor authentication</h3>
+          <p>Two-factor authentication is optional.</p>
           <p>
-            Your full name and email address. That&rsquo;s it &mdash;
-            account creation doesn&rsquo;t require anything else. We
-            don&rsquo;t use passwords: signing in works by emailing you a
-            one-time sign-in link, so there&rsquo;s no password for us to
-            store or for you to reuse elsewhere.
+            If you enable an authenticator-app factor, we store information
+            necessary to associate that factor with your account. We do not
+            receive or store the temporary authentication codes generated by
+            your authenticator application.
+          </p>
+          <p>
+            If backup recovery codes are provided, they are stored in a
+            protected form that does not allow us to retrieve the original
+            codes.
           </p>
 
-          <h3>Account security information (if you choose to enable it)</h3>
+          <h3>Strata corporation information</h3>
           <p>
-            Two-factor authentication (an authenticator app) is available
-            as an optional extra layer of security you can turn on from
-            Account Settings &mdash; it is not required to create or use an
-            account. If you enable it, we store which authenticator app
-            factor is associated with your account (never the codes it
-            generates) and a set of backup recovery codes in hashed form
-            &mdash; we cannot read them back once they&rsquo;re generated,
-            and only you can see the plaintext codes, once, at the time
-            they&rsquo;re created.
+            If you create or connect a strata corporation, we may collect
+            information necessary to establish and administer that
+            corporation within StrataSphere.
+          </p>
+          <p>
+            This may include information contained in a strata plan or other
+            corporate documentation, such as:
+          </p>
+          <ul>
+            <li>strata plan number;</li>
+            <li>legal name;</li>
+            <li>address;</li>
+            <li>number of strata lots;</li>
+            <li>province; and</li>
+            <li>other information necessary to verify the corporation.</li>
+          </ul>
+          <p>
+            We may also collect information from a person requesting to
+            establish or administer a corporation, including their name,
+            address, email address, telephone number, and confirmation that
+            they are authorized to act on behalf of the corporation.
+          </p>
+          <p>We may review this information before activating a corporation.</p>
+
+          <h3>Training information</h3>
+          <p>We collect information about your use of StrataCouncil.ca training, including:</p>
+          <ul>
+            <li>courses or modules completed;</li>
+            <li>knowledge checks and assessments;</li>
+            <li>certificates issued; and</li>
+            <li>related completion information.</li>
+          </ul>
+          <p>Your detailed training activity is associated with your account.</p>
+          <p>
+            If you connect your account to a strata corporation, certain
+            completion information may be made visible to authorized members
+            of that corporation as described in Section 3.
           </p>
 
-          <h3>If you set up a strata corporation</h3>
+          <h3>StrataSphere governance information</h3>
           <p>
-            The Strata Plan document you upload (from which we parse the
-            strata plan number, legal name, address, unit count, and
-            province) and a short attestation form &mdash; your name,
-            address, email, phone number, and a confirmation that
-            you&rsquo;re authorized to represent that corporation. This is
-            reviewed manually before a corporation is created.
+            If a strata corporation subscribes to StrataSphere, the platform
+            may store governance information entered, uploaded, generated, or
+            maintained by the corporation and its authorized users.
           </p>
-
-          <h3>Training records</h3>
+          <p>This may include:</p>
+          <ul>
+            <li>agendas;</li>
+            <li>meeting records;</li>
+            <li>motions;</li>
+            <li>votes;</li>
+            <li>minutes;</li>
+            <li>decisions;</li>
+            <li>documents;</li>
+            <li>notices;</li>
+            <li>correspondence;</li>
+            <li>owner and council information;</li>
+            <li>strata lot information; and</li>
+            <li>other governance material entered into the platform.</li>
+          </ul>
           <p>
-            Which training modules and knowledge checks you&rsquo;ve
-            completed, and any certificates issued. These belong to your
-            account, not to any strata corporation, and stay private to you
-            unless you connect to a corporation (§3).
-          </p>
-
-          <h3>Governance and council data</h3>
-          <p>
-            If your strata corporation subscribes to StrataSphere, we store
-            the documents, agendas, motions, votes, minutes, decisions, and
-            other governance material your council uploads or generates
-            through the platform. This belongs to your strata corporation
-            and the members who created it &mdash; not to us.
+            Governance records created or uploaded by a strata corporation
+            remain records of that corporation. StrataCouncil provides the
+            technology used to store, process, organize, and access those
+            records.
           </p>
 
           <h3>Roster information</h3>
           <p>
-            A connected corporation&rsquo;s admin may upload an owner/council
-            roster (strata lot numbers, names, contact details, roles, and
-            similar fields tied to unit ownership) to support governance
-            features such as attendance, voting, and minutes.
+            An authorized user may provide information about owners, council
+            members, or other individuals associated with a strata
+            corporation.
           </p>
-
-          <h3>Payment information</h3>
-          <p>
-            Payment details for a StrataSphere subscription are collected
-            and processed by Stripe, our payment processor. We never see or
-            store full card or bank account numbers on our own servers
-            &mdash; we retain only billing metadata such as amounts, dates,
-            and transaction identifiers.
-          </p>
-
-          <h3>Usage and technical data</h3>
-          <p>
-            Platform activity (such as AI query counts, feature usage, and
-            login activity), browser type, IP address, and device
-            information, collected for security, fraud prevention, and
-            service improvement.
-          </p>
-
-          <h2>2. Why we collect it (identifying purposes)</h2>
-          <p>We collect and use the information above only to:</p>
+          <p>Depending on how the corporation uses StrataSphere, this may include:</p>
           <ul>
-            <li>Create and operate your account, including two-factor authentication if you choose to enable it</li>
-            <li>Deliver training content and issue certificates</li>
-            <li>Review and process strata corporation creation and join requests</li>
-            <li>Provide StrataSphere&rsquo;s governance features to subscribing corporations</li>
-            <li>Process StrataSphere subscription payments and billing</li>
-            <li>Power StrataSphere&rsquo;s AI features (§6)</li>
-            <li>Send service notifications, receipts, and (only with your separate consent) marketing updates (§4)</li>
-            <li>Detect fraud, secure the platform, and enforce our Terms &amp; Conditions</li>
-            <li>Meet legal, regulatory, and tax obligations</li>
-            <li>Where properly de-identified, generate aggregate statistics and industry insights (§9)</li>
+            <li>strata lot number;</li>
+            <li>name;</li>
+            <li>email address;</li>
+            <li>telephone number;</li>
+            <li>role;</li>
+            <li>attendance information; and</li>
+            <li>other information necessary for governance functions.</li>
           </ul>
           <p>
-            We don&rsquo;t use your personal information for a new purpose
-            without either telling you or getting your consent first.
+            A strata corporation and its authorized users are responsible for
+            ensuring that information they provide to StrataSphere is
+            collected and used in accordance with their own legal
+            obligations.
           </p>
 
-          <h2>3. Training visibility within a connected corporation</h2>
+          <h3>Payment and billing information</h3>
+          <p>Subscription payments are processed by our third-party payment processor.</p>
           <p>
-            A deliberate, narrow exception to the rule that your training
-            records are private: once you&rsquo;re connected to a strata
-            corporation, which training tracks you&rsquo;ve{" "}
-            <em>completed</em> becomes visible to other members connected to
-            that same corporation &mdash; so a council can see who has
-            completed which certification. Your granular progress (modules
-            started, quiz results) is never shown to anyone but you.
+            We do not store complete credit card numbers or bank account
+            numbers on our own servers. We may retain billing information
+            such as:
+          </p>
+          <ul>
+            <li>transaction amount;</li>
+            <li>transaction date;</li>
+            <li>subscription information;</li>
+            <li>billing status; and</li>
+            <li>transaction or payment identifiers.</li>
+          </ul>
+
+          <h3>Technical and usage information</h3>
+          <p>
+            We may automatically collect information necessary to operate,
+            secure, troubleshoot, and improve the service, including:
+          </p>
+          <ul>
+            <li>IP address;</li>
+            <li>browser and device information;</li>
+            <li>login activity;</li>
+            <li>feature usage;</li>
+            <li>security events;</li>
+            <li>AI usage and query counts; and</li>
+            <li>other technical information generated through use of the service.</li>
+          </ul>
+          <p>We do not use this information for third-party advertising.</p>
+
+          <h2>2. Why we collect and use information</h2>
+          <p>
+            We collect and use information for purposes that are reasonably
+            appropriate to providing and operating our services, including
+            to:
+          </p>
+          <ul>
+            <li>create and administer user accounts;</li>
+            <li>authenticate users and protect accounts;</li>
+            <li>provide training and issue certificates;</li>
+            <li>establish and administer strata corporations;</li>
+            <li>provide StrataSphere governance functionality;</li>
+            <li>store and retrieve governance records;</li>
+            <li>provide search and AI-assisted features;</li>
+            <li>process subscriptions and payments;</li>
+            <li>communicate with users about their accounts and services;</li>
+            <li>provide customer support;</li>
+            <li>detect and prevent fraud, abuse, unauthorized access, and security incidents;</li>
+            <li>maintain, troubleshoot, and improve our services;</li>
+            <li>comply with legal, regulatory, accounting, and tax requirements; and</li>
+            <li>create statistical, aggregated, or appropriately de-identified information as described in Section 9.</li>
+          </ul>
+          <p>
+            We do not collect personal information for purposes unrelated to
+            the operation of our services unless those purposes are disclosed
+            to you or otherwise permitted by applicable law.
+          </p>
+
+          <h2>3. Information visible within a strata corporation</h2>
+          <p>
+            StrataSphere is a governance platform for strata corporations. As
+            a result, information entered into the platform may be visible to
+            other authorized users within the same strata corporation where
+            necessary for the corporation&rsquo;s governance activities.
+          </p>
+          <p>
+            For example, an authorized corporation administrator may provide
+            an owner or council roster so that the platform can support:
+          </p>
+          <ul>
+            <li>meeting attendance;</li>
+            <li>voting;</li>
+            <li>minutes;</li>
+            <li>council administration; and</li>
+            <li>other governance functions.</li>
+          </ul>
+          <p>Training information is treated differently.</p>
+          <p>
+            Your detailed training activity, including individual quiz
+            results and granular progress, remains private to your account.
+            If you connect your account to a strata corporation, the
+            corporation may be able to see relevant training completion or
+            certification information where that feature is enabled.
+          </p>
+          <p>
+            We do not make information belonging to one strata corporation
+            available to an unrelated strata corporation.
           </p>
 
           <h2>4. Consent</h2>
           <p>
-            Creating an account requires agreeing to this policy and our{" "}
-            <Link href="/terms">Terms &amp; Conditions</Link> &mdash; that
-            consent is what lets us provide the account itself; it
-            can&rsquo;t be partially withdrawn without closing your
-            account, since the account can&rsquo;t exist without it.
-          </p>
-          <h3>Marketing communications (CASL)</h3>
-          <p>
-            Sending you marketing email &mdash; legislative updates, new
-            StrataSphere features, and similar &mdash; is governed
-            separately by Canada&rsquo;s <em>Anti-Spam Legislation</em>{" "}
-            (&ldquo;CASL&rdquo;), which requires express, opt-in consent
-            distinct from agreeing to our Terms. At signup, and anywhere
-            else we ever offer it, this is a separate checkbox, unchecked by
-            default &mdash; we never bundle it into required consent or
-            pre-check it for you. We record when you opted in, so we have a
-            clear answer if that consent is ever questioned. You can
-            withdraw this consent at any time from Account Settings or via
-            the unsubscribe link in any marketing email; we&rsquo;ll honour
-            it within 10 business days, as CASL requires. Withdrawing
-            marketing consent has no effect on your account, your access to
-            training, or any strata corporation you&rsquo;re connected to
-            &mdash; it only stops marketing email.
+            Where consent is required by applicable law, we obtain consent
+            for the collection, use, or disclosure of personal information.
           </p>
           <p>
-            Transactional email &mdash; sign-in links, invite notifications,
-            billing receipts, and similar &mdash; isn&rsquo;t marketing and
-            isn&rsquo;t covered by this opt-in; you&rsquo;ll receive it as
-            part of using the Service regardless.
+            By creating an account and using our services, you acknowledge
+            this Privacy Policy and consent to the collection, use, and
+            disclosure of personal information as described here, subject to
+            applicable law.
+          </p>
+          <p>
+            Some information is necessary to provide the service. If you do
+            not provide information that is necessary for a particular
+            service or feature, we may not be able to provide that service or
+            feature.
+          </p>
+          <p>
+            Where consent is the legal basis for a particular collection,
+            use, or disclosure, you may withdraw that consent subject to
+            legal or contractual restrictions and any consequences of doing
+            so.
+          </p>
+          <p>
+            Withdrawing consent does not affect a collection, use, or
+            disclosure that is otherwise permitted or required by law.
           </p>
 
-          <h2>5. Limiting collection, use, and disclosure</h2>
+          <h2>5. Marketing communications</h2>
           <p>
-            We collect only what a given feature actually needs (§1) and use
-            it only for the purposes we&rsquo;ve described (§2). We
-            don&rsquo;t sell or rent your personal information to third
-            parties, and we don&rsquo;t use it for third-party advertising.
+            Marketing communications are handled separately from
+            service-related communications.
           </p>
-          <p>We share personal information only with:</p>
+          <p>
+            Where required by Canada&rsquo;s <em>Anti-Spam Legislation</em>{" "}
+            (&ldquo;CASL&rdquo;), we obtain express consent before sending
+            commercial electronic messages.
+          </p>
+          <p>Marketing communications may include information about:</p>
           <ul>
-            <li>
-              <strong>Service providers</strong> who help us run the
-              platform, each bound by their own data protection terms:
-              Supabase (database, authentication, and file storage),
-              Anthropic (AI model processing, §6), Voyage AI (text
-              embeddings for search and retrieval), Stripe (subscription
-              payment processing), Mailtrap (transactional email delivery),
-              and Vercel/Cloudflare (hosting, content delivery, and DNS).
-            </li>
-            <li>
-              <strong>Other members of your strata corporation</strong>,
-              only as described in this policy (training completions, §3;
-              roster and governance data your corporation itself manages,
-              §1) &mdash; never with a different corporation.
-            </li>
-            <li>
-              Anyone else, only where required by law, court order, or a
-              regulatory authority, or where necessary to protect the
-              rights, property, or safety of our users, the public, or
-              StrataCouncil.ca.
-            </li>
+            <li>new products or features;</li>
+            <li>legislative or regulatory developments;</li>
+            <li>training opportunities; and</li>
+            <li>other StrataCouncil services or information.</li>
+          </ul>
+          <p>You can withdraw marketing consent at any time by:</p>
+          <ul>
+            <li>using the unsubscribe mechanism in a marketing message; or</li>
+            <li>changing your communication preferences where that functionality is available.</li>
           </ul>
           <p>
-            <strong>Where your data is stored.</strong> Your account and
-            governance records are stored in our production database, hosted
-            in Canada on Supabase, which meets ISO 27001 information security
-            standards. Data is encrypted both in transit and at rest.
+            Withdrawing marketing consent does not affect your account or
+            your ability to use the services.
           </p>
           <p>
-            <strong>Cross-border transfers.</strong> Not everything stays in
-            Canada. When you use StrataSphere&rsquo;s AI features, the
-            relevant portion of your query and records is sent to Anthropic
-            and Voyage AI for processing, and that processing may occur
-            outside Canada, including in the United States. This is
-            governed by contractual data-protection terms with those
-            providers, and PIPA/PIPEDA permit this on that basis &mdash;
-            but it does mean that information can become subject to the
-            laws of the country it&rsquo;s processed in. We&rsquo;d rather
-            say this plainly than claim &ldquo;all data stays in
-            Canada,&rdquo; which wouldn&rsquo;t be accurate given how the AI
-            features work. If you enable two-factor authentication, its
-            codes are generated by an authenticator app on your own device
-            and never leave it to reach us &mdash; nothing is transmitted
-            through a third party to deliver them.
-          </p>
-
-          <h2>6. AI features and StrataSphere</h2>
-          <p>
-            StrataSphere uses Anthropic&rsquo;s Claude models to help
-            councils search and ask questions about their own governance
-            documents, decisions, and applicable BC legislation.
+            Service-related communications are different. We may send
+            messages necessary to operate your account or provide the
+            services you have requested, including:
           </p>
           <ul>
-            <li>
-              When you ask StrataSphere a question, the relevant portions of
-              your corporation&rsquo;s records are sent to Anthropic to
-              generate a response.
-            </li>
-            <li>
-              Owners are referred to by strata lot number (e.g.
-              &ldquo;SL&nbsp;061&rdquo;), not by name, in the AI&rsquo;s
-              working context &mdash; a roster lookup resolves names to lot
-              numbers before anything reaches the model, rather than relying
-              on the AI to avoid using a name it was given.
-            </li>
-            <li>
-              Where StrataSphere draws on de-identified precedent from other
-              subscribing corporations, personal information is stripped
-              (§9 describes the same process that supports aggregate data
-              more generally) before that content is ever pooled across
-              corporations.
-            </li>
-            <li>
-              Under our agreement with Anthropic, your queries and documents
-              are not used to train Anthropic&rsquo;s models.
-            </li>
-            <li>Usage is logged for quality monitoring and fair-use enforcement.</li>
+            <li>sign-in links;</li>
+            <li>account notifications;</li>
+            <li>invitations;</li>
+            <li>security notifications;</li>
+            <li>billing and payment notices; and</li>
+            <li>important service communications.</li>
+          </ul>
+
+          <h2>6. How we disclose personal information</h2>
+          <p>
+            We do not sell or rent your personal information to third parties
+            for their own advertising purposes.
+          </p>
+          <p>We may disclose personal information in the following circumstances.</p>
+
+          <h3>Service providers</h3>
+          <p>
+            We use third-party service providers to operate portions of our
+            services. Depending on the feature being used, these providers
+            may process personal information on our behalf.
+          </p>
+          <p>Our current service providers may include:</p>
+          <ul>
+            <li>Supabase, for database, authentication, and file-storage services;</li>
+            <li>Anthropic, for AI model processing;</li>
+            <li>Voyage AI, for text embeddings and search-related processing;</li>
+            <li>Stripe, for payment processing;</li>
+            <li>Mailtrap, for transactional email delivery;</li>
+            <li>Vercel, for application hosting and related infrastructure; and</li>
+            <li>Cloudflare, for content delivery, DNS, and related security or infrastructure services.</li>
           </ul>
           <p>
-            <strong>
-              AI-generated responses may be incomplete or inaccurate and are
-              not legal advice.
-            </strong>{" "}
-            StrataSphere is a tool to help your council find and understand
-            its own records and general legislation &mdash; it does not
-            replace the judgment of your council or advice from a qualified
-            lawyer where one is needed.
+            We select service providers appropriate to the functions they
+            perform and use contractual or other safeguards appropriate to
+            the nature of the information being processed.
           </p>
 
-          <h2>7. Cookies and tracking</h2>
+          <h3>Within your strata corporation</h3>
           <p>
-            The application uses only the session cookies necessary to keep
-            you signed in. We do not deploy advertising or third-party
-            analytics tracking cookies on the marketing site or in the
-            application.
+            Information may be disclosed to authorized users within the same
+            strata corporation where necessary for the corporation&rsquo;s
+            use of StrataSphere, as described in this policy.
           </p>
 
-          <h2>8. Safeguards</h2>
+          <h3>Legal and safety purposes</h3>
           <p>
-            We use encrypted connections (HTTPS) throughout, database-level
-            access controls (row-level security), and passwordless sign-in
-            through Supabase Auth: rather than a password that can be
-            reused, guessed, or leaked from another site, every sign-in is a
-            fresh, single-use link emailed to your address, which we treat
-            as a meaningful security property in its own right, not an
-            absence of one. Two-factor authentication is available as an
-            additional layer for anyone who wants it (§1). Payment details
-            never touch our own servers &mdash; Stripe handles that
-            directly. No system is completely secure; if you&rsquo;ve
-            enabled two-factor authentication, keep your backup codes safe,
-            and let us know right away at{" "}
-            <a href="mailto:support@stratacouncil.ca">
-              support@stratacouncil.ca
-            </a>{" "}
-            if you suspect unauthorized access to your account.
-          </p>
-
-          <h2>9. Secondary use: aggregate and de-identified data</h2>
-          <p>
-            Beyond providing you the Service, we may compile statistical,
-            aggregated, and de-identified data drawn from platform activity
-            &mdash; for example, training completion trends, or patterns in
-            governance decisions across many strata corporations &mdash; and
-            use it, or share or license it to third parties such as
-            insurers, service organizations, and developers, for research,
-            product development, industry benchmarking, and other business
-            purposes, including as a future revenue source.
-          </p>
-          <p>
-            <strong>
-              This is never your personal information.
-            </strong>{" "}
-            Data used this way is stripped and aggregated using the same
-            de-identification pipeline that already supports
-            StrataSphere&rsquo;s cross-corporation AI precedent pool (§6) —
-            names resolved to strata lot numbers or removed, contact
-            details, financial account numbers, and other identifiers
-            redacted before anything is pooled — and is combined across
-            enough corporations that it can&rsquo;t reasonably be used to
-            identify you, or, we intend, any single strata corporation. We
-            do not sell your name, contact details, or any document
-            specific to your corporation.
-          </p>
-          <p>
-            <strong>
-              [Flagged for legal review, not resolved by this draft:
-            </strong>{" "}
-            whether our existing stripping pipeline meets the legal bar for
-            &ldquo;de-identified&rdquo;/&ldquo;anonymized&rdquo; data under
-            PIPA and PIPEDA — which turns on re-identification risk, not
-            just redacting obvious fields — especially for a distinctive or
-            small strata corporation where aggregate patterns might still be
-            identifiable. This matters more as this becomes an actual
-            revenue line than it does for the AI precedent pool it&rsquo;s
-            borrowed from, and should be confirmed with counsel, with
-            appropriate technical safeguards (minimum aggregation
-            thresholds, for instance) in place before any such data is
-            shared or sold.]
-          </p>
-
-          <h2>10. Data retention</h2>
-          <p>
-            Account deletion on StrataCouncil.ca is immediate and
-            self-serve, not a request that waits on manual review. When you
-            delete your account, we distinguish between two kinds of data:
+            We may disclose personal information where permitted or required
+            by law, including where necessary to:
           </p>
           <ul>
-            <li>
-              <strong>Deleted immediately:</strong> your profile, your
-              connections to any strata corporation, your training
-              completions and certificates, and your StrataSphere
-              conversation history.
-            </li>
-            <li>
-              <strong>
-                Retained, as part of your strata corporation&rsquo;s
-                permanent governance record:
-              </strong>{" "}
-              documents you uploaded, decisions you moved or seconded, and
-              minutes you&rsquo;re recorded in stay part of that
-              corporation&rsquo;s record, still attributed to you, the same
-              way they would if you resigned from council without deleting
-              your account. Strata corporations have their own legal
-              recordkeeping obligations under BC strata legislation that
-              this platform doesn&rsquo;t override.
-            </li>
+            <li>comply with a court order, warrant, subpoena, or other lawful requirement;</li>
+            <li>comply with a regulatory requirement;</li>
+            <li>investigate suspected fraud, unlawful activity, or security incidents;</li>
+            <li>protect the rights, property, or safety of StrataCouncil, our users, or others; or</li>
+            <li>establish, exercise, or defend legal rights.</li>
           </ul>
-          <p>Other retention periods:</p>
+          <p>We disclose only information that is reasonably necessary for the applicable purpose.</p>
+
+          <h2>7. Storage and processing outside Canada</h2>
+          <p>Some information processed through our services may be stored or accessed outside Canada.</p>
+          <p>
+            For example, StrataSphere&rsquo;s AI features may send relevant
+            information to third-party AI or search providers whose
+            infrastructure may be located in Canada, the United States, or
+            other jurisdictions.
+          </p>
+          <p>
+            When information is processed outside Canada, it may be subject
+            to the laws of the jurisdiction in which it is processed.
+          </p>
+          <p>
+            We take reasonable security measures to protect personal
+            information regardless of where it is stored or processed.
+          </p>
+          <p>
+            Where appropriate, our arrangements with service providers
+            include contractual provisions governing their handling and
+            protection of information.
+          </p>
+          <p>
+            We do not represent that all information processed through
+            StrataSphere remains exclusively in Canada.
+          </p>
+
+          <h2>8. AI features in StrataSphere</h2>
+          <p>
+            StrataSphere includes AI-assisted features that can help councils
+            search, summarize, and ask questions about governance records and
+            other information available through the platform.
+          </p>
+          <p>StrataSphere may use third-party AI models, including models provided by Anthropic.</p>
+          <p>When an authorized user submits a question to an AI feature:</p>
           <ul>
-            <li>Billing records: 7 years, per Canadian tax law</li>
-            <li>Marketing consent records: kept for as long as the consent is in effect, plus a reasonable period after withdrawal to demonstrate CASL compliance</li>
+            <li>StrataSphere determines the information relevant to the request.</li>
             <li>
-              Security and access logs: retained for a limited period to
-              investigate suspicious activity, then deleted
+              Relevant portions of the corporation&rsquo;s records may be
+              sent to the applicable AI service provider to generate a
+              response.
             </li>
+            <li>The resulting response is returned to StrataSphere and displayed to the user.</li>
           </ul>
 
-          <h2>11. Your rights, and how to exercise them</h2>
-          <p>Subject to applicable law, you may:</p>
+          <h3>Names and strata lot numbers</h3>
+          <p>
+            Where appropriate, StrataSphere is designed to provide AI systems
+            with strata lot numbers rather than owner names when processing
+            owner-related information.
+          </p>
+          <p>
+            This is a technical privacy measure intended to reduce
+            unnecessary exposure of identifying information. It does not mean
+            that information supplied to the AI service is necessarily
+            anonymous.
+          </p>
+
+          <h3>AI provider model training</h3>
+          <p>
+            Under our current arrangement with Anthropic, information
+            submitted to Anthropic through StrataSphere is not used by
+            Anthropic to train its general-purpose models.
+          </p>
+          <p>
+            We will update this policy if our AI providers or their
+            applicable data-use arrangements change in a way that materially
+            affects this commitment.
+          </p>
+
+          <h3>AI accuracy</h3>
+          <p>
+            AI-generated responses may be incomplete, inaccurate, outdated,
+            or based on an incorrect interpretation of the information
+            provided to the system.
+          </p>
+          <p>
+            StrataSphere&rsquo;s AI features are tools for assisting with
+            research and governance. They are not legal advice and do not
+            replace the judgment of a strata council, strata manager,
+            professional advisor, or lawyer.
+          </p>
+
+          <h2>9. Aggregated and de-identified information</h2>
+          <p>
+            We may use information derived from the operation and use of our
+            services to create aggregated or de-identified information that
+            is no longer reasonably capable of being associated with an
+            identifiable individual.
+          </p>
+          <p>This may include information such as:</p>
           <ul>
-            <li>Request access to the personal information we hold about you</li>
-            <li>Ask us to correct inaccurate information</li>
-            <li>
-              Ask us to delete your personal information, subject to legal
-              retention requirements (§10)
-            </li>
-            <li>Request your data in a portable, machine-readable format</li>
-            <li>Withdraw consent, where consent is the basis for our use of it (§4)</li>
+            <li>aggregate training completion rates;</li>
+            <li>general patterns in strata governance activity;</li>
+            <li>service usage statistics;</li>
+            <li>industry benchmarks;</li>
+            <li>statistical trends; and</li>
+            <li>information about how users interact with our products and features.</li>
           </ul>
           <p>
-            You can also delete most of your own account data yourself, at
-            any time, from Account Settings (§10), and keep your name,
-            email, and marketing preference up to date there. For anything
-            else &mdash; including a formal access or correction request
-            &mdash; contact our Privacy Officer at{" "}
-            <a href="mailto:privacy@stratacouncil.ca">
-              privacy@stratacouncil.ca
-            </a>
-            . We aim to respond within 30 days.
+            Before information is treated as de-identified, we take
+            reasonable steps to remove, modify, aggregate, or otherwise
+            transform identifying information so that the resulting
+            information is not reasonably capable of being used to identify
+            an individual.
+          </p>
+          <p>We may use aggregated or de-identified information for legitimate business and operational purposes, including:</p>
+          <ul>
+            <li>improving and developing our products;</li>
+            <li>understanding how strata corporations use our services;</li>
+            <li>developing industry benchmarks and insights;</li>
+            <li>conducting research and analysis;</li>
+            <li>measuring product performance; and</li>
+            <li>creating reports, statistics, or other insights about strata governance.</li>
+          </ul>
+          <p>
+            We may share aggregated or de-identified information with service
+            providers, research partners, business partners, or other third
+            parties where appropriate for these purposes.
           </p>
           <p>
-            If you&rsquo;re not satisfied with our response, you can ask us
-            to review it again, or contact the Office of the Information
-            and Privacy Commissioner for British Columbia directly.
+            We do not use this provision to authorize the disclosure of
+            identifiable personal information to third parties for their own
+            purposes.
+          </p>
+          <p>
+            We also do not treat information as de-identified merely because
+            a name or other direct identifier has been removed. The steps
+            required to appropriately de-identify information depend on the
+            nature of the information and the circumstances in which it will
+            be used.
           </p>
 
-          <h2>12. Age requirement</h2>
+          <h2>10. Cookies and tracking technologies</h2>
+          <p>We use cookies and similar technologies that are necessary to operate and secure our services.</p>
+          <p>For example, cookies or similar technologies may be used to:</p>
+          <ul>
+            <li>maintain a user&rsquo;s session;</li>
+            <li>authenticate a user;</li>
+            <li>protect against unauthorized access; and</li>
+            <li>remember necessary application settings.</li>
+          </ul>
+          <p>We do not use advertising cookies to track users across unrelated websites.</p>
           <p>
-            StrataCouncil.ca is intended for adults. You must be at least 18
-            years old to create an account. We do not knowingly collect
-            personal information from anyone under 18; if we learn we have,
-            we&rsquo;ll delete it promptly.
+            We also do not use third-party advertising networks to serve
+            targeted advertisements through the StrataCouncil platform.
           </p>
 
-          <h2>13. Changes to this policy</h2>
+          <h2>11. Security</h2>
           <p>
-            We may update this policy from time to time. Updates will
-            appear on this page with a revised &ldquo;last updated&rdquo;
-            date; for material changes, we&rsquo;ll email active users at
-            least 14 days before the change takes effect.
+            We use reasonable administrative, technical, and physical
+            safeguards appropriate to the sensitivity of the information we
+            handle.
+          </p>
+          <p>Depending on the service and information involved, safeguards may include:</p>
+          <ul>
+            <li>encryption in transit;</li>
+            <li>encryption at rest where supported by the underlying infrastructure;</li>
+            <li>database access controls;</li>
+            <li>row-level security;</li>
+            <li>authentication controls;</li>
+            <li>passwordless authentication;</li>
+            <li>optional two-factor authentication;</li>
+            <li>restricted administrative access;</li>
+            <li>logging and monitoring; and</li>
+            <li>security procedures for responding to suspected unauthorized access.</li>
+          </ul>
+          <p>No electronic system can be guaranteed to be completely secure.</p>
+          <p>
+            You are responsible for protecting access to the email account
+            and devices you use to access StrataCouncil or StrataSphere. If
+            you use two-factor authentication, you should protect your
+            recovery information and notify us promptly if you believe your
+            account has been compromised.
           </p>
 
-          <h2>14. Accountability and how to reach us</h2>
+          <h2>12. Privacy breaches and security incidents</h2>
+          <p>We maintain procedures for responding to suspected privacy and security incidents.</p>
           <p>
-            StrataCouncil.ca has designated a Privacy Officer, responsible
-            for our compliance with this policy and with PIPA/PIPEDA.
+            If we determine that a privacy breach has occurred, we will
+            assess the incident and take steps appropriate to the
+            circumstances, including containment, investigation, remediation,
+            and notification where required by applicable law.
           </p>
           <p>
-            Email:{" "}
-            <a href="mailto:privacy@stratacouncil.ca">
-              privacy@stratacouncil.ca
-            </a>{" "}
-            (privacy requests and complaints) or{" "}
-            <a href="mailto:support@stratacouncil.ca">
-              support@stratacouncil.ca
-            </a>{" "}
-            (everything else)
+            If you believe that your account or personal information may
+            have been accessed or disclosed without authorization, contact us
+            promptly at{" "}
+            <a href="mailto:privacy@stratacouncil.ca">privacy@stratacouncil.ca</a>.
+          </p>
+          <p>Please provide enough information for us to investigate the concern.</p>
+
+          <h2>13. Accuracy of personal information</h2>
+          <p>
+            We take reasonable steps to ensure that personal information in
+            our custody or control is accurate and complete where the
+            information is likely to be used to make a decision affecting an
+            individual or disclosed to another organization.
+          </p>
+          <p>You can update certain account information through your account settings.</p>
+          <p>You may also request correction of personal information as described in Section 15.</p>
+          <p>
+            Information entered into StrataSphere by a strata corporation or
+            its users remains the responsibility of the corporation or user
+            who provided it. StrataCouncil does not independently verify
+            every governance record, document, roster entry, or other piece
+            of information entered into the platform.
+          </p>
+
+          <h2>14. Retention and deletion</h2>
+          <p>
+            We retain information for as long as reasonably necessary for the
+            purposes for which it was collected, to provide the services, to
+            maintain legitimate business and operational records, and to
+            comply with legal, accounting, tax, security, and other
+            obligations.
+          </p>
+          <p>Different categories of information may therefore have different retention periods.</p>
+
+          <h3>Account information</h3>
+          <p>
+            You may delete your account through the available account
+            controls. Subject to information that we are required or
+            permitted to retain, we will delete or de-identify account
+            information in accordance with our retention practices.
+          </p>
+
+          <h3>Training information</h3>
+          <p>
+            Account-level training information may be deleted when an
+            account is deleted, subject to applicable retention requirements.
+          </p>
+
+          <h3>Strata governance records</h3>
+          <p>Deleting an individual&rsquo;s account does not necessarily delete records belonging to a strata corporation.</p>
+          <p>For example, a governance record may continue to contain:</p>
+          <ul>
+            <li>a person&rsquo;s name as a meeting participant;</li>
+            <li>a motion moved or seconded by that person;</li>
+            <li>a vote;</li>
+            <li>a decision;</li>
+            <li>minutes;</li>
+            <li>a document created or submitted as part of strata business; or</li>
+            <li>other information forming part of the corporation&rsquo;s governance record.</li>
+          </ul>
+          <p>
+            These records may need to remain available to the strata
+            corporation even if an individual leaves council or deletes their
+            personal account.
+          </p>
+
+          <h3>Billing records</h3>
+          <p>
+            Billing and transaction records may be retained for the period
+            required by applicable accounting, tax, financial, or other legal
+            requirements.
+          </p>
+
+          <h3>Security records</h3>
+          <p>
+            Security and access logs may be retained for a limited period
+            appropriate to security, fraud prevention, troubleshooting, and
+            incident investigation.
+          </p>
+
+          <h3>Marketing consent records</h3>
+          <p>
+            Records relating to marketing consent and withdrawal may be
+            retained for as long as reasonably necessary to demonstrate
+            compliance with applicable requirements.
+          </p>
+
+          <h2>15. Your privacy rights</h2>
+          <p>Subject to applicable law and any applicable exceptions, you may have the right to:</p>
+          <ul>
+            <li>request access to personal information we hold about you;</li>
+            <li>request correction of inaccurate personal information;</li>
+            <li>withdraw consent where consent is the basis for a particular collection, use, or disclosure;</li>
+            <li>ask questions about how we handle your personal information; and</li>
+            <li>make a complaint about our privacy practices.</li>
+          </ul>
+          <p>You may also have other rights under applicable privacy legislation.</p>
+          <p>A request for access or correction should be made in writing and sent to:</p>
+          <p>
+            Privacy Officer
+            <br />
+            <a href="mailto:privacy@stratacouncil.ca">privacy@stratacouncil.ca</a>
+          </p>
+          <p>We may need to verify your identity before responding to a request.</p>
+          <p>
+            We will respond to access requests within the time required by
+            applicable law, subject to any permitted extensions, exceptions,
+            or other applicable requirements.
+          </p>
+          <p>
+            Some information may not be available for disclosure where an
+            applicable legal exception applies. This can include information
+            protected by privilege, information relating to another
+            individual, or information that cannot lawfully be disclosed.
+          </p>
+          <p>
+            Where permitted by law, we may charge a reasonable fee for
+            certain requests and will advise you before proceeding where a
+            fee applies.
+          </p>
+
+          <h2>16. Complaints</h2>
+          <p>If you have a concern about our handling of your personal information, please contact our Privacy Officer first:</p>
+          <p>
+            <a href="mailto:privacy@stratacouncil.ca">privacy@stratacouncil.ca</a>
+          </p>
+          <p>We will review privacy complaints and respond in accordance with our privacy management procedures.</p>
+          <p>
+            If you remain dissatisfied after contacting us, you may contact
+            the Office of the Information and Privacy Commissioner for
+            British Columbia (OIPC BC).
+          </p>
+
+          <h2>17. Age requirement</h2>
+          <p>Our services are intended for adults.</p>
+          <p>You must be at least 18 years old to create an account.</p>
+          <p>
+            We do not knowingly collect personal information from
+            individuals under 18 through account registration. If we learn
+            that we have collected personal information from someone under
+            18 in circumstances where it should not have been collected, we
+            will take reasonable steps to address and delete the information
+            where appropriate.
+          </p>
+
+          <h2>18. Changes to this Privacy Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time to reflect
+            changes to our services, technology, legal requirements, or
+            privacy practices.
+          </p>
+          <p>The current version will always be posted on this page with its effective date and last-updated date.</p>
+          <p>
+            If we make a material change to the way we collect, use, or
+            disclose personal information, we will provide additional notice
+            where required by applicable law.
+          </p>
+
+          <h2>19. Accountability and contact information</h2>
+          <p>
+            StrataCouncil.ca has designated a Privacy Officer responsible for
+            overseeing our privacy practices and responding to privacy
+            questions, requests, and complaints.
+          </p>
+          <p>
+            Privacy Officer
+            <br />
+            Email: <a href="mailto:privacy@stratacouncil.ca">privacy@stratacouncil.ca</a>
+          </p>
+          <p>
+            General support
+            <br />
+            Email: <a href="mailto:support@stratacouncil.ca">support@stratacouncil.ca</a>
             <br />
             Location: British Columbia, Canada
           </p>
           <p>
-            If you have an unresolved privacy concern after contacting us,
-            you may also contact the Office of the Information and Privacy
-            Commissioner for British Columbia.
+            For privacy questions, access requests, correction requests, or
+            complaints, please use{" "}
+            <a href="mailto:privacy@stratacouncil.ca">privacy@stratacouncil.ca</a>.
+          </p>
+          <p>
+            If you have an unresolved concern, you may also contact the
+            Office of the Information and Privacy Commissioner for British
+            Columbia.
           </p>
         </article>
       </main>

@@ -1,0 +1,772 @@
+/* StrataCouncil.ca — design tokens
+   Source of truth: Neurata project doc `05-brand-design-system.md` §3–5.
+   Duplicated here per that doc's §6 recommendation (start with duplication,
+   revisit a shared package only if drift becomes a real problem). */
+
+:root {
+  --ink: #1b2a41; /* primary text, header wordmark, dark UI chrome */
+  --paper: #f8f6f1; /* page background — warm ivory, not pure white */
+  --surface: #ffffff; /* card/panel backgrounds, sits on --paper */
+  --line: #e3dfd5; /* borders, dividers — warm, not cool grey */
+
+  --accent: #b4602f; /* clay — primary accent, CTAs, active states ONLY */
+  --accent-dark: #8f4b24; /* accent hover/pressed state */
+  --muted: #6b7280; /* secondary text, labels, metadata */
+
+  --free: #2f7355; /* success / free-tier / carried-motion green */
+  --free-bg: #e6f0ea;
+  --locked: #9ca3af; /* disabled/gated state grey */
+  --locked-bg: #f1f0ec;
+
+  --danger: #a6342a; /* muted, warm brick red */
+  --danger-bg: #f5e1de;
+
+  --radius-sm: 6px;
+  --radius-lg: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-work-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Small-caps, letter-spaced status pill — the system's one recurring
+   "component" per doc05 §5; kept singular deliberately. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3em 0.75em;
+  border-radius: 999px;
+  background: var(--free-bg);
+  color: var(--free);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-work-sans), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.85em 1.6em;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.button-primary {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.button-primary:hover {
+  background: var(--accent-dark);
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.button-secondary:hover {
+  border-color: var(--ink);
+}
+
+/* Layout shell */
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.site-header {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88px;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  color: inherit;
+  text-decoration: none;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  font-size: 1.5rem; /* 1.25rem × 1.5 × 0.8 */
+}
+
+.wordmark--small {
+  font-size: 1.26rem; /* 1.05rem × 1.5 × 0.8 */
+  color: var(--ink);
+}
+
+.wordmark__mark {
+  width: 56px;
+  height: 56px;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-weight: 500;
+}
+
+.site-nav a:not(.button) {
+  text-decoration: none;
+  color: rgba(248, 246, 241, 0.75);
+}
+
+.site-nav a:not(.button):hover {
+  color: var(--paper);
+}
+
+.site-header .button-secondary {
+  color: var(--paper);
+  border-color: rgba(248, 246, 241, 0.35);
+}
+
+.site-header .button-secondary:hover {
+  border-color: var(--paper);
+}
+
+/* Hero — a real photo as a faint full-bleed background, not a boxed
+   image alongside the text. A heavy --paper-tinted scrim sits between
+   the photo and the copy so the photo reads as texture, not content —
+   legibility over visibility. */
+
+.hero {
+  padding: 120px 0;
+  background-image: linear-gradient(
+      rgba(248, 246, 241, 0.88),
+      rgba(248, 246, 241, 0.88)
+    ),
+    url("https://images.pexels.com/photos/7433824/pexels-photo-7433824.jpeg?auto=compress&cs=tinysrgb&w=1600");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero__inner {
+  max-width: 720px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  margin: 0.6em 0 0.5em;
+  color: var(--ink);
+}
+
+.hero__lede {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 620px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.25rem;
+  flex-wrap: wrap;
+}
+
+/* Pull quote — for member testimonials once we have real ones.
+   The bracketed placeholder is deliberate: never fill this with an
+   invented name or words, only real quotes when they exist. */
+
+.pull-quote {
+  border-left: 3px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 2rem;
+  max-width: 640px;
+}
+
+.pull-quote blockquote {
+  margin: 0;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.pull-quote cite {
+  display: block;
+  margin-top: 1rem;
+  font-style: normal;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.pull-quote--on-dark {
+  border-left-color: rgba(248, 246, 241, 0.4);
+}
+
+.pull-quote--on-dark blockquote {
+  color: var(--paper);
+}
+
+.pull-quote--on-dark cite {
+  color: rgba(248, 246, 241, 0.65);
+}
+
+/* Placeholder app mockup — a browser-chrome frame around an abstract
+   skeleton layout, standing in for a real screenshot until the app
+   exists. Keep it visibly abstract; it should never read as a real
+   screenshot. */
+
+.app-mockup {
+  margin-top: 2.5rem;
+  max-width: 640px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(27, 42, 65, 0.06);
+}
+
+.app-mockup__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.app-mockup__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.app-mockup__url {
+  margin-left: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--locked);
+  font-family: var(--font-work-sans), system-ui, sans-serif;
+}
+
+.app-mockup__body {
+  padding: 1.25rem;
+}
+
+.app-mockup__grid {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1.25rem;
+}
+
+.app-mockup__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.app-mockup__main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.app-mockup__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.app-mockup__card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.app-mockup__table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.app-mockup__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.app-mockup__label {
+  padding: 0.6rem 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+/* Skeleton blocks — neutral grey bars, never colored to look like
+   finished UI content */
+
+.skel {
+  display: block;
+  background: var(--locked-bg);
+  border-radius: 4px;
+}
+
+.skel--title {
+  height: 10px;
+  width: 70%;
+  margin-bottom: 0.4rem;
+  background: var(--line);
+}
+
+.skel--nav {
+  height: 8px;
+  width: 90%;
+}
+
+.skel--nav-active {
+  background: var(--accent);
+  opacity: 0.35;
+}
+
+.skel--heading {
+  height: 14px;
+  width: 45%;
+  background: var(--line);
+}
+
+.skel--bar {
+  height: 6px;
+  width: 40%;
+}
+
+.skel--bar-accent {
+  background: var(--accent);
+  opacity: 0.4;
+}
+
+.skel--line {
+  height: 7px;
+  width: 100%;
+}
+
+.skel--line-short {
+  width: 60%;
+}
+
+.skel--line-wide {
+  width: 70%;
+}
+
+.skel--pill {
+  height: 16px;
+  width: 60px;
+  border-radius: 999px;
+}
+
+/* A supporting photo used inline within a text section, not full-bleed */
+
+.section-photo {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  margin-top: 2.5rem;
+  max-width: 780px;
+}
+
+.section-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Cropped variant — matches the text column width (640px, same as
+   .section-lede) instead of running wider, with a fixed aspect ratio
+   so an oddly-shaped source photo doesn't dictate the layout. */
+
+.section-photo--crop {
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+}
+
+.section-photo--crop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Split layout — text (with its list) on the left, a photo on the
+   right, running side by side rather than stacked. Used where a photo
+   needs to sit parallel to copy instead of full-width beneath it. */
+
+.section-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .section-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-split__media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  position: sticky;
+  top: 2rem;
+}
+
+@media (max-width: 860px) {
+  .section-split__media {
+    position: static;
+  }
+}
+
+.section-split__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+}
+
+/* Sections — one consistent rhythm: h2, then an optional .section-lede
+   at a fixed reading width, then content. Every section follows this
+   same order so spacing doesn't vary block to block. */
+
+.section {
+  padding: 96px 0;
+}
+
+.section h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.section-lede {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 640px;
+  margin: 1rem 0 0;
+}
+
+.section--alt {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Navy trust band — institutional weight partway down the page */
+
+.section--trust {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.section--trust h2 {
+  color: var(--paper);
+}
+
+.section--trust .section-lede {
+  color: rgba(248, 246, 241, 0.75);
+}
+
+/* Only the centered closing CTA needs the wider heading measure (its
+   line is long); every other trust-band section keeps the standard
+   640px so its heading lines up with the copy under it, like the rest
+   of the page. */
+.section--trust--center h2 {
+  max-width: 720px;
+}
+
+.trust-marks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(248, 246, 241, 0.2);
+}
+
+.trust-mark {
+  min-width: 160px;
+}
+
+.trust-mark strong {
+  display: block;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--paper);
+}
+
+.trust-mark span {
+  color: rgba(248, 246, 241, 0.65);
+  font-size: 0.9rem;
+}
+
+.section--trust--center {
+  text-align: center;
+}
+
+.section--trust--center h2 {
+  margin: 0 auto;
+}
+
+.section--trust--center p {
+  margin: 1rem auto 0;
+}
+
+.section--trust--center .hero__actions {
+  justify-content: center;
+}
+
+.section--trust--eyebrow {
+  color: rgba(248, 246, 241, 0.65);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+/* The system's ONE list pattern — every list on the page uses this,
+   single column, same row treatment, no per-section variants. */
+
+.list-check {
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 640px; /* matches .section-lede/.section h2 so lists share
+    the same right edge as the copy above them, in every section */
+  columns: 2;
+  column-gap: 2.5rem;
+}
+
+@media (max-width: 700px) {
+  .list-check {
+    columns: 1;
+  }
+}
+
+.list-check li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  break-inside: avoid;
+}
+
+.list-check li:last-child {
+  border-bottom: none;
+}
+
+.list-check li::before {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateY(-0.35em);
+}
+
+/* Narrative audience blocks — "If you're new to council", etc. */
+
+.narrative .section-lede {
+  margin-top: 1rem;
+}
+
+.narrative .hero__actions {
+  margin-top: 2rem;
+}
+
+/* The system's ONE grid pattern — every grouped-card section (learning
+   formats, audience cards) uses this same grid and the same .card. */
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.6em;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Footer */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 40px 0;
+}
+
+.site-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer__inner p {
+  margin: 0;
+}
+
+.site-footer__links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer__links a:hover {
+  color: var(--ink);
+}
+
+/* Legal pages (Privacy, Terms) — plain, readable prose. Reuses .wrap and
+   .section spacing rather than inventing new page chrome; this is the one
+   long-form-text pattern in the system, kept singular deliberately. */
+
+.legal {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 0 96px;
+}
+
+.legal__updated {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0;
+}
+
+.legal h1 {
+  font-size: 2.25rem;
+}
+
+.legal h2 {
+  font-size: 1.4rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.legal h3 {
+  font-size: 1.1rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.legal p {
+  line-height: 1.7;
+  margin: 0 0 1.1rem;
+}
+
+.legal ul,
+.legal ol {
+  line-height: 1.7;
+  margin: 0 0 1.1rem;
+  padding-left: 1.4rem;
+}
+
+.legal li {
+  margin-bottom: 0.5rem;
+}
+
+.legal a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.legal strong {
+  color: var(--ink);
+}
+
+.legal__intro {
+  color: var(--muted);
+}
+
+.legal__placeholder {
+  background: var(--locked-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0 0 2.5rem;
+}
+
+.legal__placeholder strong {
+  color: var(--ink);
+}

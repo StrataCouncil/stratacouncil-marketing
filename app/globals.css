@@ -1,5 +1,5 @@
 /* StrataCouncil.ca — design tokens
-   Source of truth: Neurata project doc `05-brand-design-system.md` §3–5.
+   Source of truth: project doc `05-brand-design-system.md` §3–5.
    Duplicated here per that doc's §6 recommendation (start with duplication,
    revisit a shared package only if drift becomes a real problem). */
 
@@ -131,25 +131,29 @@ svg {
   height: 88px;
 }
 
+/* The brand lockup: mark 1.51em tall, 0.33em gap, so the wordmark's
+   capitals are 47% of the mark's height (see components/Logo.tsx). */
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 0.6em;
+  gap: 0.33em;
   color: inherit;
   text-decoration: none;
   font-family: var(--font-fraunces), Georgia, serif;
   font-weight: 600;
-  font-size: 1.5rem; /* 1.25rem × 1.5 × 0.8 */
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
 .wordmark--small {
-  font-size: 1.26rem; /* 1.05rem × 1.5 × 0.8 */
+  font-size: 1.15rem;
   color: var(--ink);
 }
 
 .wordmark__mark {
-  width: 56px;
-  height: 56px;
+  width: 1.51em;
+  height: 1.51em;
+  flex: none;
 }
 
 .site-nav {
@@ -175,6 +179,44 @@ svg {
 
 .site-header .button-secondary:hover {
   border-color: var(--paper);
+}
+
+@media (max-width: 860px) {
+  .site-nav {
+    gap: 1.25rem;
+  }
+  .site-nav__section {
+    display: none;
+  }
+}
+
+.site-nav a {
+  white-space: nowrap;
+}
+
+/* Phones: the logo and Start Learning only; Sign in is in the footer. */
+@media (max-width: 520px) {
+  .wordmark {
+    font-size: 1.2rem;
+  }
+  .site-nav a:not(.button) {
+    display: none;
+  }
+  .site-nav .button {
+    padding: 0.7em 1.1em;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Hero — a real photo as a faint full-bleed background, not a boxed
@@ -254,165 +296,6 @@ svg {
 
 .pull-quote--on-dark cite {
   color: rgba(248, 246, 241, 0.65);
-}
-
-/* Placeholder app mockup — a browser-chrome frame around an abstract
-   skeleton layout, standing in for a real screenshot until the app
-   exists. Keep it visibly abstract; it should never read as a real
-   screenshot. */
-
-.app-mockup {
-  margin-top: 2.5rem;
-  max-width: 640px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  box-shadow: 0 1px 2px rgba(27, 42, 65, 0.06);
-}
-
-.app-mockup__chrome {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.75rem 1rem;
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
-}
-
-.app-mockup__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--line);
-}
-
-.app-mockup__url {
-  margin-left: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--locked);
-  font-family: var(--font-work-sans), system-ui, sans-serif;
-}
-
-.app-mockup__body {
-  padding: 1.25rem;
-}
-
-.app-mockup__grid {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 1.25rem;
-}
-
-.app-mockup__sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.app-mockup__main {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.app-mockup__cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.6rem;
-}
-
-.app-mockup__card {
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 0.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.app-mockup__table {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.app-mockup__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid var(--line);
-}
-
-.app-mockup__label {
-  padding: 0.6rem 1rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-  border-top: 1px solid var(--line);
-  background: var(--paper);
-}
-
-/* Skeleton blocks — neutral grey bars, never colored to look like
-   finished UI content */
-
-.skel {
-  display: block;
-  background: var(--locked-bg);
-  border-radius: 4px;
-}
-
-.skel--title {
-  height: 10px;
-  width: 70%;
-  margin-bottom: 0.4rem;
-  background: var(--line);
-}
-
-.skel--nav {
-  height: 8px;
-  width: 90%;
-}
-
-.skel--nav-active {
-  background: var(--accent);
-  opacity: 0.35;
-}
-
-.skel--heading {
-  height: 14px;
-  width: 45%;
-  background: var(--line);
-}
-
-.skel--bar {
-  height: 6px;
-  width: 40%;
-}
-
-.skel--bar-accent {
-  background: var(--accent);
-  opacity: 0.4;
-}
-
-.skel--line {
-  height: 7px;
-  width: 100%;
-}
-
-.skel--line-short {
-  width: 60%;
-}
-
-.skel--line-wide {
-  width: 70%;
-}
-
-.skel--pill {
-  height: 16px;
-  width: 60px;
-  border-radius: 999px;
 }
 
 /* A supporting photo used inline within a text section, not full-bleed */
@@ -778,38 +661,578 @@ svg {
   color: var(--ink);
 }
 
-/* Temporary holding page (2026-09-30, doc00 changelog) — see
-   app/coming-soon/page.tsx and middleware.ts. */
-.coming-soon {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* Text beside an animated example (Council Training, Stratasphere). */
+
+.sphere-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4rem;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem 1.5rem;
-  gap: 0.5rem;
 }
 
-.coming-soon__wordmark {
+.sphere-split .section-lede,
+.sphere-split .list-check {
+  max-width: none;
+}
+
+@media (max-width: 960px) {
+  .sphere-split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+  }
+  .sphere-split--flip > :first-child {
+    order: 2;
+  }
+}
+
+.list-check--single {
+  columns: 1;
+}
+
+.formats {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.formats li {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.25rem;
+}
+
+.formats h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.35em;
+}
+
+.formats p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Questions and answers */
+
+.faq {
+  margin-top: 2.5rem;
+  max-width: 820px;
+  border-top: 1px solid var(--line);
+}
+
+.faq__item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq__item summary {
+  list-style: none;
+  cursor: pointer;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 1.2rem;
-  color: var(--ink);
+  gap: 1.5rem;
+  padding: 1.35rem 0;
   font-family: var(--font-fraunces), Georgia, serif;
   font-weight: 600;
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
 }
 
-.coming-soon__logo {
-  width: 80px;
-  height: 80px;
+.faq__item summary::-webkit-details-marker {
+  display: none;
 }
 
-.coming-soon__body {
-  max-width: 28rem;
+.faq__item summary::after {
+  content: "+";
+  flex: none;
+  font-family: var(--font-work-sans), system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+
+.faq__item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq__item summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.faq__answer {
+  padding: 0 0 1.5rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+.faq__answer p {
+  margin: 0 0 0.9rem;
+}
+
+.faq__answer ul {
+  margin: 0 0 0.9rem;
+  padding-left: 1.25rem;
+}
+
+.faq__answer li {
+  margin-bottom: 0.4rem;
+}
+
+.faq__answer strong {
   color: var(--ink);
-  font-size: 1.05rem;
-  line-height: 1.6;
+}
+
+.faq__answer a {
+  color: var(--accent);
+}
+
+/* Animated example: Ask Stratasphere (components/AskStratasphere.tsx).
+   A dark app window on the light page, in the brand's navy. */
+
+.ask,
+.lesson {
+  --win-bg: #15223a;
+  --win-card: #1e2d48;
+  --win-line: rgba(248, 246, 241, 0.09);
+  --win-text: #e9e6de;
+  --win-muted: rgba(233, 230, 222, 0.55);
+  min-width: 0;
+}
+
+.ask__window,
+.lesson__window {
+  background: var(--win-bg);
+  color: var(--win-text);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(27, 42, 65, 0.45), 0 0 0 1px rgba(27, 42, 65, 0.08);
+}
+
+.ask__window {
+  min-height: 560px;
+}
+
+.ask__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--win-line);
+}
+
+.ask__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(248, 246, 241, 0.18);
+}
+
+.ask__title {
+  margin-left: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--win-muted);
+}
+
+.ask__body {
+  padding: 1.1rem 1.1rem 1.4rem;
+}
+
+.ask__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.ask__tab {
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--win-muted);
+  background: transparent;
+  border: 1px solid var(--win-line);
+  border-radius: 999px;
+  padding: 0.35em 0.95em;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ask__tab:hover {
+  color: var(--win-text);
+}
+
+.ask__tab[aria-selected="true"] {
+  color: #f0b48e;
+  border-color: rgba(180, 96, 47, 0.8);
+  background: rgba(180, 96, 47, 0.14);
+}
+
+.ask__tab:focus-visible {
+  outline: 2px solid #f0b48e;
+  outline-offset: 2px;
+}
+
+.ask__question {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(248, 246, 241, 0.05);
+  border: 1px solid var(--win-line);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  min-height: 3rem;
+}
+
+.ask__search {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--win-muted);
+}
+
+.ask__caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: #f0b48e;
+  animation: ask-blink 0.9s steps(1) infinite;
+}
+
+@keyframes ask-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.ask__status {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 1.2rem;
+  margin: 0.75rem 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--win-muted);
+}
+
+.ask__pulse {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e08a55;
+  animation: ask-pulse 1s ease-in-out infinite;
+}
+
+.ask__pulse:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.ask__pulse:nth-child(3) {
+  animation-delay: 0.3s;
+  margin-right: 0.4rem;
+}
+
+@keyframes ask-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+.ask__sources {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ask__source,
+.ask__answer {
+  background: var(--win-card);
+  border: 1px solid var(--win-line);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  animation: ask-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.ask__source p,
+.ask__answer p {
+  margin: 0.3rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.ask__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e08a55;
+}
+
+.ask__source[data-kind="decision"] .ask__label {
+  color: #6fc79c;
+}
+
+.ask__source[data-kind="law"] .ask__label {
+  color: #8db8e8;
+}
+
+.ask__source[data-kind="precedent"] .ask__label {
+  color: #e3bb63;
+}
+
+.ask__meta {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--win-muted);
+}
+
+.ask__answer {
+  margin-top: 0.8rem;
+  background: rgba(180, 96, 47, 0.13);
+  border-color: rgba(180, 96, 47, 0.45);
+}
+
+.ask__answer .ask__label {
+  color: #f0b48e;
+}
+
+.ask__answer p {
+  font-size: 0.92rem;
+  color: #f8f6f1;
+}
+
+@keyframes ask-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ask__caption {
+  margin: 0.9rem 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Animated example: a Council Training module (components/TrainingPreview.tsx).
+   Mirrors the real player: navy title bar, white screen, flip cards. */
+
+.lesson__window {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  min-height: 470px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 1rem 1.25rem;
+}
+
+.lesson__title {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.lesson__count {
+  font-size: 0.85rem;
+  color: rgba(248, 246, 241, 0.7);
+}
+
+.lesson__body {
+  flex: 1;
+  padding: 1.25rem 1.25rem 1rem;
+  animation: ask-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.lesson__text {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.lesson__cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.lesson__card {
+  perspective: 900px;
+  height: 118px;
+}
+
+.lesson__card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.lesson__card[data-flipped="true"] .lesson__card-inner {
+  transform: rotateY(180deg);
+}
+
+.lesson__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 0.8rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.lesson__face--front {
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.lesson__face--front strong {
+  font-size: 0.95rem;
+}
+
+.lesson__face--front span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.lesson__face--back {
+  transform: rotateY(180deg);
+  background: var(--ink);
+  color: var(--paper);
+  justify-content: center;
+}
+
+.lesson__hint {
+  margin: 0.85rem 0 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.lesson__options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.lesson__options li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.92rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.lesson__radio {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lesson__options li[data-state="right"] {
+  border-color: var(--free);
+  background: var(--free-bg);
+}
+
+.lesson__options li[data-state="right"] .lesson__radio {
+  border-color: var(--free);
+  background: var(--free);
+  box-shadow: inset 0 0 0 3px var(--free-bg);
+}
+
+.lesson__options li[data-state="dim"] {
+  opacity: 0.55;
+}
+
+.lesson__feedback {
+  margin: 0.9rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+}
+
+.lesson__feedback[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.lesson__feedback strong {
+  color: var(--free);
+}
+
+.lesson__progress {
+  height: 4px;
+  background: var(--locked-bg);
+}
+
+.lesson__progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ask__source,
+  .ask__answer,
+  .lesson__body,
+  .ask__caret,
+  .ask__pulse {
+    animation: none;
+  }
+  .lesson__card-inner,
+  .lesson__feedback,
+  .lesson__progress span {
+    transition: none;
+  }
 }

@@ -1,6 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { Logo } from "@/components/Logo";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — StrataCouncil.ca",
@@ -13,21 +12,7 @@ const EFFECTIVE_DATE = "September 29, 2026";
 export default function PrivacyPage() {
   return (
     <>
-      <header className="site-header">
-        <div className="wrap site-header__inner">
-          <Link href="/" className="wordmark" data-testid="header-logo-link">
-            <Logo className="wordmark__mark" />
-            <span>StrataCouncil.ca</span>
-          </Link>
-          <nav aria-label="Primary" className="site-nav">
-            <Link href="/#built-for">What you&rsquo;ll learn</Link>
-            <Link href="/#who-its-for">Who it&rsquo;s for</Link>
-            <Link href="/join" className="button button-primary" data-testid="nav-cta">
-              Start Learning
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="wrap">
         <article className="legal">
@@ -767,23 +752,7 @@ export default function PrivacyPage() {
         </article>
       </main>
 
-      <footer className="site-footer">
-        <div className="wrap site-footer__inner">
-          <span className="wordmark wordmark--small">
-            <Logo className="wordmark__mark" />
-            <span>StrataCouncil.ca</span>
-          </span>
-          <ul className="site-footer__links">
-            <li>
-              <Link href="/privacy">Privacy Policy</Link>
-            </li>
-            <li>
-              <Link href="/terms">Terms &amp; Conditions</Link>
-            </li>
-          </ul>
-          <p>&copy; {new Date().getFullYear()} StrataCouncil.ca</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

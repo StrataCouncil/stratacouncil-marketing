@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";
+const LAST_UPDATED = "October 9, 2026";
 
 export default function TermsPage() {
   return (
@@ -19,7 +20,7 @@ export default function TermsPage() {
         <article className="legal">
           <h1>Terms &amp; Conditions</h1>
           <p className="legal__updated">
-            Effective date: {EFFECTIVE_DATE} &middot; Last updated: {EFFECTIVE_DATE}
+            Effective date: {EFFECTIVE_DATE} &middot; Last updated: {LAST_UPDATED}
           </p>
 
           <p className="legal__intro">

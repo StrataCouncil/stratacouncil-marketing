@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";
+const LAST_UPDATED = "October 9, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -18,13 +19,13 @@ export default function PrivacyPage() {
         <article className="legal">
           <h1>Privacy Policy</h1>
           <p className="legal__updated">
-            Effective date: {EFFECTIVE_DATE} &middot; Last updated: {EFFECTIVE_DATE}
+            Effective date: {EFFECTIVE_DATE} &middot; Last updated: {LAST_UPDATED}
           </p>
 
           <p className="legal__intro">
             StrataCouncil.ca (&ldquo;StrataCouncil,&rdquo; &ldquo;we,&rdquo;
             &ldquo;us,&rdquo; or &ldquo;our&rdquo;) provides strata council
-            education and governance tools, including the StrataSphere&trade;
+            education and governance tools, including the Stratasphere&trade;
             platform, to strata corporations, council members, owners, and
             other users in British Columbia.
           </p>
@@ -37,7 +38,7 @@ export default function PrivacyPage() {
           <ul>
             <li>the StrataCouncil.ca website;</li>
             <li>the StrataCouncil.ca training platform;</li>
-            <li>the StrataSphere application; and</li>
+            <li>the Stratasphere application; and</li>
             <li>related services, communications, and support.</li>
           </ul>
           <p>
@@ -83,7 +84,7 @@ export default function PrivacyPage() {
           <p>
             If you create or connect a strata corporation, we may collect
             information necessary to establish and administer that
-            corporation within StrataSphere.
+            corporation within Stratasphere.
           </p>
           <p>
             This may include information contained in a strata plan or other
@@ -120,9 +121,9 @@ export default function PrivacyPage() {
             of that corporation as described in Section 3.
           </p>
 
-          <h3>StrataSphere governance information</h3>
+          <h3>Stratasphere governance information</h3>
           <p>
-            If a strata corporation subscribes to StrataSphere, the platform
+            If a strata corporation subscribes to Stratasphere, the platform
             may store governance information entered, uploaded, generated, or
             maintained by the corporation and its authorized users.
           </p>
@@ -154,7 +155,7 @@ export default function PrivacyPage() {
             members, or other individuals associated with a strata
             corporation.
           </p>
-          <p>Depending on how the corporation uses StrataSphere, this may include:</p>
+          <p>Depending on how the corporation uses Stratasphere, this may include:</p>
           <ul>
             <li>strata lot number;</li>
             <li>name;</li>
@@ -166,7 +167,7 @@ export default function PrivacyPage() {
           </ul>
           <p>
             A strata corporation and its authorized users are responsible for
-            ensuring that information they provide to StrataSphere is
+            ensuring that information they provide to Stratasphere is
             collected and used in accordance with their own legal
             obligations.
           </p>
@@ -213,7 +214,7 @@ export default function PrivacyPage() {
             <li>authenticate users and protect accounts;</li>
             <li>provide training and issue certificates;</li>
             <li>establish and administer strata corporations;</li>
-            <li>provide StrataSphere governance functionality;</li>
+            <li>provide Stratasphere governance functionality;</li>
             <li>store and retrieve governance records;</li>
             <li>provide search and AI-assisted features;</li>
             <li>process subscriptions and payments;</li>
@@ -232,7 +233,7 @@ export default function PrivacyPage() {
 
           <h2>3. Information visible within a strata corporation</h2>
           <p>
-            StrataSphere is a governance platform for strata corporations. As
+            Stratasphere is a governance platform for strata corporations. As
             a result, information entered into the platform may be visible to
             other authorized users within the same strata corporation where
             necessary for the corporation&rsquo;s governance activities.
@@ -349,7 +350,8 @@ export default function PrivacyPage() {
             <li>Voyage AI, for text embeddings and search-related processing;</li>
             <li>Stripe, for payment processing;</li>
             <li>Mailtrap, for transactional email delivery;</li>
-            <li>Vercel, for application hosting and related infrastructure; and</li>
+            <li>Vercel, for application hosting and related infrastructure;</li>
+            <li>Inngest, for running background tasks such as indexing documents; and</li>
             <li>Cloudflare, for content delivery, DNS, and related security or infrastructure services.</li>
           </ul>
           <p>
@@ -362,7 +364,7 @@ export default function PrivacyPage() {
           <p>
             Information may be disclosed to authorized users within the same
             strata corporation where necessary for the corporation&rsquo;s
-            use of StrataSphere, as described in this policy.
+            use of Stratasphere, as described in this policy.
           </p>
 
           <h3>Legal and safety purposes</h3>
@@ -380,9 +382,14 @@ export default function PrivacyPage() {
           <p>We disclose only information that is reasonably necessary for the applicable purpose.</p>
 
           <h2>7. Storage and processing outside Canada</h2>
-          <p>Some information processed through our services may be stored or accessed outside Canada.</p>
           <p>
-            For example, StrataSphere&rsquo;s AI features may send relevant
+            Our database and file storage, which hold your account
+            information and your strata corporation&rsquo;s records and
+            documents, are located on a Canadian server region.
+          </p>
+          <p>Some information processed through our services may be processed or accessed outside Canada.</p>
+          <p>
+            For example, Stratasphere&rsquo;s AI features may send relevant
             information to third-party AI or search providers whose
             infrastructure may be located in Canada, the United States, or
             other jurisdictions.
@@ -402,32 +409,39 @@ export default function PrivacyPage() {
           </p>
           <p>
             We do not represent that all information processed through
-            StrataSphere remains exclusively in Canada.
+            Stratasphere remains exclusively in Canada.
           </p>
 
-          <h2>8. AI features in StrataSphere</h2>
+          <h2>8. AI features in Stratasphere</h2>
           <p>
-            StrataSphere includes AI-assisted features that can help councils
+            Stratasphere includes AI-assisted features that can help councils
             search, summarize, and ask questions about governance records and
             other information available through the platform.
           </p>
-          <p>StrataSphere may use third-party AI models, including models provided by Anthropic.</p>
+          <p>Stratasphere may use third-party AI models, including models provided by Anthropic.</p>
           <p>When an authorized user submits a question to an AI feature:</p>
           <ul>
-            <li>StrataSphere determines the information relevant to the request.</li>
+            <li>Stratasphere determines the information relevant to the request.</li>
             <li>
               Relevant portions of the corporation&rsquo;s records may be
               sent to the applicable AI service provider to generate a
               response.
             </li>
-            <li>The resulting response is returned to StrataSphere and displayed to the user.</li>
+            <li>The resulting response is returned to Stratasphere and displayed to the user.</li>
           </ul>
 
-          <h3>Names and strata lot numbers</h3>
+          <h3>Removing personal information before AI processing</h3>
           <p>
-            Where appropriate, StrataSphere is designed to provide AI systems
-            with strata lot numbers rather than owner names when processing
-            owner-related information.
+            Before any text leaves our database for an AI or search
+            provider, Stratasphere removes personal information from it.
+            Owners&rsquo; names are replaced with their strata lot numbers,
+            and the names of other people the strata corporation knows,
+            such as council members, are replaced with a placeholder. Names
+            Stratasphere does not recognize are removed where they can be
+            identified, along with email addresses, phone numbers, street
+            addresses, postal codes, dates of birth, payment card numbers,
+            social insurance numbers, bank account details, licence plates,
+            and policy or account numbers.
           </p>
           <p>
             This is a technical privacy measure intended to reduce
@@ -439,7 +453,7 @@ export default function PrivacyPage() {
           <h3>AI provider model training</h3>
           <p>
             Under our current arrangement with Anthropic, information
-            submitted to Anthropic through StrataSphere is not used by
+            submitted to Anthropic through Stratasphere is not used by
             Anthropic to train its general-purpose models.
           </p>
           <p>
@@ -455,7 +469,7 @@ export default function PrivacyPage() {
             provided to the system.
           </p>
           <p>
-            StrataSphere&rsquo;s AI features are tools for assisting with
+            Stratasphere&rsquo;s AI features are tools for assisting with
             research and governance. They are not legal advice and do not
             replace the judgment of a strata council, strata manager,
             professional advisor, or lawyer.
@@ -548,7 +562,7 @@ export default function PrivacyPage() {
           <p>No electronic system can be guaranteed to be completely secure.</p>
           <p>
             You are responsible for protecting access to the email account
-            and devices you use to access StrataCouncil or StrataSphere. If
+            and devices you use to access StrataCouncil or Stratasphere. If
             you use two-factor authentication, you should protect your
             recovery information and notify us promptly if you believe your
             account has been compromised.
@@ -580,7 +594,7 @@ export default function PrivacyPage() {
           <p>You can update certain account information through your account settings.</p>
           <p>You may also request correction of personal information as described in Section 15.</p>
           <p>
-            Information entered into StrataSphere by a strata corporation or
+            Information entered into Stratasphere by a strata corporation or
             its users remains the responsibility of the corporation or user
             who provided it. StrataCouncil does not independently verify
             every governance record, document, roster entry, or other piece

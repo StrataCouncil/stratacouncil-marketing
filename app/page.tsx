@@ -161,11 +161,13 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "How do you handle privacy law?",
+    q: "Are you PIPA and PIPEDA compliant?",
     a: (
       <p>
-        We built StrataCouncil.ca around BC&rsquo;s Personal Information Protection Act (PIPA) and
-        Canada&rsquo;s PIPEDA, and we have a Privacy Officer you can reach at{" "}
+        Yes. StrataCouncil.ca complies with BC&rsquo;s Personal Information Protection Act (PIPA)
+        and Canada&rsquo;s Personal Information Protection and Electronic Documents Act (PIPEDA).
+        Our <a href="/privacy">Privacy Policy</a> sets out how we collect, use and protect personal
+        information, and our Privacy Officer is at{" "}
         <a href="mailto:privacy@stratacouncil.ca">privacy@stratacouncil.ca</a>.
       </p>
     ),

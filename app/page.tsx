@@ -66,88 +66,37 @@ const testimonial = {
 
 const faqs: { q: string; a: React.ReactNode }[] = [
   {
-    q: "What does it cost?",
+    q: "How much does Stratasphere™ cost?",
     a: (
       <>
         <p>
-          Council Training is free, for anyone. For your strata, the document library, guides and
-          owner roster are free too, and so is your first meeting in Meeting Mode.
-        </p>
-        <p>
-          A Stratasphere&trade; subscription, paid by the strata corporation, unlocks Meeting Mode
-          for every meeting and the Stratasphere assistant:
+          Council Training is free. So are your strata&rsquo;s document library, guides and owner
+          roster, and your first meeting in Meeting Mode. A subscription, paid by the strata
+          corporation, adds Meeting Mode for every meeting and the Stratasphere assistant:
         </p>
         <ul>
           <li>
-            <strong>Annual plan:</strong> $82.50 a month plus $2.08 per strata lot a month, for a
-            12-month term.
+            <strong>Annual:</strong> $82.50 a month plus $2.08 per strata lot a month, for a 12-month
+            term.
           </li>
           <li>
-            <strong>Monthly plan:</strong> $99 a month plus $2.49 per strata lot a month. Cancel any
-            time.
+            <strong>Monthly:</strong> $99 a month plus $2.49 per strata lot a month. Cancel any time.
           </li>
         </ul>
         <p>
-          Prices are in Canadian dollars, plus GST. A 40-lot strata, for example, pays $165.70 a
-          month on the annual plan, or $198.60 a month on the monthly plan. You can pay by credit
-          card or Canadian pre-authorized debit.
+          Prices are in Canadian dollars, plus GST. If you cancel, your records stay in your free
+          document library.
         </p>
       </>
     ),
   },
   {
-    q: "Can we cancel?",
+    q: "Is Stratasphere secure?",
     a: (
       <p>
-        Yes. A monthly plan stops at the end of the month you cancel in. An annual plan stays active,
-        and keeps billing, until the end of its 12-month term, then doesn&rsquo;t renew. Either way,
-        your documents, minutes and records stay in your free document library.
-      </p>
-    ),
-  },
-  {
-    q: "Where is our data stored?",
-    a: (
-      <>
-        <p>
-          Your strata&rsquo;s records and documents are stored in Canada, in our database and file
-          storage on a Canadian server region.
-        </p>
-        <p>
-          When you use Stratasphere&rsquo;s AI features, the relevant passages are sent to our AI
-          providers, which may process them outside Canada. Before anything leaves our database,
-          names, contact details and other personal information are removed: owners are referred to
-          by strata lot number only. Our <a href="/privacy">Privacy Policy</a> explains this in full.
-        </p>
-      </>
-    ),
-  },
-  {
-    q: "Is our information encrypted?",
-    a: (
-      <p>
-        Yes. Everything is encrypted in transit, between your browser and our servers, and at rest,
-        in our database and file storage.
-      </p>
-    ),
-  },
-  {
-    q: "Are you SOC 2 or ISO 27001 certified?",
-    a: (
-      <p>
-        StrataCouncil.ca itself doesn&rsquo;t hold a SOC 2 report or ISO 27001 certification. The
-        infrastructure it runs on does: our database and file storage provider and our hosting
-        provider both have SOC 2 Type 2 reports and ISO 27001 certification.
-      </p>
-    ),
-  },
-  {
-    q: "Who can see our strata’s information?",
-    a: (
-      <p>
-        Only people your strata has connected, and only what their role allows. These rules are
-        enforced in the database itself, not just in the app. Platform staff access is restricted
-        and used only to support your strata.
+        Yes. Your strata&rsquo;s records are stored in Canada and encrypted in transit and at rest.
+        Only the people your strata connects can see them, limited by their role. Stratasphere runs
+        on infrastructure that holds SOC 2 Type 2 and ISO 27001 certification.
       </p>
     ),
   },
@@ -155,39 +104,20 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     q: "Is our data used to train AI?",
     a: (
       <p>
-        No. Under our arrangement with our AI provider, what you send through Stratasphere
-        isn&rsquo;t used to train their models.
+        No. Before anything goes to our AI provider, names and personal details are removed, and
+        what&rsquo;s sent isn&rsquo;t used to train their models. StrataCouncil.ca complies with
+        BC&rsquo;s PIPA and Canada&rsquo;s PIPEDA; our <a href="/privacy">Privacy Policy</a> has the
+        details.
       </p>
     ),
   },
   {
-    q: "Are you PIPA and PIPEDA compliant?",
+    q: "Does this replace the strata manager?",
     a: (
       <p>
-        Yes. StrataCouncil.ca complies with BC&rsquo;s Personal Information Protection Act (PIPA)
-        and Canada&rsquo;s Personal Information Protection and Electronic Documents Act (PIPEDA).
-        Our <a href="/privacy">Privacy Policy</a> sets out how we collect, use and protect personal
-        information, and our Privacy Officer is at{" "}
-        <a href="mailto:privacy@stratacouncil.ca">privacy@stratacouncil.ca</a>.
-      </p>
-    ),
-  },
-  {
-    q: "Is this legal advice?",
-    a: (
-      <p>
-        No. Council Training and Stratasphere help you understand the rules and find what your own
-        records say. For legal questions about a specific situation, talk to a lawyer.
-      </p>
-    ),
-  },
-  {
-    q: "Does it replace our strata manager?",
-    a: (
-      <p>
-        No. It helps council do its own part well: understanding the role, running meetings and
-        keeping good records. It works just as well alongside a strata manager as for a
-        self-managed strata.
+        No. Stratasphere helps council run meetings, keep good records and understand the rules. It
+        works alongside a strata manager or for a self-managed strata, and it isn&rsquo;t legal
+        advice.
       </p>
     ),
   },

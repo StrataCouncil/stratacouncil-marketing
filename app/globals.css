@@ -1256,3 +1256,78 @@ svg {
   line-height: 1.6;
   color: rgba(248, 246, 241, 0.75);
 }
+
+/* Request a demo (components/DemoRequestForm.tsx), on the navy holding page. */
+.demo-request {
+  width: 100%;
+  max-width: 26rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(248, 246, 241, 0.18);
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+
+.demo-request__title {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--paper);
+}
+
+.demo-request__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.demo-request label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: rgba(248, 246, 241, 0.8);
+}
+
+.demo-request input {
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.7em 0.85em;
+  border: 1px solid rgba(248, 246, 241, 0.3);
+  border-radius: var(--radius-sm);
+  background: rgba(248, 246, 241, 0.06);
+  color: var(--paper);
+}
+
+.demo-request input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.demo-request .demo-request__trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.demo-request__error {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #f2b8a0;
+}
+
+.demo-request .button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.demo-request__done {
+  max-width: 26rem;
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--paper);
+}

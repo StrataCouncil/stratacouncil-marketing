@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Logo } from "@/components/Logo";
+import { DemoRequestForm } from "@/components/DemoRequestForm";
 
 export const metadata: Metadata = {
   title: "StrataCouncil.ca — Coming soon",
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-/** The holding page that middleware.ts sends every production visitor to. */
+/** The holding page that middleware.ts sends every production visitor to, with a demo request form. */
 export default function ComingSoonPage() {
   return (
     <main className="coming-soon">
@@ -18,6 +19,7 @@ export default function ComingSoonPage() {
       <p className="coming-soon__body">
         Practical education and governance tools for BC strata council members, launching soon.
       </p>
+      <DemoRequestForm />
     </main>
   );
 }

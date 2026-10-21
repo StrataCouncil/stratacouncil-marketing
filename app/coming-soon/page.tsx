@@ -20,6 +20,11 @@ export default function ComingSoonPage() {
         Practical education and governance tools for BC strata council members, launching soon.
       </p>
       <DemoRequestForm />
+      <p className="coming-soon__investors">
+        Prospective investors:{" "}
+        <a href="https://app.stratacouncil.ca/investors">request the investor briefing</a>. This is not an offer to sell, or a
+        solicitation of an offer to buy, any securities.
+      </p>
     </main>
   );
 }

@@ -1325,6 +1325,19 @@ svg {
   cursor: default;
 }
 
+.coming-soon__investors {
+  max-width: 26rem;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(248, 246, 241, 0.6);
+}
+
+.coming-soon__investors a {
+  color: var(--paper);
+  font-weight: 600;
+}
+
 .demo-request__done {
   max-width: 26rem;
   margin: 0;

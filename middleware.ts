@@ -2,13 +2,14 @@ import { NextResponse, type NextRequest } from "next/server";
 
 /**
  * Site-wide gate: while the site is held back, every production request
- * goes to /coming-soon, except that page and static assets. Vercel preview
+ * goes to /coming-soon, except that page, the Privacy Policy and Terms
+ * (the investor briefing links to them), and static assets. Vercel preview
  * deployments and local development aren't gated, so the full site can
  * still be reviewed there.
  *
  * To open the site: delete this file. Every page keeps working as it is.
  */
-const ALWAYS_ALLOWED = ["/coming-soon"];
+const ALWAYS_ALLOWED = ["/coming-soon", "/privacy", "/terms"];
 
 function isAlwaysAllowed(pathname: string) {
   return ALWAYS_ALLOWED.some((path) => pathname === path || pathname.startsWith(`${path}/`));

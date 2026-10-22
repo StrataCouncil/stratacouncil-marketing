@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";
-const LAST_UPDATED = "October 9, 2026";
+const LAST_UPDATED = "October 22, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -223,7 +223,7 @@ export default function PrivacyPage() {
             <li>detect and prevent fraud, abuse, unauthorized access, and security incidents;</li>
             <li>maintain, troubleshoot, and improve our services;</li>
             <li>comply with legal, regulatory, accounting, and tax requirements; and</li>
-            <li>create statistical, aggregated, or appropriately de-identified information as described in Section 9.</li>
+            <li>create statistical, aggregated, or appropriately de-identified information as described in Section 10.</li>
           </ul>
           <p>
             We do not collect personal information for purposes unrelated to
@@ -475,7 +475,61 @@ export default function PrivacyPage() {
             professional advisor, or lawyer.
           </p>
 
-          <h2>9. Aggregated and de-identified information</h2>
+          <h2>9. Information from Google Drive</h2>
+          <p>
+            Stratasphere lets an authorized user copy files from their own
+            Google Drive into their strata corporation&rsquo;s documents
+            (&ldquo;Import from Google Drive&rdquo;). When you use it:
+          </p>
+          <ul>
+            <li>
+              You choose the files in Google&rsquo;s own file picker. We
+              request only Google&rsquo;s &ldquo;drive.file&rdquo; permission,
+              which gives us access to the specific files you pick and to
+              nothing else in your Google Drive.
+            </li>
+            <li>
+              Your browser fetches the files you picked, once, and adds a copy
+              of each to your strata corporation&rsquo;s documents, where it is
+              handled like any other uploaded document, as described in this
+              policy. We do not keep a connection to your Google account, and
+              we do not store your Google sign-in or access token.
+            </li>
+            <li>
+              We do not read, change, or delete anything else in your Google
+              Drive, and we do not change the files you picked.
+            </li>
+          </ul>
+          <p>
+            We use information received from Google APIs only to provide this
+            import and the Stratasphere features you use with the copied
+            documents. We do not sell it, use it for advertising, or use it
+            to develop, improve, or train generalized artificial intelligence
+            or machine-learning models, and it is not used for the aggregated
+            or de-identified information described in Section 10. People at
+            StrataCouncil.ca do not read it except with your permission, for
+            security purposes, to comply with applicable law, or where it has
+            been aggregated and anonymized for internal operations.
+          </p>
+          <p>
+            StrataCouncil.ca&rsquo;s use and transfer of information received
+            from Google APIs adheres to the{" "}
+            <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">
+              Google API Services User Data Policy
+            </a>
+            , including the Limited Use requirements.
+          </p>
+          <p>
+            You can remove StrataCouncil.ca&rsquo;s access to your Google
+            account at any time at{" "}
+            <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">
+              myaccount.google.com/permissions
+            </a>
+            . Copies already added to your strata corporation&rsquo;s
+            documents remain there until they are deleted.
+          </p>
+
+          <h2>10. Aggregated and de-identified information</h2>
           <p>
             We may use information derived from the operation and use of our
             services to create aggregated or de-identified information that
@@ -525,7 +579,7 @@ export default function PrivacyPage() {
             be used.
           </p>
 
-          <h2>10. Cookies and tracking technologies</h2>
+          <h2>11. Cookies and tracking technologies</h2>
           <p>We use cookies and similar technologies that are necessary to operate and secure our services.</p>
           <p>For example, cookies or similar technologies may be used to:</p>
           <ul>
@@ -540,7 +594,7 @@ export default function PrivacyPage() {
             targeted advertisements through the StrataCouncil platform.
           </p>
 
-          <h2>11. Security</h2>
+          <h2>12. Security</h2>
           <p>
             We use reasonable administrative, technical, and physical
             safeguards appropriate to the sensitivity of the information we
@@ -568,7 +622,7 @@ export default function PrivacyPage() {
             account has been compromised.
           </p>
 
-          <h2>12. Privacy breaches and security incidents</h2>
+          <h2>13. Privacy breaches and security incidents</h2>
           <p>We maintain procedures for responding to suspected privacy and security incidents.</p>
           <p>
             If we determine that a privacy breach has occurred, we will
@@ -584,7 +638,7 @@ export default function PrivacyPage() {
           </p>
           <p>Please provide enough information for us to investigate the concern.</p>
 
-          <h2>13. Accuracy of personal information</h2>
+          <h2>14. Accuracy of personal information</h2>
           <p>
             We take reasonable steps to ensure that personal information in
             our custody or control is accurate and complete where the
@@ -592,7 +646,7 @@ export default function PrivacyPage() {
             individual or disclosed to another organization.
           </p>
           <p>You can update certain account information through your account settings.</p>
-          <p>You may also request correction of personal information as described in Section 15.</p>
+          <p>You may also request correction of personal information as described in Section 16.</p>
           <p>
             Information entered into Stratasphere by a strata corporation or
             its users remains the responsibility of the corporation or user
@@ -601,7 +655,7 @@ export default function PrivacyPage() {
             of information entered into the platform.
           </p>
 
-          <h2>14. Retention and deletion</h2>
+          <h2>15. Retention and deletion</h2>
           <p>
             We retain information for as long as reasonably necessary for the
             purposes for which it was collected, to provide the services, to
@@ -664,7 +718,7 @@ export default function PrivacyPage() {
             compliance with applicable requirements.
           </p>
 
-          <h2>15. Your privacy rights</h2>
+          <h2>16. Your privacy rights</h2>
           <p>Subject to applicable law and any applicable exceptions, you may have the right to:</p>
           <ul>
             <li>request access to personal information we hold about you;</li>
@@ -698,7 +752,7 @@ export default function PrivacyPage() {
             fee applies.
           </p>
 
-          <h2>16. Complaints</h2>
+          <h2>17. Complaints</h2>
           <p>If you have a concern about our handling of your personal information, please contact our Privacy Officer first:</p>
           <p>
             <a href="mailto:privacy@stratacouncil.ca">privacy@stratacouncil.ca</a>
@@ -710,7 +764,7 @@ export default function PrivacyPage() {
             British Columbia (OIPC BC).
           </p>
 
-          <h2>17. Age requirement</h2>
+          <h2>18. Age requirement</h2>
           <p>Our services are intended for adults.</p>
           <p>You must be at least 18 years old to create an account.</p>
           <p>
@@ -722,7 +776,7 @@ export default function PrivacyPage() {
             where appropriate.
           </p>
 
-          <h2>18. Changes to this Privacy Policy</h2>
+          <h2>19. Changes to this Privacy Policy</h2>
           <p>
             We may update this Privacy Policy from time to time to reflect
             changes to our services, technology, legal requirements, or
@@ -735,7 +789,7 @@ export default function PrivacyPage() {
             where required by applicable law.
           </p>
 
-          <h2>19. Accountability and contact information</h2>
+          <h2>20. Accountability and contact information</h2>
           <p>
             StrataCouncil.ca has designated a Privacy Officer responsible for
             overseeing our privacy practices and responding to privacy

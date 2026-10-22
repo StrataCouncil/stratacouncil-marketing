@@ -502,22 +502,21 @@ export default function PrivacyPage() {
           </ul>
           <p>
             We use information received from Google APIs only to provide this
-            import and the Stratasphere features you use with the copied
-            documents. We do not sell it, use it for advertising, or use it
-            to develop, improve, or train generalized artificial intelligence
-            or machine-learning models, and it is not used for the aggregated
-            or de-identified information described in Section 10. People at
-            StrataCouncil.ca do not read it except with your permission, for
-            security purposes, to comply with applicable law, or where it has
-            been aggregated and anonymized for internal operations.
+            import. Once copied, the files are your strata corporation&rsquo;s
+            documents and are handled like any other uploaded document under
+            this policy, including the Stratasphere features you use with them
+            and the aggregated or de-identified information described in
+            Section 10. We do not sell information received from Google APIs in
+            identifiable form, use it for advertising, or share it with anyone
+            conducting surveillance.
           </p>
           <p>
-            StrataCouncil.ca&rsquo;s use and transfer of information received
-            from Google APIs adheres to the{" "}
+            StrataCouncil.ca&rsquo;s use of information received from Google
+            APIs adheres to the{" "}
             <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">
               Google API Services User Data Policy
             </a>
-            , including the Limited Use requirements.
+            .
           </p>
           <p>
             You can remove StrataCouncil.ca&rsquo;s access to your Google

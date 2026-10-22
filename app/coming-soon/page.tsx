@@ -25,6 +25,11 @@ export default function ComingSoonPage() {
         <a href="https://app.stratacouncil.ca/investors">request the investor briefing</a>. This is not an offer to sell, or a
         solicitation of an offer to buy, any securities.
       </p>
+      <nav className="coming-soon__legal" aria-label="Legal">
+        <a href="/privacy">Privacy Policy</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="/terms">Terms of Service</a>
+      </nav>
     </main>
   );
 }

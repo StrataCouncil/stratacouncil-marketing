@@ -1338,6 +1338,17 @@ svg {
   font-weight: 600;
 }
 
+.coming-soon__legal {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: rgba(248, 246, 241, 0.5);
+}
+
+.coming-soon__legal a {
+  color: rgba(248, 246, 241, 0.75);
+}
+
 .demo-request__done {
   max-width: 26rem;
   margin: 0;

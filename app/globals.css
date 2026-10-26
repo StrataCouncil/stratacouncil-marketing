@@ -529,14 +529,19 @@ svg {
 .steps {
   display: flex;
   flex-direction: column;
-  gap: 96px;
+  gap: 24px;
 }
 
+/* On wide screens each step is a --paper card, so the three sit together
+   as one block instead of floating in white space. */
 .step {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 4rem;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 3.5rem;
   align-items: center;
+  background: var(--paper);
+  border-radius: var(--radius-card);
+  padding: 48px;
 }
 
 .step--flip > :first-child {
@@ -572,6 +577,9 @@ svg {
   .step {
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
+    background: none;
+    border-radius: 0;
+    padding: 0;
   }
   .step--flip > :first-child {
     order: 0;
@@ -680,10 +688,27 @@ svg {
   color: var(--muted);
 }
 
-/* Request a demo, on the home page. */
+/* Talk to us: the demo request and the investor briefing, side by side. */
 
-.demo-section .split {
-  align-items: center;
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 32px;
+}
+
+.panel__notice {
+  margin-top: auto;
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 640px) {
+  .panel {
+    padding: 24px;
+  }
 }
 
 /* Footer */
@@ -742,6 +767,21 @@ svg {
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
   font-size: 0.8125rem;
+}
+
+.site-footer__powered {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trickfilm-logo {
+  display: block;
+  color: var(--ink);
+}
+
+.site-footer__notice {
+  flex-basis: 100%;
 }
 
 /* Legal pages (Privacy, Terms) — plain, readable prose. The page title
@@ -1404,13 +1444,6 @@ svg {
   flex-direction: column;
   gap: 1rem;
   text-align: left;
-}
-
-.demo-request--panel {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  padding: 32px;
 }
 
 .demo-request__title {

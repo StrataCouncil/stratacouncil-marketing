@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
+import { TrickfilmLogo } from "@/components/TrickfilmLogo";
 
 /** Where the app's sign-up and sign-in live. */
 export const SIGNUP_URL = "https://app.stratacouncil.ca/signup";
 export const SIGNIN_URL = "https://app.stratacouncil.ca/login";
 /** The investor briefing (request form and deck), in the app. */
 export const INVESTORS_URL = "https://app.stratacouncil.ca/investors";
-/** The Request a demo form on the home page. */
+/** The Request a demo form, and the investor briefing panel beside it, on the home page. */
 export const DEMO_HREF = "/#demo";
+export const INVESTORS_HREF = "/#investors";
 
 /** The header on every page: a white bar floating over the top. Section links point at the homepage, so they work from the legal pages too. */
 export function SiteHeader() {
@@ -24,7 +26,7 @@ export function SiteHeader() {
             <Link href="/#managers">For managers</Link>
             <Link href="/#free">What&rsquo;s free</Link>
             <Link href="/#faq">FAQ</Link>
-            <a href={INVESTORS_URL}>Investors</a>
+            <Link href={INVESTORS_HREF}>Investors</Link>
           </div>
           <a href={SIGNIN_URL} className="site-nav__signin" data-testid="nav-signin">
             Sign in
@@ -66,7 +68,7 @@ export function SiteFooter() {
             <a href={SIGNIN_URL}>Sign in</a>
           </li>
           <li>
-            <a href={INVESTORS_URL}>Investors</a>
+            <Link href={INVESTORS_HREF}>Investors</Link>
           </li>
           <li>
             <Link href="/privacy">Privacy Policy</Link>
@@ -76,8 +78,15 @@ export function SiteFooter() {
           </li>
         </ul>
         <div className="site-footer__legal">
-          <p>&copy; {new Date().getFullYear()} StrataCouncil.ca</p>
-          <p>Investor information is not an offer to sell, or a solicitation of an offer to buy, any securities.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Trickfilm Entertainment Inc. StrataCouncil.ca is a product of Trickfilm.
+          </p>
+          <p className="site-footer__powered">
+            Powered by <TrickfilmLogo height={20} />
+          </p>
+          <p className="site-footer__notice">
+            Investor information is not an offer to sell, or a solicitation of an offer to buy, any securities.
+          </p>
         </div>
       </div>
     </footer>

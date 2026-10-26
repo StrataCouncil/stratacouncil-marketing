@@ -1,6 +1,6 @@
 import { AskStratasphere } from "@/components/AskStratasphere";
 import { DemoRequestForm } from "@/components/DemoRequestForm";
-import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
+import { DEMO_HREF, INVESTORS_URL, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
 
 /** What council is up against: the problem, in the order a new member meets it. */
@@ -75,23 +75,21 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "Is Stratasphere secure?",
+    q: "Is Stratasphere secure, and is our data used to train AI?",
     a: (
-      <p>
-        Yes. Your strata&rsquo;s records are stored in Canada with bank-grade encryption, in transit and at rest. Row-level
-        security means only the people your strata connects can see them, limited by their role, and two-factor sign-in
-        is available on every account. Our hosting provider is SOC 2 and ISO 27001 compliant.
-      </p>
-    ),
-  },
-  {
-    q: "Is our data used to train AI?",
-    a: (
-      <p>
-        No. Before anything goes to our AI provider, names and personal details are removed, and what&rsquo;s sent
-        isn&rsquo;t used to train their models. StrataCouncil.ca complies with BC&rsquo;s Personal Information
-        Protection Act (PIPA); our <a href="/privacy">Privacy Policy</a> has the details.
-      </p>
+      <>
+        <p>
+          Yes. Your strata&rsquo;s records are stored in Canada with bank-grade encryption, in transit and at rest.
+          Row-level security means only the people your strata connects can see them, limited by their role, and
+          two-factor sign-in is available on every account. Our hosting provider is SOC 2 and ISO 27001 compliant.
+        </p>
+        <p>
+          Your data isn&rsquo;t used to train AI. Before anything goes to our AI provider, names and personal details
+          are removed, and what&rsquo;s sent isn&rsquo;t used to train their models. StrataCouncil.ca complies with
+          BC&rsquo;s Personal Information Protection Act (PIPA); our <a href="/privacy">Privacy Policy</a> has the
+          details.
+        </p>
+      </>
     ),
   },
   {
@@ -156,7 +154,6 @@ export default function Home() {
                 <li>Free training</li>
                 <li>Free document library</li>
                 <li>First meeting free</li>
-                <li>No credit card</li>
               </ul>
             </div>
             <figure className="hero__media">
@@ -286,9 +283,10 @@ export default function Home() {
               <p className="eyebrow">For strata managers</p>
               <h2>Councils that arrive prepared</h2>
               <p className="lede">
-                You serve many councils and answer the same questions for each, then write the agendas and the minutes.
-                Councils that have done the training ask better questions, and Stratasphere keeps each strata&rsquo;s
-                record in one place.
+                You manage many buildings, and every council asks the same questions, needs an agenda and waits on the
+                minutes. Councils that have taken the training arrive knowing what they can and can&rsquo;t decide.
+                Stratasphere builds each agenda from that strata&rsquo;s records and drafts the minutes from the
+                meeting, so less of the paperwork lands on you.
               </p>
               <div className="actions">
                 <a href={DEMO_HREF} className="button button--light">
@@ -353,20 +351,44 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section section--paper demo-section" id="demo">
-          <div className="wrap split">
-            <div>
-              <p className="eyebrow">See it in action</p>
-              <h2>Walk through Stratasphere with your own questions</h2>
-              <p className="lede">
-                Tell us who you are and we&rsquo;ll set up a demo strata for you to try: the training, the documents, a
-                meeting from agenda to minutes, and the assistant.
-              </p>
+        <section className="section section--paper" id="demo">
+          <div className="wrap">
+            <div className="section-head">
+              <p className="eyebrow">Talk to us</p>
+              <h2>See it with your own questions</h2>
               <p className="lede">
                 Just want to learn the role? <a href={SIGNUP_URL}>Start the free training</a> now.
               </p>
             </div>
-            <DemoRequestForm page="home" panel />
+            <div className="cards">
+              <div className="panel">
+                <DemoRequestForm
+                  page="home"
+                  intro="Tell us who you are and we’ll set up a demo strata for you to try: the training, the documents, a meeting from agenda to minutes, and the assistant."
+                />
+              </div>
+              <div className="panel" id="investors">
+                <h3>Investor briefing</h3>
+                <p className="small">
+                  Prospective investors can read the StrataCouncil.ca investor briefing. You&rsquo;ll be asked to accept
+                  the Legal Disclaimer and confirm that you&rsquo;re an accredited investor, then we&rsquo;ll email you a
+                  personal link.
+                </p>
+                <ul className="list-check small">
+                  <li>The investor deck, slide by slide</li>
+                  <li>Your own notes on each slide, saved as you go</li>
+                  <li>A way to share the briefing with another investor</li>
+                </ul>
+                <div className="actions">
+                  <a href={INVESTORS_URL} className="button button-primary">
+                    Request the investor briefing
+                  </a>
+                </div>
+                <p className="small panel__notice">
+                  This is not an offer to sell, or a solicitation of an offer to buy, any securities.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </main>

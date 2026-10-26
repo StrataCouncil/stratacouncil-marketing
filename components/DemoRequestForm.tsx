@@ -5,10 +5,10 @@ import { requestDemo, type DemoRequestState } from "@/app/coming-soon/actions";
 
 /**
  * Name and email; app/coming-soon/actions.ts emails them to Jeremy.
- * `page` says where it was asked from (it's in the email); `panel` puts it
- * in a white card.
+ * `page` says where it was asked from (it's in the email); `intro` is an
+ * optional line under the title.
  */
-export function DemoRequestForm({ page, panel = false }: { page: "home" | "coming-soon"; panel?: boolean }) {
+export function DemoRequestForm({ page, intro }: { page: "home" | "coming-soon"; intro?: React.ReactNode }) {
   const [state, action, pending] = useActionState<DemoRequestState, FormData>(requestDemo, { status: "idle" });
 
   if (state.status === "sent") {
@@ -20,8 +20,9 @@ export function DemoRequestForm({ page, panel = false }: { page: "home" | "comin
   }
 
   return (
-    <form className={panel ? "demo-request demo-request--panel" : "demo-request"} action={action}>
+    <form className="demo-request" action={action}>
       <h3 className="demo-request__title">Request a demo</h3>
+      {intro && <p className="small">{intro}</p>}
       <input type="hidden" name="page" value={page} />
       <div className="demo-request__fields">
         <label>

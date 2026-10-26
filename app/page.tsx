@@ -1,7 +1,8 @@
 import { AskStratasphere } from "@/components/AskStratasphere";
 import { DemoRequestForm } from "@/components/DemoRequestForm";
+import { InvestorRequestForm } from "@/components/InvestorRequestForm";
 import { Reveal } from "@/components/Reveal";
-import { DEMO_HREF, INVESTORS_URL, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
+import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
 
 /** What council is up against: the problem, in the order a new member meets it. */
@@ -369,25 +370,7 @@ export default function Home() {
                 />
               </div>
               <div className="panel" id="investors">
-                <h3>Investor briefing</h3>
-                <p className="small">
-                  Prospective investors can read the StrataCouncil.ca investor briefing. You&rsquo;ll be asked to accept
-                  the Legal Disclaimer and confirm that you&rsquo;re an accredited investor, then we&rsquo;ll email you a
-                  personal link.
-                </p>
-                <ul className="list-check small">
-                  <li>The investor deck, slide by slide</li>
-                  <li>Your own notes on each slide, saved as you go</li>
-                  <li>A way to share the briefing with another investor</li>
-                </ul>
-                <div className="actions">
-                  <a href={INVESTORS_URL} className="button button-primary">
-                    Request the investor briefing
-                  </a>
-                </div>
-                <p className="small panel__notice">
-                  This is not an offer to sell, or a solicitation of an offer to buy, any securities.
-                </p>
+                <InvestorRequestForm />
               </div>
             </div>
           </div>

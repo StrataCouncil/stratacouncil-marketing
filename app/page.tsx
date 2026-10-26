@@ -1,5 +1,6 @@
 import { AskStratasphere } from "@/components/AskStratasphere";
 import { DemoRequestForm } from "@/components/DemoRequestForm";
+import { Reveal } from "@/components/Reveal";
 import { DEMO_HREF, INVESTORS_URL, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
 
@@ -394,6 +395,7 @@ export default function Home() {
       </main>
 
       <SiteFooter />
+      <Reveal />
     </>
   );
 }

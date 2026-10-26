@@ -1380,6 +1380,20 @@ svg {
   }
 }
 
+/* Fade up on scroll (components/Reveal.tsx). Only once the script has
+   added .reveal-on, and never with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-on :is(.hero__text > *, .hero__media, .section-head, .card, .step, .panel, .split > *, .faq) {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal-on :is(.hero__text > *, .hero__media, .section-head, .card, .step, .panel, .split > *, .faq).is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Holding page (app/coming-soon/page.tsx and middleware.ts): one white
    card on --sky while the site is behind the gate. */
 .coming-soon {

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";
-const LAST_UPDATED = "October 22, 2026";
+const LAST_UPDATED = "October 26, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -587,6 +587,14 @@ export default function PrivacyPage() {
             <li>protect against unauthorized access; and</li>
             <li>remember necessary application settings.</li>
           </ul>
+          <p>
+            On our public website (stratacouncil.ca), we use Vercel Web
+            Analytics to count page views and see which websites and campaign
+            links (for example, a link in one of our social media posts) bring
+            visitors to us. It does not use cookies, does not identify
+            individual visitors, and does not follow you to other websites. We
+            use these counts only to understand and improve our outreach.
+          </p>
           <p>We do not use advertising cookies to track users across unrelated websites.</p>
           <p>
             We also do not use third-party advertising networks to serve

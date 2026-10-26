@@ -718,6 +718,11 @@ svg {
   border-radius: var(--radius-card);
 }
 
+/* A landscape photo: the whole group stays in frame. */
+.photo--wide img {
+  aspect-ratio: 4 / 3;
+}
+
 .photo__credit {
   font-size: 0.75rem;
   color: var(--muted);

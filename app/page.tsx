@@ -106,7 +106,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
       <p>
         No. Before anything goes to our AI provider, names and personal details are removed, and
         what&rsquo;s sent isn&rsquo;t used to train their models. StrataCouncil.ca complies with
-        BC&rsquo;s PIPA and Canada&rsquo;s PIPEDA; our <a href="/privacy">Privacy Policy</a> has the
+        BC&rsquo;s Personal Information Protection Act (PIPA); our <a href="/privacy">Privacy Policy</a> has the
         details.
       </p>
     ),

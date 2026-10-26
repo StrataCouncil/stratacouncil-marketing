@@ -4,7 +4,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 export const metadata: Metadata = {
   title: "Privacy Policy — StrataCouncil.ca",
   description:
-    "How StrataCouncil.ca collects, uses, discloses and protects personal information, under BC's PIPA and Canada's PIPEDA.",
+    "How StrataCouncil.ca collects, uses, discloses and protects personal information, under British Columbia's Personal Information Protection Act (PIPA).",
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";
@@ -42,12 +42,9 @@ export default function PrivacyPage() {
             <li>related services, communications, and support.</li>
           </ul>
           <p>
-            We handle personal information in accordance with applicable
-            privacy laws, including British Columbia&rsquo;s{" "}
-            <em>Personal Information Protection Act</em> (&ldquo;PIPA&rdquo;)
-            where it applies, and the federal{" "}
-            <em>Personal Information Protection and Electronic Documents
-            Act</em> (&ldquo;PIPEDA&rdquo;) where it applies.
+            We handle personal information in accordance with British
+            Columbia&rsquo;s{" "}
+            <em>Personal Information Protection Act</em> (&ldquo;PIPA&rdquo;).
           </p>
 
           <h2>1. What information we collect</h2>
@@ -441,7 +438,10 @@ export default function PrivacyPage() {
             identified, along with email addresses, phone numbers, street
             addresses, postal codes, dates of birth, payment card numbers,
             social insurance numbers, bank account details, licence plates,
-            and policy or account numbers.
+            and policy or account numbers. The strata corporation&rsquo;s own
+            name and address, strata plan numbers and strata lot numbers are
+            kept, because they identify the corporation and its property
+            rather than a person.
           </p>
           <p>
             This is a technical privacy measure intended to reduce

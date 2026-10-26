@@ -1,67 +1,48 @@
 "use server";
 
 /**
- * "Request a demo" on the Coming soon page and the home page: a name and email, emailed to
- * Jeremy through Mailtrap (the same sending API the app uses). Sent from
- * the no-reply address, with Reply-To set to the person asking, so
- * answering the email goes straight to them.
- *
- * Needs MAILTRAP_API_TOKEN in the marketing Vercel project (and, optionally,
- * MAILTRAP_SENDER_EMAIL; the default is noreply@stratacouncil.ca).
+ * "Request a demo" on the home page (and the old Coming soon page). The
+ * request itself lives in the app (lib/demo-requests-server.ts there):
+ * this posts the form to /api/demo-requests and passes back what it says.
+ * The app checks the fields, saves the request for the Super Admin
+ * console, and emails staff a notice.
  */
 
-const MAILTRAP_SEND_URL = "https://send.api.mailtrap.io/api/send";
-const DEMO_REQUESTS_TO = "jeremy@stratacouncil.ca";
-const EMAIL = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;
+const APP_URL = (process.env.APP_URL || "https://app.stratacouncil.ca").replace(/\/+$/, "");
+const CAMPAIGN_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
 
 export type DemoRequestState = { status: "idle" | "sent" | "error"; message?: string; name?: string; email?: string };
 
-const escapeHtml = (s: string) =>
-  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-
 export async function requestDemo(_prev: DemoRequestState, form: FormData): Promise<DemoRequestState> {
-  // A field people never see: anything in it is a bot. Look successful so it doesn't retry.
-  if (String(form.get("website") ?? "").trim()) return { status: "sent" };
-
-  const name = String(form.get("name") ?? "").trim().replace(/\s+/g, " ");
-  const where = form.get("page") === "home" ? "the home page" : "the Coming soon page";
-  // The campaign tags the visitor arrived with (components/CampaignTags.tsx), if any.
-  const campaign = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]
-    .map((key) => [key, String(form.get(key) ?? "").trim().slice(0, 100)] as const)
-    .filter(([, value]) => value)
-    .map(([key, value]) => `${key}=${value}`)
-    .join(", ");
-  const email = String(form.get("email") ?? "").trim();
+  const name = String(form.get("name") ?? "");
+  const email = String(form.get("email") ?? "");
   // Errors hand back what was typed, so the form keeps it.
   const kept = { name, email };
-  if (!name || name.length > 120) return { status: "error", message: "Please enter your name.", ...kept };
-  if (!EMAIL.test(email) || email.length > 254) return { status: "error", message: "Please enter a valid email address.", ...kept };
+  const failed = { status: "error" as const, message: "Something went wrong. Please try again, or email support@stratacouncil.ca.", ...kept };
 
-  const token = process.env.MAILTRAP_API_TOKEN;
-  if (!token) {
-    console.error("[requestDemo] MAILTRAP_API_TOKEN is not set");
-    return { status: "error", message: `Something went wrong. Please email ${DEMO_REQUESTS_TO} instead.`, ...kept };
-  }
+  // The campaign tags the visitor arrived with (components/CampaignTags.tsx), if any.
+  const campaign = Object.fromEntries(CAMPAIGN_KEYS.map((key) => [key, String(form.get(key) ?? "")]).filter(([, value]) => value));
 
-  const res = await fetch(MAILTRAP_SEND_URL, {
+  const res = await fetch(`${APP_URL}/api/demo-requests`, {
     method: "POST",
-    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: { email: process.env.MAILTRAP_SENDER_EMAIL ?? "noreply@stratacouncil.ca", name: "StrataCouncil.ca" },
-      to: [{ email: DEMO_REQUESTS_TO }],
-      reply_to: { email, name },
-      subject: `Demo request: ${name}`,
-      text: `${name} (${email}) asked for a demo on ${where}.${campaign ? `\nCame from: ${campaign}` : ""}\n\nReply to this email to answer them.`,
-      html: `<p><strong>${escapeHtml(name)}</strong> (${escapeHtml(email)}) asked for a demo on ${where}.</p>${campaign ? `<p>Came from: ${escapeHtml(campaign)}</p>` : ""}<p>Reply to this email to answer them.</p>`,
-      category: "demo_request",
+      name,
+      email,
+      page: form.get("page") === "home" ? "home" : "coming-soon",
+      campaign,
+      website: String(form.get("website") ?? ""),
     }),
+    cache: "no-store",
   }).catch((err: unknown) => {
-    console.error("[requestDemo] send failed", err instanceof Error ? err.message : err);
+    console.error("[requestDemo] request failed", err instanceof Error ? err.message : err);
     return null;
   });
-  if (!res?.ok) {
-    if (res) console.error("[requestDemo] Mailtrap", res.status, await res.text().catch(() => ""));
-    return { status: "error", message: `Something went wrong. Please email ${DEMO_REQUESTS_TO} instead.`, ...kept };
-  }
-  return { status: "sent" };
+  if (!res) return failed;
+
+  const data = (await res.json().catch(() => null)) as { status?: string; message?: string } | null;
+  if (data?.status === "sent") return { status: "sent" };
+  if (data?.status === "error" && data.message) return { status: "error", message: data.message, ...kept };
+  console.error("[requestDemo] app replied", res.status);
+  return failed;
 }

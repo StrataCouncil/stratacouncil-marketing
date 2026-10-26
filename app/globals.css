@@ -723,12 +723,11 @@ svg {
   aspect-ratio: 4 / 3;
 }
 
-.photo__credit {
-  font-size: 0.75rem;
-  color: var(--muted);
+.site-footer__photos {
+  flex-basis: 100%;
 }
 
-.photo__credit a {
+.site-footer__photos a {
   color: inherit;
 }
 

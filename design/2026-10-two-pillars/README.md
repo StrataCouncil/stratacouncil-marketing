@@ -21,8 +21,8 @@ Decisions made along the way:
 - Security wording: our hosting provider is SOC 2 and ISO 27001 compliant
   (we aren't); data stored in Canada; bank-grade encryption; row-level
   security; personal information stripped before anything reaches
-  Stratasphere's AI; two-factor sign-in available to every account. PIPA
-  only (no PIPEDA claim for now).
+  Stratasphere's AI; two-factor sign-in available to every account. BC's
+  PIPA only.
 - The precedent pool isn't advertised: it stays in the Terms of Service and
   the council slide deck.
 

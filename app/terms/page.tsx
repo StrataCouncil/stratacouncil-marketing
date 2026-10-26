@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Terms & Conditions — StrataCouncil.ca",
   description:
     "The terms that govern access to and use of StrataCouncil.ca, including its training platform and the Stratasphere governance platform.",
+  alternates: { canonical: "/terms" },
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";

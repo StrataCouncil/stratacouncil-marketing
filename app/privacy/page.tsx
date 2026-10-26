@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy — StrataCouncil.ca",
   description:
     "How StrataCouncil.ca collects, uses, discloses and protects personal information, under British Columbia's Personal Information Protection Act (PIPA).",
+  alternates: { canonical: "/privacy" },
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";

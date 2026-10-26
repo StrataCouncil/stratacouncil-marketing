@@ -54,10 +54,10 @@ const PHOTOS = {
     profile: "https://unsplash.com/@wocintechchat",
   },
   demo: {
-    src: "https://images.unsplash.com/photo-1702047076267-6719aadd2807?auto=format&fit=crop&w=1400&q=70",
-    alt: "A group of people looking at a laptop together",
-    by: "Creatopy",
-    profile: "https://unsplash.com/@creatopy",
+    src: "https://images.unsplash.com/photo-1758873268695-1b55590e507a?auto=format&fit=crop&w=1400&q=70",
+    alt: "A team working together around a computer screen",
+    by: "Vitaly Gariev",
+    profile: "https://unsplash.com/@silverkblack",
   },
 };
 
@@ -433,7 +433,7 @@ export default function Home() {
 
         <section className="section section--paper" id="demo">
           <div className="wrap photo-split photo-split--flip">
-            <figure className="photo">
+            <figure className="photo photo--wide">
               <img src={PHOTOS.demo.src} alt={PHOTOS.demo.alt} loading="lazy" />
               <PhotoCredit by={PHOTOS.demo.by} profile={PHOTOS.demo.profile} />
             </figure>

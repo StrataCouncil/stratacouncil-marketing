@@ -1,6 +1,5 @@
 import { AskStratasphere } from "@/components/AskStratasphere";
 import { DemoRequestForm } from "@/components/DemoRequestForm";
-import { InvestorRequestForm } from "@/components/InvestorRequestForm";
 import { Reveal } from "@/components/Reveal";
 import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
@@ -24,6 +23,51 @@ const problems = [
     body: "Motions get worded on the fly, votes go unrecorded, and minutes arrive weeks later, when nobody remembers exactly what was decided.",
   },
 ];
+
+/** What StrataCouncil.ca does about it: one line per problem, in the same spirit. */
+const solutions = [
+  {
+    title: "Free council training",
+    body: "Short lessons on the role, the Strata Property Act and your bylaws, so every council member starts knowing what council can and can’t decide.",
+  },
+  {
+    title: "Meeting software built for councils",
+    body: "Agendas built from your records, motions and votes recorded as they happen, and minutes drafted from the meeting itself.",
+  },
+  {
+    title: "An indexed document library",
+    body: "Every bylaw, set of minutes, contract, financial statement and report in one organized place, staying with the strata when council changes.",
+  },
+  {
+    title: "Answers in plain language",
+    body: "Ask a question the way you’d say it and get an answer from your own records and BC law, with the source attached.",
+  },
+];
+
+/** Unsplash photos, chosen by a person, with the credit Unsplash asks for. */
+const UNSPLASH_REF = "?utm_source=stratacouncil&utm_medium=referral";
+const PHOTOS = {
+  solution: {
+    src: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&w=1400&q=70",
+    alt: "A group of people meeting around a long table with laptops",
+    by: "Christina @ wocintechchat.com",
+    profile: "https://unsplash.com/@wocintechchat",
+  },
+  demo: {
+    src: "https://images.unsplash.com/photo-1702047076267-6719aadd2807?auto=format&fit=crop&w=1400&q=70",
+    alt: "A group of people looking at a laptop together",
+    by: "Creatopy",
+    profile: "https://unsplash.com/@creatopy",
+  },
+};
+
+function PhotoCredit({ by, profile }: { by: string; profile: string }) {
+  return (
+    <figcaption className="photo__credit">
+      Photo by <a href={profile + UNSPLASH_REF}>{by}</a> on <a href={"https://unsplash.com/" + UNSPLASH_REF}>Unsplash</a>
+    </figcaption>
+  );
+}
 
 /** The free ways in, before a strata pays anything. */
 const free = [
@@ -77,19 +121,35 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "Is Stratasphere secure, and is our data used to train AI?",
+    q: "Is Stratasphere secure?",
     a: (
       <>
+        <p>Yes. Your strata&rsquo;s records are protected by:</p>
+        <ul>
+          <li>
+            <strong>Data stored in Canada:</strong> your strata&rsquo;s records and files stay in Canada.
+          </li>
+          <li>
+            <strong>Bank-grade encryption:</strong> in transit and at rest.
+          </li>
+          <li>
+            <strong>Row-level security:</strong> only the people your strata connects can see its records, limited by
+            their role.
+          </li>
+          <li>
+            <strong>Two-factor sign-in:</strong> available on every account.
+          </li>
+          <li>
+            <strong>Certified hosting:</strong> our hosting provider is SOC 2 and ISO 27001 compliant.
+          </li>
+          <li>
+            <strong>Privacy before AI:</strong> names and personal details are removed before anything reaches
+            Stratasphere&rsquo;s AI, and what&rsquo;s sent isn&rsquo;t used to train AI models.
+          </li>
+        </ul>
         <p>
-          Yes. Your strata&rsquo;s records are stored in Canada with bank-grade encryption, in transit and at rest.
-          Row-level security means only the people your strata connects can see them, limited by their role, and
-          two-factor sign-in is available on every account. Our hosting provider is SOC 2 and ISO 27001 compliant.
-        </p>
-        <p>
-          Your data isn&rsquo;t used to train AI. Before anything goes to our AI provider, names and personal details
-          are removed, and what&rsquo;s sent isn&rsquo;t used to train their models. StrataCouncil.ca complies with
-          BC&rsquo;s Personal Information Protection Act (PIPA); our <a href="/privacy">Privacy Policy</a> has the
-          details.
+          StrataCouncil.ca complies with BC&rsquo;s Personal Information Protection Act (PIPA); our{" "}
+          <a href="/privacy">Privacy Policy</a> has the details.
         </p>
       </>
     ),
@@ -152,11 +212,6 @@ export default function Home() {
                   Request a demo
                 </a>
               </div>
-              <ul className="hero__free" aria-label="Free to start">
-                <li>Free training</li>
-                <li>Free document library</li>
-                <li>First meeting free</li>
-              </ul>
             </div>
             <figure className="hero__media">
               <img
@@ -188,7 +243,30 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="how-it-works">
+        <section className="section" id="solution">
+          <div className="wrap photo-split">
+            <figure className="photo">
+              <img src={PHOTOS.solution.src} alt={PHOTOS.solution.alt} loading="lazy" />
+              <PhotoCredit by={PHOTOS.solution.by} profile={PHOTOS.solution.profile} />
+            </figure>
+            <div className="photo-split__text">
+              <div className="section-head section-head--tight">
+                <p className="eyebrow">The solution</p>
+                <h2>Everything council needs, in one place</h2>
+              </div>
+              <ul className="solutions">
+                {solutions.map((x) => (
+                  <li key={x.title}>
+                    <h3>{x.title}</h3>
+                    <p>{x.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="section section--paper" id="how-it-works">
           <div className="wrap">
             <div className="section-head">
               <p className="eyebrow">How it works</p>
@@ -354,23 +432,22 @@ export default function Home() {
         </section>
 
         <section className="section section--paper" id="demo">
-          <div className="wrap">
-            <div className="section-head">
-              <p className="eyebrow">Talk to us</p>
-              <h2>See it with your own questions</h2>
-              <p className="lede">
-                Just want to learn the role? <a href={SIGNUP_URL}>Start the free training</a> now.
-              </p>
-            </div>
-            <div className="cards">
-              <div className="panel">
-                <DemoRequestForm
-                  page="home"
-                  intro="Tell us who you are and we’ll set up a demo strata for you to try: the training, the documents, a meeting from agenda to minutes, and the assistant."
-                />
+          <div className="wrap photo-split photo-split--flip">
+            <figure className="photo">
+              <img src={PHOTOS.demo.src} alt={PHOTOS.demo.alt} loading="lazy" />
+              <PhotoCredit by={PHOTOS.demo.by} profile={PHOTOS.demo.profile} />
+            </figure>
+            <div className="photo-split__text">
+              <div className="section-head section-head--tight">
+                <p className="eyebrow">Learn more</p>
+                <h2>Get a closer look before you decide</h2>
+                <p className="lede">
+                  We&rsquo;ll set up a demo strata for you to try: the training, the documents, a meeting from agenda to
+                  minutes, and the assistant. Or <a href={SIGNUP_URL}>start the free training</a> now.
+                </p>
               </div>
-              <div className="panel" id="investors">
-                <InvestorRequestForm />
+              <div className="panel">
+                <DemoRequestForm page="home" legal />
               </div>
             </div>
           </div>

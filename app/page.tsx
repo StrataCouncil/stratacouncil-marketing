@@ -1,56 +1,115 @@
 import { AskStratasphere } from "@/components/AskStratasphere";
-import { SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
+import { DemoRequestForm } from "@/components/DemoRequestForm";
+import { Reveal } from "@/components/Reveal";
+import { DEMO_HREF, INVESTORS_URL, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
 
-const topics = [
-  "Council responsibilities and operations",
-  "Strata finances and the CRF",
-  "Meetings, motions and voting",
-  "Bylaws, rules and legislation",
-  "Building maintenance and repairs",
-  "Insurance and risk",
-  "Contracts and service providers",
-  "Working with your strata manager",
-  "Owner concerns and difficult situations",
-  "Long-term planning and major decisions",
-];
-
-const formats = [
+/** What council is up against: the problem, in the order a new member meets it. */
+const problems = [
   {
-    title: "Short modules",
-    body: "Each module takes 10 to 20 minutes, one screen at a time. Your progress saves as you go, so you can stop whenever you need to.",
+    title: "Accountable, but untrained",
+    body: "Council acts for the strata corporation under the Strata Property Act. Budgets, repairs, bylaw fines and insurance are council’s call, and most members learn the rules on the job.",
   },
   {
-    title: "Real-world examples",
-    body: "See how the principles apply to situations councils actually encounter, grounded in BC strata legislation.",
+    title: "Records everywhere",
+    body: "Bylaws in a binder, minutes in someone’s inbox, the depreciation report on a former member’s laptop. Finding what was decided before can take an evening, if it can be found at all.",
   },
   {
-    title: "Learn by doing",
-    body: "Narrated screens, flip cards and quick knowledge checks help the important ideas stick.",
+    title: "Every AGM resets the memory",
+    body: "Councils change every year. What the last council knew leaves with it, and the same questions get asked, and argued, again.",
+  },
+  {
+    title: "Meetings that drag, minutes that lag",
+    body: "Motions get worded on the fly, votes go unrecorded, and minutes arrive weeks later, when nobody remembers exactly what was decided.",
   },
 ];
 
-const strataSphereItems = [
-  "A document library for bylaws, minutes, contracts and insurance",
-  "Agendas built from your strata’s own records",
-  "Meeting Mode: run the meeting and record motions and votes as they happen",
-  "Minutes drafted from what happened in the meeting",
-  "A decision ledger of every motion council has passed",
-  "Answers from your bylaws, minutes and BC legislation, with sources",
+/** The free ways in, before a strata pays anything. */
+const free = [
+  {
+    title: "Council training",
+    body: "Short lessons on council’s duties, budgets and the CRF, meetings and votes, bylaws and fines. Free for every council member.",
+  },
+  {
+    title: "Your document library",
+    body: "Upload your bylaws, minutes, financials, contracts and insurance. Free for as long as your strata uses it, subscribed or not.",
+  },
+  {
+    title: "Your first meeting",
+    body: "Run one full meeting in Stratasphere, from agenda to minutes, with the assistant. No credit card.",
+  },
+  {
+    title: "No lock-in",
+    body: "Monthly plans cancel any time. If you stop subscribing, your documents and minutes stay in your library.",
+  },
 ];
 
-const audiences = [
+const managerPoints = [
+  "Point new council members to free training instead of explaining the basics again",
+  "Agendas built from each strata’s own records",
+  "Motions and votes recorded as the meeting happens, and minutes drafted from them",
+  "Answers from each strata’s bylaws, minutes and BC law, with the source attached",
+];
+
+const faqs: { q: string; a: React.ReactNode }[] = [
   {
-    title: "Current council members",
-    body: "Build your knowledge, refresh the fundamentals and find practical guidance when something new comes up.",
+    q: "How much does Stratasphere™ cost?",
+    a: (
+      <>
+        <p>
+          Council training is free. So are your strata&rsquo;s document library, guides and owner roster, and your
+          first meeting in Meeting Mode. A subscription, paid by the strata corporation, adds Meeting Mode for every
+          meeting and the Stratasphere assistant:
+        </p>
+        <ul>
+          <li>
+            <strong>Annual:</strong> $82.50 a month plus $2.08 per strata lot a month, for a 12-month term.
+          </li>
+          <li>
+            <strong>Monthly:</strong> $99 a month plus $2.49 per strata lot a month. Cancel any time.
+          </li>
+        </ul>
+        <p>
+          Prices are in Canadian dollars, plus GST. If you cancel, your records stay in your free document library.
+        </p>
+      </>
+    ),
   },
   {
-    title: "Prospective council members",
-    body: "Understand the role before you put your name forward and know what you’re taking on.",
+    q: "Is Stratasphere secure, and is our data used to train AI?",
+    a: (
+      <>
+        <p>
+          Yes. Your strata&rsquo;s records are stored in Canada with bank-grade encryption, in transit and at rest.
+          Row-level security means only the people your strata connects can see them, limited by their role, and
+          two-factor sign-in is available on every account. Our hosting provider is SOC 2 and ISO 27001 compliant.
+        </p>
+        <p>
+          Your data isn&rsquo;t used to train AI. Before anything goes to our AI provider, names and personal details
+          are removed, and what&rsquo;s sent isn&rsquo;t used to train their models. StrataCouncil.ca complies with
+          BC&rsquo;s Personal Information Protection Act (PIPA); our <a href="/privacy">Privacy Policy</a> has the
+          details.
+        </p>
+      </>
+    ),
   },
   {
-    title: "Owners",
-    body: "Learn how your strata is governed, what council is responsible for and how decisions are made.",
+    q: "Does this replace the strata manager?",
+    a: (
+      <p>
+        No. Stratasphere helps council run meetings, keep good records and understand the rules. It works alongside a
+        strata manager or for a self-managed strata, and it isn&rsquo;t legal advice.
+      </p>
+    ),
+  },
+  {
+    q: "Do I need to be on council to take the training?",
+    a: (
+      <p>
+        No. Anyone can sign up for free. Owners thinking about putting their name forward use it to understand the role
+        before the AGM.
+      </p>
+    ),
   },
 ];
 
@@ -64,65 +123,6 @@ const testimonial = {
   cite: "[Name], [Role], [Strata corporation]",
 };
 
-const faqs: { q: string; a: React.ReactNode }[] = [
-  {
-    q: "How much does Stratasphere™ cost?",
-    a: (
-      <>
-        <p>
-          Council Training is free. So are your strata&rsquo;s document library, guides and owner
-          roster, and your first meeting in Meeting Mode. A subscription, paid by the strata
-          corporation, adds Meeting Mode for every meeting and the Stratasphere assistant:
-        </p>
-        <ul>
-          <li>
-            <strong>Annual:</strong> $82.50 a month plus $2.08 per strata lot a month, for a 12-month
-            term.
-          </li>
-          <li>
-            <strong>Monthly:</strong> $99 a month plus $2.49 per strata lot a month. Cancel any time.
-          </li>
-        </ul>
-        <p>
-          Prices are in Canadian dollars, plus GST. If you cancel, your records stay in your free
-          document library.
-        </p>
-      </>
-    ),
-  },
-  {
-    q: "Is Stratasphere secure?",
-    a: (
-      <p>
-        Yes. Your strata&rsquo;s records are stored in Canada and encrypted in transit and at rest.
-        Only the people your strata connects can see them, limited by their role. Stratasphere runs
-        on infrastructure that holds SOC 2 Type 2 and ISO 27001 certification.
-      </p>
-    ),
-  },
-  {
-    q: "Is our data used to train AI?",
-    a: (
-      <p>
-        No. Before anything goes to our AI provider, names and personal details are removed, and
-        what&rsquo;s sent isn&rsquo;t used to train their models. StrataCouncil.ca complies with
-        BC&rsquo;s Personal Information Protection Act (PIPA); our <a href="/privacy">Privacy Policy</a> has the
-        details.
-      </p>
-    ),
-  },
-  {
-    q: "Does this replace the strata manager?",
-    a: (
-      <p>
-        No. Stratasphere helps council run meetings, keep good records and understand the rules. It
-        works alongside a strata manager or for a self-managed strata, and it isn&rsquo;t legal
-        advice.
-      </p>
-    ),
-  },
-];
-
 export default function Home() {
   return (
     <>
@@ -130,164 +130,217 @@ export default function Home() {
 
       <main>
         <section className="hero">
-          <div className="wrap hero__inner">
-            <span className="pill" data-testid="hero-eyebrow">
-              Practical education for BC strata council members
-            </span>
-            <h1>Know your role. Understand the issues. Govern with confidence.</h1>
-            <p className="hero__lede">
-              Strata council is a volunteer role, but the responsibilities are real. Whether
-              you&rsquo;ve just joined council, are considering putting your name forward, or have
-              been serving for years, StrataCouncil.ca helps you understand how strata governance
-              works in British Columbia and apply that knowledge to the decisions councils make
-              every day.
-            </p>
-            <div className="hero__actions">
-              <a href={SIGNUP_URL} className="button button-primary" data-testid="hero-primary-cta">
-                Start Learning
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section id="built-for" className="section">
-          <div className="wrap section-split">
-            <div>
-              <h2>Built for people who serve on strata council</h2>
-              <p className="section-lede">
-                You don&rsquo;t need to be a strata manager, lawyer, accountant or building expert to
-                serve on council. You do need to understand your responsibilities, know what council
-                can and cannot decide, and be able to participate meaningfully in the decisions that
-                affect your strata.
+          <div className="hero__inner">
+            <div className="hero__text">
+              <p className="eyebrow" data-testid="hero-eyebrow">
+                For BC strata councils and strata managers
               </p>
-              <p className="section-lede">
-                StrataCouncil.ca focuses on the practical knowledge council members need, including:
+              <h1>
+                You were elected to council. Nobody handed you <em>the manual.</em>
+              </h1>
+              <p className="lede">
+                Council decides how owners&rsquo; money is spent and how their building is run, usually with no
+                training, records scattered across inboxes and binders, and a new council every year. StrataCouncil.ca
+                teaches you the role, keeps every record in one place, and helps you run meetings by the rules.
               </p>
-              <ul className="list-check">
-                {topics.map((topic) => (
-                  <li key={topic}>{topic}</li>
-                ))}
+              <div className="actions">
+                <a href={SIGNUP_URL} className="button button-primary" data-testid="hero-primary-cta">
+                  Start free training
+                </a>
+                <a href={DEMO_HREF} className="button button-secondary">
+                  Request a demo
+                </a>
+              </div>
+              <ul className="hero__free" aria-label="Free to start">
+                <li>Free training</li>
+                <li>Free document library</li>
+                <li>First meeting free</li>
               </ul>
             </div>
-            <div className="section-split__media">
+            <figure className="hero__media">
               <img
-                src="https://images.pexels.com/photos/7433833/pexels-photo-7433833.jpeg?auto=compress&cs=tinysrgb&w=900"
+                src="https://images.pexels.com/photos/7433833/pexels-photo-7433833.jpeg?auto=compress&cs=tinysrgb&w=1400"
                 alt="Strata council members reviewing documents together"
               />
-            </div>
+            </figure>
           </div>
         </section>
 
-        <section className="section section--alt">
-          <div className="wrap narrative">
-            <h2>Wherever you are in your council journey</h2>
-            <p className="section-lede">
-              Whether you&rsquo;re new to council or have been serving for years, there&rsquo;s always
-              something new to figure out. Budgets, contracts, owner concerns, repairs, legislation
-              and major decisions all bring their own questions.
-            </p>
-            <p className="section-lede">
-              StrataCouncil.ca gives you practical guidance when you need it. Learn the fundamentals,
-              build your knowledge and come back whenever a new issue comes up.
-            </p>
-            <p className="section-lede">
-              You don&rsquo;t have to wait until you&rsquo;re elected to start learning.
-              Understanding the role beforehand can help you decide whether council is right for you.
-            </p>
-            <div className="hero__actions">
-              <a href={SIGNUP_URL} className="button button-primary" data-testid="explore-training-cta">
-                Get Started
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {SHOW_TESTIMONIAL && (
-          <section className="section section--trust">
-            <div className="wrap pull-quote pull-quote--on-dark">
-              <blockquote>&ldquo;{testimonial.quote}&rdquo;</blockquote>
-              <cite>{testimonial.cite}</cite>
-            </div>
-          </section>
-        )}
-
-        <section className="section section--alt">
-          <div className="wrap sphere-split sphere-split--flip">
-            <TrainingPreview />
-            <div>
-              <h2>Learn what you need, when you need it</h2>
-              <p className="section-lede">
-                StrataCouncil.ca isn&rsquo;t one long course you complete and forget. Training is
-                organized into practical topics so you can focus on what matters to you, pause when
-                you need to, and come back whenever a new issue arises.
-              </p>
-              <ul className="formats">
-                {formats.map((f) => (
-                  <li key={f.title}>
-                    <h3>{f.title}</h3>
-                    <p>{f.body}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section className="section section--trust">
+        <section className="section section--paper" id="problem">
           <div className="wrap">
-            <h2>A resource you can keep coming back to</h2>
-            <p className="section-lede">
-              Council education shouldn&rsquo;t end after your first few meetings. The role changes
-              over time, and so does the environment in which councils operate: legislation and
-              regulations change, buildings age, new issues emerge. What you need to know in your
-              first year may be very different from what you need to know five years later.
-            </p>
-            <p className="section-lede">
-              StrataCouncil.ca is designed to grow with the role: a practical reference you can return
-              to throughout your time on council, not something you complete once and put away.
-            </p>
-          </div>
-        </section>
-
-        <section id="stratasphere" className="section section--alt">
-          <div className="wrap sphere-split">
-            <div className="narrative">
-              <h2>From learning to better governance</h2>
-              <p className="section-lede">
-                Knowing how strata governance works is the first step. The next is putting that
-                knowledge to work. StrataCouncil.ca includes Stratasphere&trade;, a governance
-                platform built for BC strata councils:
-              </p>
-              <ul className="list-check list-check--single">
-                {strataSphereItems.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <p className="section-lede">
-                The idea is simple: learn how to govern, and have the tools to help you do it.
+            <div className="section-head">
+              <p className="eyebrow">The problem</p>
+              <h2>Council is a real job, done by volunteers</h2>
+              <p className="lede">
+                The decisions are binding, the money is other people&rsquo;s, and the rules are in an Act most owners
+                have never read.
               </p>
             </div>
-            <AskStratasphere />
-          </div>
-        </section>
-
-        <section id="who-its-for" className="section">
-          <div className="wrap">
-            <h2>For people who care about how their strata is run</h2>
-            <div className="grid-3">
-              {audiences.map((a) => (
-                <article className="card" key={a.title}>
-                  <h3>{a.title}</h3>
-                  <p>{a.body}</p>
+            <div className="cards">
+              {problems.map((p) => (
+                <article className="card" key={p.title}>
+                  <h3>{p.title}</h3>
+                  <p>{p.body}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="faq" className="section section--alt">
+        <section className="section" id="how-it-works">
           <div className="wrap">
-            <h2>Questions and answers</h2>
+            <div className="section-head">
+              <p className="eyebrow">How it works</p>
+              <h2>Learn the role. Keep the record. Run the meeting.</h2>
+            </div>
+            <div className="steps">
+              <div className="step">
+                <div className="step__text">
+                  <span className="step__num">1</span>
+                  <h3>Learn what council can and can&rsquo;t do</h3>
+                  <p className="lede">
+                    Council Ready training covers the role in 10 to 20 minute lessons, one screen at a time: duties,
+                    budgets and the CRF, meetings and votes, bylaws and fines. Your progress saves as you go.
+                  </p>
+                  <span className="pill step__free">Free</span>
+                </div>
+                <TrainingPreview />
+              </div>
+
+              <div className="step step--flip">
+                <div className="step__text">
+                  <span className="step__num">2</span>
+                  <h3>Keep every record in one place</h3>
+                  <p className="lede">
+                    Upload your bylaws, minutes, financials, contracts and insurance once, and they stay with the strata
+                    when council changes. New members see what was decided before, instead of starting over.
+                  </p>
+                  <span className="pill step__free">Free, always</span>
+                </div>
+                <div className="records" aria-label="An example document library">
+                  <div className="ask__window">
+                    <div className="ask__chrome" aria-hidden="true">
+                      <span className="ask__dot" />
+                      <span className="ask__dot" />
+                      <span className="ask__dot" />
+                      <span className="ask__title">Stratasphere&trade; &middot; Documents</span>
+                    </div>
+                    <div className="ask__body">
+                      <ul className="records__list">
+                        <li>
+                          Bylaws and rules <span>4 documents</span>
+                        </li>
+                        <li>
+                          Minutes <span>38 documents</span>
+                        </li>
+                        <li>
+                          Financials and budgets <span>12 documents</span>
+                        </li>
+                        <li>
+                          Depreciation report <span>2 documents</span>
+                        </li>
+                        <li>
+                          Contracts and service providers <span>9 documents</span>
+                        </li>
+                        <li>
+                          Insurance <span>5 documents</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <p className="ask__caption">An example, with a fictional strata.</p>
+                </div>
+              </div>
+
+              <div className="step">
+                <div className="step__text">
+                  <span className="step__num">3</span>
+                  <h3>Run the meeting, and get answers with sources</h3>
+                  <p className="lede">
+                    Stratasphere&trade; builds the agenda from your records, records motions and votes as the meeting
+                    happens, and drafts the minutes from them. Ask a question and get an answer from your bylaws,
+                    minutes and BC law, with the source attached.
+                  </p>
+                  <span className="pill step__free">First meeting free</span>
+                </div>
+                <AskStratasphere />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {SHOW_TESTIMONIAL && (
+          <section className="section section--paper">
+            <div className="wrap section-head">
+              <h2>&ldquo;{testimonial.quote}&rdquo;</h2>
+              <p className="small">{testimonial.cite}</p>
+            </div>
+          </section>
+        )}
+
+        <section className="section section--ink" id="managers">
+          <div className="wrap split">
+            <div>
+              <p className="eyebrow">For strata managers</p>
+              <h2>Councils that arrive prepared</h2>
+              <p className="lede">
+                You manage many buildings, and every council asks the same questions, needs an agenda and waits on the
+                minutes. Councils that have taken the training arrive knowing what they can and can&rsquo;t decide.
+                Stratasphere builds each agenda from that strata&rsquo;s records and drafts the minutes from the
+                meeting, so less of the paperwork lands on you.
+              </p>
+              <div className="actions">
+                <a href={DEMO_HREF} className="button button--light">
+                  Request a demo
+                </a>
+              </div>
+            </div>
+            <ul className="list-check">
+              {managerPoints.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="section section--paper" id="free">
+          <div className="wrap">
+            <div className="section-head">
+              <p className="eyebrow">Start free</p>
+              <h2>See if it works for your strata before it costs anything</h2>
+              <p className="lede">
+                A strata pays only when council wants Meeting Mode for every meeting and the Stratasphere assistant.
+                Prices are in the <a href="#faq">questions below</a>.
+              </p>
+            </div>
+            <div className="cards cards--4">
+              {free.map((f) => (
+                <article className="card" key={f.title}>
+                  <span className="pill card__tag">Free</span>
+                  <h3>{f.title}</h3>
+                  <p>{f.body}</p>
+                </article>
+              ))}
+            </div>
+            <p className="assurance">
+              <span>Data stored in Canada</span>
+              <span>Personal information removed before anything reaches Stratasphere&rsquo;s AI</span>
+              <span>Two-factor sign-in available</span>
+            </p>
+            <div className="actions actions--spaced">
+              <a href={SIGNUP_URL} className="button button-primary">
+                Start free training
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="faq">
+          <div className="wrap">
+            <div className="section-head">
+              <p className="eyebrow">Questions</p>
+              <h2>Questions and answers</h2>
+            </div>
             <div className="faq" data-testid="faq">
               {faqs.map((f) => (
                 <details className="faq__item" key={f.q}>
@@ -299,20 +352,50 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section section--trust section--trust--center">
+        <section className="section section--paper" id="demo">
           <div className="wrap">
-            <h2>Good governance starts with people who understand the role they&rsquo;ve taken on.</h2>
-            <p className="section-lede">Practical education for BC strata councils.</p>
-            <div className="hero__actions">
-              <a href={SIGNUP_URL} className="button button-primary" data-testid="closing-cta">
-                Start Learning
-              </a>
+            <div className="section-head">
+              <p className="eyebrow">Talk to us</p>
+              <h2>See it with your own questions</h2>
+              <p className="lede">
+                Just want to learn the role? <a href={SIGNUP_URL}>Start the free training</a> now.
+              </p>
+            </div>
+            <div className="cards">
+              <div className="panel">
+                <DemoRequestForm
+                  page="home"
+                  intro="Tell us who you are and we’ll set up a demo strata for you to try: the training, the documents, a meeting from agenda to minutes, and the assistant."
+                />
+              </div>
+              <div className="panel" id="investors">
+                <h3>Investor briefing</h3>
+                <p className="small">
+                  Prospective investors can read the StrataCouncil.ca investor briefing. You&rsquo;ll be asked to accept
+                  the Legal Disclaimer and confirm that you&rsquo;re an accredited investor, then we&rsquo;ll email you a
+                  personal link.
+                </p>
+                <ul className="list-check small">
+                  <li>The investor deck, slide by slide</li>
+                  <li>Your own notes on each slide, saved as you go</li>
+                  <li>A way to share the briefing with another investor</li>
+                </ul>
+                <div className="actions">
+                  <a href={INVESTORS_URL} className="button button-primary">
+                    Request the investor briefing
+                  </a>
+                </div>
+                <p className="small panel__notice">
+                  This is not an offer to sell, or a solicitation of an offer to buy, any securities.
+                </p>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
       <SiteFooter />
+      <Reveal />
     </>
   );
 }

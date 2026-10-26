@@ -1,7 +1,7 @@
 "use server";
 
 /**
- * "Request a demo" on the Coming soon page: a name and email, emailed to
+ * "Request a demo" on the Coming soon page and the home page: a name and email, emailed to
  * Jeremy through Mailtrap (the same sending API the app uses). Sent from
  * the no-reply address, with Reply-To set to the person asking, so
  * answering the email goes straight to them.
@@ -24,6 +24,7 @@ export async function requestDemo(_prev: DemoRequestState, form: FormData): Prom
   if (String(form.get("website") ?? "").trim()) return { status: "sent" };
 
   const name = String(form.get("name") ?? "").trim().replace(/\s+/g, " ");
+  const where = form.get("page") === "home" ? "the home page" : "the Coming soon page";
   const email = String(form.get("email") ?? "").trim();
   // Errors hand back what was typed, so the form keeps it.
   const kept = { name, email };
@@ -44,8 +45,8 @@ export async function requestDemo(_prev: DemoRequestState, form: FormData): Prom
       to: [{ email: DEMO_REQUESTS_TO }],
       reply_to: { email, name },
       subject: `Demo request: ${name}`,
-      text: `${name} (${email}) asked for a demo on the Coming soon page.\n\nReply to this email to answer them.`,
-      html: `<p><strong>${escapeHtml(name)}</strong> (${escapeHtml(email)}) asked for a demo on the Coming soon page.</p><p>Reply to this email to answer them.</p>`,
+      text: `${name} (${email}) asked for a demo on ${where}.\n\nReply to this email to answer them.`,
+      html: `<p><strong>${escapeHtml(name)}</strong> (${escapeHtml(email)}) asked for a demo on ${where}.</p><p>Reply to this email to answer them.</p>`,
       category: "demo_request",
     }),
   }).catch((err: unknown) => {

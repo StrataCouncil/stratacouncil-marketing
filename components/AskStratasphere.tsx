@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from "react";
  * Owners appear by strata lot number only, as they do in Stratasphere.
  */
 
-type Kind = "bylaw" | "decision" | "law" | "precedent";
+type Kind = "bylaw" | "decision" | "law";
 
 interface Source {
   kind: Kind;
@@ -31,36 +31,30 @@ interface Example {
 
 const EXAMPLES: Example[] = [
   {
-    tab: "EV chargers",
-    question: "Has council approved EV charger installations before?",
+    tab: "Records request",
+    question: "An owner wants copies of last year’s council minutes. What do we have to do?",
     sources: [
       {
-        kind: "decision",
-        label: "Council decision · March 2024",
-        text: "Motion carried 4–1: commission an engineering study of EV charging for parkade level P1.",
-        meta: "Council meeting minutes, March 14, 2024",
-      },
-      {
-        kind: "bylaw",
-        label: "Bylaw 7.2",
-        text: "Alterations to common property, including electrical work, need council’s written approval and an alteration agreement.",
-        meta: "Larchwood Commons registered bylaws",
-      },
-      {
         kind: "law",
-        label: "Strata Property Act, s. 71",
-        text: "A significant change in the use or appearance of common property needs a 3/4 vote at a general meeting.",
+        label: "Strata Property Act, s. 36",
+        text: "Copies must be provided within 2 weeks of the request; for the bylaws or rules, within 1 week.",
         meta: "BC legislation",
       },
       {
-        kind: "precedent",
-        label: "Precedent · a similar strata",
-        text: "Approved individual chargers, with each owner paying for installation and electricity under an alteration agreement.",
-        meta: "Anonymized, from another strata corporation",
+        kind: "law",
+        label: "Strata Property Regulation, s. 4.2",
+        text: "The strata may charge up to 25 cents a page for copies.",
+        meta: "BC legislation",
+      },
+      {
+        kind: "decision",
+        label: "Council decision · January 2025",
+        text: "Records requested by owners are sent by email as PDFs, at no charge.",
+        meta: "Council meeting minutes, January 15, 2025",
       },
     ],
     answer:
-      "Not for individual chargers yet. In March 2024 council approved an engineering study for P1. An owner’s charger needs council’s written approval under Bylaw 7.2 and an alteration agreement; a building-wide system may need a 3/4 vote under s. 71.",
+      "Send the copies within two weeks of the request. The Regulation allows up to 25 cents a page, but in January 2025 council decided to email records as PDFs at no charge, so send them that way.",
   },
   {
     tab: "Bylaw fines",
@@ -84,12 +78,6 @@ const EXAMPLES: Example[] = [
         text: "Warning letter to SL14 about repeated parking in visitor stalls.",
         meta: "Council meeting minutes, June 11, 2025",
       },
-      {
-        kind: "precedent",
-        label: "Precedent · tribunal decisions",
-        text: "Fines have been cancelled where the strata skipped the section 135 steps.",
-        meta: "Civil Resolution Tribunal",
-      },
     ],
     answer:
       "Give the owner the complaint in writing, a reasonable chance to respond and a hearing if they ask. Only then decide on a fine: up to $200 per contravention under Bylaw 23.1. SL14 has already had a warning letter.",
@@ -110,12 +98,6 @@ const EXAMPLES: Example[] = [
         text: "Approved SL21’s laminate flooring, with the approved underlay and a signed alteration agreement.",
         meta: "Council meeting minutes, November 5, 2025",
       },
-      {
-        kind: "precedent",
-        label: "Precedent · a similar strata",
-        text: "Required an acoustic test after installation when a neighbour reported noise.",
-        meta: "Anonymized, from another strata corporation",
-      },
     ],
     answer:
       "Yes, for hard flooring. Bylaw 5.4 requires council’s written approval and an approved acoustic underlay. Council approved SL21’s laminate on those terms in November 2025.",
@@ -126,7 +108,6 @@ const KIND_NAMES: Record<Kind, string> = {
   bylaw: "Bylaw",
   decision: "Council decision",
   law: "Legislation",
-  precedent: "Precedent",
 };
 
 const TYPE_MS = 32;

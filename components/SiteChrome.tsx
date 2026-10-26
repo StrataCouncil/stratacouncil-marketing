@@ -80,9 +80,6 @@ export function SiteFooter() {
           <p className="site-footer__powered">
             Powered by <TrickfilmLogo height={20} />
           </p>
-          <p className="site-footer__photos">
-            Photos by Theo Decker on <a href="https://www.pexels.com/">Pexels</a>.
-          </p>
         </div>
       </div>
     </footer>

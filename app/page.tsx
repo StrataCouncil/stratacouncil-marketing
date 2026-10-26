@@ -47,30 +47,15 @@ const solutions = [
   },
 ];
 
-/** Unsplash photos, chosen by a person, with the credit Unsplash asks for. */
-const UNSPLASH_REF = "?utm_source=stratacouncil&utm_medium=referral";
+/**
+ * The page's three photos, chosen by a person: one shoot, by Theo Decker on
+ * Pexels (credited in the footer). Kept in public/photos at web sizes.
+ */
 const PHOTOS = {
-  solution: {
-    src: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&w=1400&q=70",
-    alt: "A group of people meeting around a long table with laptops",
-    by: "Christina @ wocintechchat.com",
-    profile: "https://unsplash.com/@wocintechchat",
-  },
-  demo: {
-    src: "https://images.unsplash.com/photo-1758873268695-1b55590e507a?auto=format&fit=crop&w=1400&q=70",
-    alt: "A team working together around a computer screen",
-    by: "Vitaly Gariev",
-    profile: "https://unsplash.com/@silverkblack",
-  },
+  hero: { src: "/photos/hero.jpg", alt: "A group reviewing documents together at a table" },
+  solution: { src: "/photos/solution.jpg", alt: "A group talking around a meeting table with laptops" },
+  demo: { src: "/photos/demo.jpg", alt: "A group listening to a colleague at a meeting table" },
 };
-
-function PhotoCredit({ by, profile }: { by: string; profile: string }) {
-  return (
-    <figcaption className="photo__credit">
-      Photo by <a href={profile + UNSPLASH_REF}>{by}</a> on <a href={"https://unsplash.com/" + UNSPLASH_REF}>Unsplash</a>
-    </figcaption>
-  );
-}
 
 /** The free ways in, before a strata pays anything. */
 const free = [
@@ -217,10 +202,7 @@ export default function Home() {
               </div>
             </div>
             <figure className="hero__media">
-              <img
-                src="https://images.pexels.com/photos/7433833/pexels-photo-7433833.jpeg?auto=compress&cs=tinysrgb&w=1400"
-                alt="Strata council members reviewing documents together"
-              />
+              <img src={PHOTOS.hero.src} alt={PHOTOS.hero.alt} />
             </figure>
           </div>
         </section>
@@ -248,9 +230,8 @@ export default function Home() {
 
         <section className="section" id="solution">
           <div className="wrap photo-split">
-            <figure className="photo">
+            <figure className="photo photo--wide">
               <img src={PHOTOS.solution.src} alt={PHOTOS.solution.alt} loading="lazy" />
-              <PhotoCredit by={PHOTOS.solution.by} profile={PHOTOS.solution.profile} />
             </figure>
             <div className="photo-split__text">
               <div className="section-head section-head--tight">
@@ -438,7 +419,6 @@ export default function Home() {
           <div className="wrap photo-split photo-split--flip">
             <figure className="photo photo--wide">
               <img src={PHOTOS.demo.src} alt={PHOTOS.demo.alt} loading="lazy" />
-              <PhotoCredit by={PHOTOS.demo.by} profile={PHOTOS.demo.profile} />
             </figure>
             <div className="photo-split__text">
               <div className="section-head section-head--tight">

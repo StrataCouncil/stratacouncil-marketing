@@ -1,8 +1,11 @@
+import type { Metadata } from "next";
 import { AskStratasphere } from "@/components/AskStratasphere";
 import { DemoRequestForm } from "@/components/DemoRequestForm";
 import { Reveal } from "@/components/Reveal";
 import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
+
+export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: { url: "/" } };
 
 /** What council is up against: the problem, in the order a new member meets it. */
 const problems = [

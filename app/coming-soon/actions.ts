@@ -25,6 +25,12 @@ export async function requestDemo(_prev: DemoRequestState, form: FormData): Prom
 
   const name = String(form.get("name") ?? "").trim().replace(/\s+/g, " ");
   const where = form.get("page") === "home" ? "the home page" : "the Coming soon page";
+  // The campaign tags the visitor arrived with (components/CampaignTags.tsx), if any.
+  const campaign = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]
+    .map((key) => [key, String(form.get(key) ?? "").trim().slice(0, 100)] as const)
+    .filter(([, value]) => value)
+    .map(([key, value]) => `${key}=${value}`)
+    .join(", ");
   const email = String(form.get("email") ?? "").trim();
   // Errors hand back what was typed, so the form keeps it.
   const kept = { name, email };
@@ -45,8 +51,8 @@ export async function requestDemo(_prev: DemoRequestState, form: FormData): Prom
       to: [{ email: DEMO_REQUESTS_TO }],
       reply_to: { email, name },
       subject: `Demo request: ${name}`,
-      text: `${name} (${email}) asked for a demo on ${where}.\n\nReply to this email to answer them.`,
-      html: `<p><strong>${escapeHtml(name)}</strong> (${escapeHtml(email)}) asked for a demo on ${where}.</p><p>Reply to this email to answer them.</p>`,
+      text: `${name} (${email}) asked for a demo on ${where}.${campaign ? `\nCame from: ${campaign}` : ""}\n\nReply to this email to answer them.`,
+      html: `<p><strong>${escapeHtml(name)}</strong> (${escapeHtml(email)}) asked for a demo on ${where}.</p>${campaign ? `<p>Came from: ${escapeHtml(campaign)}</p>` : ""}<p>Reply to this email to answer them.</p>`,
       category: "demo_request",
     }),
   }).catch((err: unknown) => {

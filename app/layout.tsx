@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { CampaignTags } from "@/components/CampaignTags";
+import { SITE_URL } from "@/app/site-url";
 import "./globals.css";
 
 // Variable, with the SOFT axis: headings use it at full softness and a
@@ -18,10 +20,15 @@ const workSans = Work_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
+const TITLE = "StrataCouncil.ca — Training and governance tools for BC strata councils";
+const DESCRIPTION =
+  "Free training for BC strata council members, one place for every strata record, and Stratasphere for running meetings and finding answers in your bylaws, minutes and BC law.";
+
 export const metadata: Metadata = {
-  title: "StrataCouncil.ca — Training and governance tools for BC strata councils",
-  description:
-    "Free training for BC strata council members, one place for every strata record, and Stratasphere for running meetings and finding answers in your bylaws, minutes and BC law.",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: { type: "website", siteName: "StrataCouncil.ca", locale: "en_CA", title: TITLE, description: DESCRIPTION },
 };
 
 export default function RootLayout({
@@ -35,6 +42,7 @@ export default function RootLayout({
         {children}
         {/* Vercel Web Analytics: page views and referring sites, no cookies (privacy policy §11). */}
         <Analytics />
+        <CampaignTags />
       </body>
     </html>
   );

@@ -17,6 +17,8 @@ const SELECTOR = [
   ".panel",
   ".split > *",
   ".faq",
+  ".photo",
+  ".solutions li",
 ].join(",");
 
 export function Reveal() {

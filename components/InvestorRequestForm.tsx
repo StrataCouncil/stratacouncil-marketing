@@ -33,8 +33,7 @@ export function InvestorRequestForm() {
     <form className="site-form" action={action}>
       <h3>Investor briefing</h3>
       <p className="small">
-        For prospective investors. This is not an offer to sell, or a solicitation of an offer to buy, any securities.
-        We&rsquo;ll email you a personal link to the briefing.
+        For prospective investors. Enter your details and we&rsquo;ll email you a personal link to the briefing.
       </p>
       <div className="site-form__fields">
         <label>

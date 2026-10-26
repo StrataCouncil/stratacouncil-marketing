@@ -6,9 +6,18 @@ import { requestDemo, type DemoRequestState } from "@/app/coming-soon/actions";
 /**
  * Name and email; app/coming-soon/actions.ts emails them to Jeremy.
  * `page` says where it was asked from (it's in the email); `intro` is an
- * optional line under the title. Laid out like InvestorRequestForm.
+ * optional line under the title; `legal` adds the Privacy Policy and Terms
+ * links under the button. Laid out like InvestorRequestForm.
  */
-export function DemoRequestForm({ page, intro }: { page: "home" | "coming-soon"; intro?: React.ReactNode }) {
+export function DemoRequestForm({
+  page,
+  intro,
+  legal = false,
+}: {
+  page: "home" | "coming-soon";
+  intro?: React.ReactNode;
+  legal?: boolean;
+}) {
   const [state, action, pending] = useActionState<DemoRequestState, FormData>(requestDemo, { status: "idle" });
 
   if (state.status === "sent") {
@@ -48,6 +57,13 @@ export function DemoRequestForm({ page, intro }: { page: "home" | "coming-soon";
       <button type="submit" className="button button-primary site-form__submit" disabled={pending}>
         {pending ? "Sending…" : "Request a demo"}
       </button>
+      {legal && (
+        <p className="site-form__legal">
+          <a href="/privacy">Privacy Policy</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="/terms">Terms &amp; Conditions</a>
+        </p>
+      )}
     </form>
   );
 }

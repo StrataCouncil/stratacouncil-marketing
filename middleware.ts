@@ -3,7 +3,8 @@ import { NextResponse, type NextRequest } from "next/server";
 /**
  * Site-wide gate: while the site is held back, every production request
  * goes to /coming-soon, except that page, the Privacy Policy and Terms
- * (the investor briefing links to them), and static assets. Vercel preview
+ * (the investor briefing links to them), static assets, and Vercel's own
+ * routes under /_vercel (Web Analytics needs them). Vercel preview
  * deployments and local development aren't gated, so the full site can
  * still be reviewed there.
  *
@@ -24,6 +25,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|apple-icon.png|icon.svg|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_vercel|_next/static|_next/image|favicon.ico|apple-icon.png|icon.svg|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

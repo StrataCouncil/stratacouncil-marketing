@@ -390,7 +390,10 @@ svg {
 .hero__inner {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  /* The hero fills the first screen on desktop, so the next section never
+     peeks in before it has faded in. */
   min-height: 680px;
+  min-height: max(640px, 100svh);
 }
 
 .hero__text {

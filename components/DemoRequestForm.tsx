@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { CAMPAIGN_KEYS, storedCampaign, type Campaign } from "@/components/CampaignTags";
 import { requestDemo, type DemoRequestState } from "@/app/coming-soon/actions";
 
 /**
@@ -19,6 +20,9 @@ export function DemoRequestForm({
   legal?: boolean;
 }) {
   const [state, action, pending] = useActionState<DemoRequestState, FormData>(requestDemo, { status: "idle" });
+  // The campaign the visitor arrived with, if any, so the email says which post brought them.
+  const [campaign, setCampaign] = useState<Campaign | null>(null);
+  useEffect(() => setCampaign(storedCampaign()), []);
 
   if (state.status === "sent") {
     return (
@@ -34,6 +38,8 @@ export function DemoRequestForm({
       <h3>Request a demo</h3>
       {intro && <p className="small">{intro}</p>}
       <input type="hidden" name="page" value={page} />
+      {campaign &&
+        CAMPAIGN_KEYS.map((key) => (campaign[key] ? <input key={key} type="hidden" name={key} value={campaign[key]} /> : null))}
       <div className="site-form__fields">
         <label>
           <span>Name</span>

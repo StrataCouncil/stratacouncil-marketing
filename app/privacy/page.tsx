@@ -196,7 +196,11 @@ export default function PrivacyPage() {
             <li>login activity;</li>
             <li>feature usage;</li>
             <li>security events;</li>
-            <li>AI usage and query counts; and</li>
+            <li>AI usage and query counts;</li>
+            <li>
+              the campaign tags on the link you first arrived by, if any (see
+              Section 11); and
+            </li>
             <li>other technical information generated through use of the service.</li>
           </ul>
           <p>We do not use this information for third-party advertising.</p>
@@ -595,6 +599,17 @@ export default function PrivacyPage() {
             visitors to us. It does not use cookies, does not identify
             individual visitors, and does not follow you to other websites. We
             use these counts only to understand and improve our outreach.
+          </p>
+          <p>
+            If you arrive on our website through a campaign link (one with tags
+            such as &ldquo;utm_source=facebook&rdquo;, as in our social media
+            posts), your browser keeps those tags for up to 90 days in its local
+            storage, not in a cookie. If you then sign up or request a demo, the
+            tags are sent with it and kept with your account or your request,
+            so we can see which post or campaign brought you. The tags describe
+            the link, not you, and we use them only to understand and improve
+            our outreach. You can remove them at any time by clearing your
+            browser&rsquo;s site data for stratacouncil.ca.
           </p>
           <p>We do not use advertising cookies to track users across unrelated websites.</p>
           <p>

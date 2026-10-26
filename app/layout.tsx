@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { CampaignTags } from "@/components/CampaignTags";
 import { SITE_URL } from "@/app/site-url";
 import "./globals.css";
 
@@ -41,6 +42,7 @@ export default function RootLayout({
         {children}
         {/* Vercel Web Analytics: page views and referring sites, no cookies (privacy policy §11). */}
         <Analytics />
+        <CampaignTags />
       </body>
     </html>
   );

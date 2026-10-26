@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-/** The holding page that middleware.ts sends every production visitor to, with a demo request form. */
+/** The holding page used while the site was gated (middleware.ts, removed at launch; next.config.mjs now redirects it to the home page). */
 export default function ComingSoonPage() {
   return (
     <main className="coming-soon">

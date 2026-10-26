@@ -3,8 +3,12 @@
 import { useActionState } from "react";
 import { requestDemo, type DemoRequestState } from "@/app/coming-soon/actions";
 
-/** Name and email; app/coming-soon/actions.ts emails them to Jeremy. */
-export function DemoRequestForm() {
+/**
+ * Name and email; app/coming-soon/actions.ts emails them to Jeremy.
+ * `page` says where it was asked from (it's in the email); `panel` puts it
+ * in a white card.
+ */
+export function DemoRequestForm({ page, panel = false }: { page: "home" | "coming-soon"; panel?: boolean }) {
   const [state, action, pending] = useActionState<DemoRequestState, FormData>(requestDemo, { status: "idle" });
 
   if (state.status === "sent") {
@@ -16,8 +20,9 @@ export function DemoRequestForm() {
   }
 
   return (
-    <form className="demo-request" action={action}>
-      <h2 className="demo-request__title">Request a demo</h2>
+    <form className={panel ? "demo-request demo-request--panel" : "demo-request"} action={action}>
+      <h3 className="demo-request__title">Request a demo</h3>
+      <input type="hidden" name="page" value={page} />
       <div className="demo-request__fields">
         <label>
           <span>Name</span>

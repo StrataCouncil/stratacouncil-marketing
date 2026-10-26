@@ -3,11 +3,13 @@ import { Fraunces, Work_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
+// Variable, with the SOFT axis: headings use it at full softness and a
+// light weight, which keeps the serif from reading formal.
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  weight: ["500", "600", "700"],
   style: ["normal"],
+  axes: ["SOFT", "opsz"],
 });
 
 const workSans = Work_Sans({
@@ -17,9 +19,9 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "StrataCouncil.ca — Practical education for BC strata council members",
+  title: "StrataCouncil.ca — Training and governance tools for BC strata councils",
   description:
-    "Know your role. Understand the issues. Govern with confidence. Practical education for current and prospective BC strata council members.",
+    "Free training for BC strata council members, one place for every strata record, and Stratasphere for running meetings and finding answers in your bylaws, minutes and BC law.",
 };
 
 export default function RootLayout({

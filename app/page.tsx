@@ -419,6 +419,9 @@ export default function Home() {
           <div className="wrap photo-split photo-split--flip">
             <figure className="photo photo--wide">
               <img src={PHOTOS.demo.src} alt={PHOTOS.demo.alt} loading="lazy" />
+              <figcaption className="photo__credit">
+                Photos by <a href="https://www.pexels.com/@theo-decker/">Theo Decker on Pexels</a>.
+              </figcaption>
             </figure>
             <div className="photo-split__text">
               <div className="section-head section-head--tight">

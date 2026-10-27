@@ -1664,82 +1664,150 @@ svg {
   cursor: default;
 }
 
-/* ── Splat band (test, /lab/splat) ──────────────────────────────────── */
+/* ── Splat tour (test, /lab/splat; components/SplatTour.tsx) ─────────── */
 
-.splat-band {
+.splat-tour {
   position: relative;
-  height: 180vh;
   background: var(--ink);
-  color: #fff;
+  color: var(--paper);
 }
-.splat-band__canvas {
+
+.splat-tour__stage {
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 100%;
+  overflow: hidden;
 }
-.splat-band__canvas canvas {
+
+.splat-tour__canvas,
+.splat-tour__overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.splat-tour__canvas canvas {
   display: block;
   width: 100% !important;
   height: 100% !important;
 }
-.splat-band__overlay {
-  position: absolute;
-  inset: 0;
-  padding: 12vh max(24px, calc((100vw - 1120px) / 2)) 0;
+
+.splat-tour__overlay {
   pointer-events: none;
+  background: linear-gradient(180deg, rgba(14, 22, 38, 0.6) 0%, rgba(14, 22, 38, 0) 48%);
+  padding: 0 max(24px, calc((100vw - 1180px) / 2));
 }
-.splat-band__overlay .eyebrow {
-  color: #f0b48d;
-}
-.splat-band__overlay h2 {
-  max-width: 16ch;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
-}
-.splat-band__labels {
-  list-style: none;
-  padding: 0;
-  margin: 40vh 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 18vh;
-}
-.splat-band__labels li {
-  max-width: 420px;
-  background: rgba(27, 42, 65, 0.78);
-  border-left: 3px solid var(--accent);
-  border-radius: 10px;
-  padding: 14px 18px;
+
+.splat-tour__head {
+  position: absolute;
+  top: 14vh;
+  max-width: 34rem;
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
-.splat-band__labels li[data-on="true"] {
+
+.splat-tour__head[data-on="true"] {
   opacity: 1;
   transform: none;
 }
-.splat-band__labels strong {
-  display: block;
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-size: 1.6rem;
+
+.splat-tour .eyebrow {
   color: #f0b48d;
 }
-.splat-band__note {
+
+.splat-tour h2 {
+  color: var(--paper);
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.5);
+}
+
+.splat-tour__lede {
+  margin-top: 0.8rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+}
+
+.splat-tour__note {
   margin-top: 1rem;
   font-size: 0.9rem;
-  opacity: 0.8;
+  opacity: 0.85;
 }
-.splat-band[data-state="still"] {
-  height: auto;
-  padding-bottom: 12vh;
+
+.splat-tour__ask {
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  right: max(24px, calc((100vw - 1180px) / 2));
+  width: min(440px, calc(100vw - 48px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: auto;
+  animation: ask-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
-.splat-band[data-state="still"] .splat-band__canvas {
+
+.splat-tour__ask .ask__window {
+  min-height: 0;
+  background: rgba(21, 34, 58, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.splat-tour__ask .ask__body {
+  max-height: calc(100vh - 140px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* In the tour, sources show their name and where they came from; the answer says what they mean. */
+.splat-tour__ask .ask__source p {
   display: none;
 }
-.splat-band[data-state="still"] .splat-band__overlay {
-  position: relative;
+
+.splat-tour__caption {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+  color: rgba(248, 246, 241, 0.75);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
-.splat-band[data-state="still"] .splat-band__labels {
-  margin-top: 2rem;
-  gap: 1rem;
+
+.ask__source[data-kind="rule"] .ask__label {
+  color: #e3bb63;
+}
+
+.ask__source[data-kind="record"] .ask__label {
+  color: #c9b8e8;
+}
+
+@media (max-width: 760px) {
+  .splat-tour__head {
+    top: 10vh;
+  }
+
+  .splat-tour__ask {
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+
+  .splat-tour__ask .ask__body {
+    max-height: 62vh;
+  }
+}
+
+.splat-tour[data-state="still"] {
+  padding: 12vh 0;
+}
+
+.splat-tour__list {
+  list-style: none;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { SplatBand } from "@/components/SplatBand";
+import { SplatTour } from "@/components/SplatTour";
 
-/** Unlisted test of a Gaussian-splat band (not linked, not indexed, not in the sitemap). */
+/** Unlisted test of a Gaussian-splat tour (not linked, not indexed, not in the sitemap). */
 export const metadata: Metadata = {
   title: "Splat test",
   robots: { index: false, follow: false },
@@ -15,16 +15,20 @@ export default function SplatTestPage() {
           <p className="eyebrow">Test page</p>
           <h1>Gaussian splatting test</h1>
           <p className="lede">
-            A sample scene from the Spark viewer&rsquo;s examples (a snowy street), standing in for a scan of a real strata
-            building. Scroll slowly through the band below: the camera moves with the page, and the example history labels
-            appear one by one. The years and decisions are made-up examples.
+            A 3D scan of two towers, standing in for a scan of a real strata building. Scroll slowly through the dark section
+            below: the camera flies to the roof, the balconies and the parking, and Stratasphere answers a question about
+            each. The strata and its records are fictional.
+          </p>
+          <p className="lede">
+            The scan is a SuperSplat scene, loaded from SuperSplat&rsquo;s servers for this test only. It is about 15 MB, so
+            give it a moment, and it looks best on a computer with a graphics card.
           </p>
         </div>
       </section>
-      <SplatBand />
+      <SplatTour />
       <section className="section">
         <div className="wrap section-head">
-          <p className="lede">End of the test band. On the real home page, this would sit between the hero and &ldquo;The problem&rdquo;.</p>
+          <p className="lede">End of the test.</p>
         </div>
       </section>
     </main>

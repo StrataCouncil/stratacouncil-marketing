@@ -1663,3 +1663,83 @@ svg {
   opacity: 0.7;
   cursor: default;
 }
+
+/* ── Splat band (test, /lab/splat) ──────────────────────────────────── */
+
+.splat-band {
+  position: relative;
+  height: 180vh;
+  background: var(--ink);
+  color: #fff;
+}
+.splat-band__canvas {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+}
+.splat-band__canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.splat-band__overlay {
+  position: absolute;
+  inset: 0;
+  padding: 12vh max(24px, calc((100vw - 1120px) / 2)) 0;
+  pointer-events: none;
+}
+.splat-band__overlay .eyebrow {
+  color: #f0b48d;
+}
+.splat-band__overlay h2 {
+  max-width: 16ch;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+.splat-band__labels {
+  list-style: none;
+  padding: 0;
+  margin: 40vh 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18vh;
+}
+.splat-band__labels li {
+  max-width: 420px;
+  background: rgba(27, 42, 65, 0.78);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 14px 18px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.splat-band__labels li[data-on="true"] {
+  opacity: 1;
+  transform: none;
+}
+.splat-band__labels strong {
+  display: block;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.6rem;
+  color: #f0b48d;
+}
+.splat-band__note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+.splat-band[data-state="still"] {
+  height: auto;
+  padding-bottom: 12vh;
+}
+.splat-band[data-state="still"] .splat-band__canvas {
+  display: none;
+}
+.splat-band[data-state="still"] .splat-band__overlay {
+  position: relative;
+}
+.splat-band[data-state="still"] .splat-band__labels {
+  margin-top: 2rem;
+  gap: 1rem;
+}

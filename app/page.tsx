@@ -77,11 +77,32 @@ const free = [
   },
 ];
 
+/** What sets us apart, without naming anyone: the council's job, not the building's. */
+const different = [
+  {
+    title: "Know the job before the first meeting",
+    body: "Free training on the Strata Property Act, your bylaws, budgets and meetings, for every council member and anyone thinking of running.",
+  },
+  {
+    title: "Decide by the book",
+    body: "Meeting Mode runs the meeting in front of you: the order of business, motions, movers and seconders, and votes counted to the Strata Property Act’s quorum and voting rules.",
+  },
+  {
+    title: "Remember, with the source",
+    body: "Ask in plain language. Stratasphere answers from your own records and from BC strata law, and shows where each answer came from.",
+  },
+  {
+    title: "Your records, free at any size",
+    body: "Keep every bylaw, set of minutes and report in your library at no cost, whatever the size of your strata, for as long as you use it.",
+  },
+];
+
 const managerPoints = [
   "Point new council members to free training instead of explaining the basics again",
   "Agendas built from each strata’s own records",
   "Motions and votes recorded as the meeting happens, and minutes drafted from them",
   "Answers from each strata’s bylaws, minutes and BC law, with the source attached",
+  "Works alongside your management software, not instead of it",
 ];
 
 const faqs: { q: string; a: React.ReactNode }[] = [
@@ -140,6 +161,17 @@ const faqs: { q: string; a: React.ReactNode }[] = [
           <a href="/privacy">Privacy Policy</a> has the details.
         </p>
       </>
+    ),
+  },
+  {
+    q: "How is this different from strata management software?",
+    a: (
+      <p>
+        Strata management software runs the building: accounts, owner payments, maintenance requests and bookings.
+        StrataCouncil.ca is for the council that makes the decisions: training for the people on it, meetings run by the
+        Strata Property Act, and a record of every decision that can answer questions years later. It works alongside
+        your management software and your strata manager, not instead of them.
+      </p>
     ),
   },
   {
@@ -340,6 +372,27 @@ export default function Home() {
             </div>
           </section>
         )}
+
+        <section className="section" id="different">
+          <div className="wrap">
+            <div className="section-head">
+              <p className="eyebrow">Why StrataCouncil.ca</p>
+              <h2>Built for the council, not the building</h2>
+              <p className="lede">
+                Most strata software runs the building. We help the volunteers who make the decisions do the job well,
+                alongside whatever runs the building.
+              </p>
+            </div>
+            <div className="cards cards--4">
+              {different.map((d) => (
+                <article className="card" key={d.title}>
+                  <h3>{d.title}</h3>
+                  <p>{d.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className="section section--ink" id="managers">
           <div className="wrap split">

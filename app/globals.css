@@ -415,6 +415,10 @@ svg {
   max-width: 34rem;
 }
 
+.hero .lede + .lede {
+  margin-top: -0.5rem;
+}
+
 .hero__media {
   position: relative;
   margin: 0;
@@ -1679,6 +1683,8 @@ svg {
   position: sticky;
   top: 0;
   height: 100vh;
+  /* On phones, the height left once the browser's toolbars are showing. */
+  height: 100svh;
   overflow: hidden;
 }
 
@@ -1704,9 +1710,6 @@ svg {
   top: 14vh;
   /* Leaves room for the scenario window on the right. */
   max-width: min(34rem, calc(100vw - 536px));
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
   /* On the same translucent navy as the scenario windows. */
   padding: 1.25rem 1.5rem 1.4rem;
   border-radius: 14px;
@@ -1714,11 +1717,6 @@ svg {
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.45);
-}
-
-.building-tour__head[data-on="true"] {
-  opacity: 1;
-  transform: none;
 }
 
 .building-tour .eyebrow {
@@ -1800,28 +1798,82 @@ svg {
   color: #c9b8e8;
 }
 
-@media (max-width: 760px) {
+/* Phones and other tall screens: the header panel across the top, the scenario window across the
+   bottom, and the building in the space between (placed by components/BuildingTour.tsx). */
+@media (max-width: 760px), (orientation: portrait) {
+  .building-tour__overlay {
+    padding: 0;
+  }
+
   .building-tour__head {
-    top: 96px;
-    max-width: none;
+    top: 84px;
+    left: 16px;
     right: 16px;
+    max-width: none;
+    padding: 0.9rem 1.1rem 1rem;
   }
 
-  /* The headline stays; its paragraph steps aside while a scenario window is up. */
-  .building-tour__head[data-ask="true"] .building-tour__lede {
-    display: none;
+  .building-tour h2 {
+    font-size: 1.6rem;
   }
 
+  .building-tour__lede {
+    margin-top: 0.45rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  /* PHONE_ASK and PHONE_GAP in BuildingTour.tsx: 40% of the stage, 16px from the bottom. */
   .building-tour__ask {
     top: auto;
     bottom: 16px;
     left: 16px;
     right: 16px;
     width: auto;
+    height: 40%;
+    justify-content: flex-end;
+  }
+
+  .building-tour__ask .ask__window {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+  }
+
+  .building-tour__ask .ask__chrome {
+    padding: 0.6rem 0.9rem;
   }
 
   .building-tour__ask .ask__body {
-    max-height: 38vh;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    padding: 0.8rem 0.9rem 0.9rem;
+  }
+
+  /* Room for one step at a time: the question types and the sources appear, then the answer takes
+     the window (its title still names the scenario). */
+  .building-tour__ask .ask__body > * {
+    flex-shrink: 0;
+  }
+
+  .building-tour__ask .ask__body:has(.ask__answer) > :not(.ask__answer) {
+    display: none;
+  }
+
+  .building-tour__ask .ask__body:has(.ask__answer) .ask__answer {
+    margin-top: 0;
+  }
+
+  .building-tour__ask .ask__question {
+    font-size: 0.85rem;
+    padding: 0.55rem 0.7rem;
+    min-height: 0;
+  }
+
+  .building-tour__ask .ask__answer p {
+    font-size: 0.82rem;
+    line-height: 1.45;
   }
 }
 

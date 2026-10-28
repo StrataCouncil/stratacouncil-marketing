@@ -3,7 +3,7 @@ import { DemoRequestForm } from "@/components/DemoRequestForm";
 import { MeetingAgenda } from "@/components/MeetingAgenda";
 import { Reveal } from "@/components/Reveal";
 import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
-import { SplatTour } from "@/components/SplatTour";
+import { BuildingTour } from "@/components/BuildingTour";
 import { TrainingPreview } from "@/components/TrainingPreview";
 
 export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: { url: "/" } };
@@ -386,7 +386,7 @@ export default function Home() {
           </div>
         </section>
 
-        <SplatTour />
+        <BuildingTour />
 
         {SHOW_TESTIMONIAL && (
           <section className="section section--paper">

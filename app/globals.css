@@ -1667,39 +1667,39 @@ svg {
   cursor: default;
 }
 
-/* ── Splat tour (test, /lab/splat; components/SplatTour.tsx) ─────────── */
+/* ── Building tour: Know the history (components/BuildingTour.tsx) ───── */
 
-.splat-tour {
+.building-tour {
   position: relative;
   background: var(--ink);
   color: var(--paper);
 }
 
-.splat-tour__stage {
+.building-tour__stage {
   position: sticky;
   top: 0;
   height: 100vh;
   overflow: hidden;
 }
 
-.splat-tour__canvas,
-.splat-tour__overlay {
+.building-tour__canvas,
+.building-tour__overlay {
   position: absolute;
   inset: 0;
 }
 
-.splat-tour__canvas canvas {
+.building-tour__canvas {
   display: block;
-  width: 100% !important;
-  height: 100% !important;
+  width: 100%;
+  height: 100%;
 }
 
-.splat-tour__overlay {
+.building-tour__overlay {
   pointer-events: none;
   padding: 0 max(24px, calc((100vw - 1180px) / 2));
 }
 
-.splat-tour__head {
+.building-tour__head {
   position: absolute;
   top: 14vh;
   /* Leaves room for the scenario window on the right. */
@@ -1716,32 +1716,32 @@ svg {
   box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.45);
 }
 
-.splat-tour__head[data-on="true"] {
+.building-tour__head[data-on="true"] {
   opacity: 1;
   transform: none;
 }
 
-.splat-tour .eyebrow {
+.building-tour .eyebrow {
   color: #e9b48f;
 }
 
-.splat-tour h2 {
+.building-tour h2 {
   color: var(--paper);
 }
 
-.splat-tour__lede {
+.building-tour__lede {
   margin-top: 0.8rem;
   font-size: 1.1rem;
   line-height: 1.5;
 }
 
-.splat-tour__note {
+.building-tour__note {
   margin-top: 1rem;
   font-size: 0.9rem;
   opacity: 0.85;
 }
 
-.splat-tour__ask {
+.building-tour__ask {
   position: absolute;
   top: 96px;
   bottom: 24px;
@@ -1754,13 +1754,13 @@ svg {
   animation: ask-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-.splat-tour__ask .ask__window {
+.building-tour__ask .ask__window {
   min-height: 0;
   background: rgba(21, 34, 58, 0.9);
   backdrop-filter: blur(8px);
 }
 
-.splat-tour__ask .ask__body {
+.building-tour__ask .ask__body {
   max-height: calc(100vh - 140px);
   overflow: hidden;
   display: flex;
@@ -1769,7 +1769,7 @@ svg {
 }
 
 /* In the tour, sources are named in a row of chips above the example answer. */
-.splat-tour__sources {
+.building-tour__sources {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1778,26 +1778,18 @@ svg {
   gap: 0.4rem;
 }
 
-.splat-tour__sources .ask__source {
+.building-tour__sources .ask__source {
   padding: 0.35rem 0.65rem;
   border-radius: 999px;
 }
 
-.splat-tour__caption {
-  margin: 0.6rem 0 0;
-  font-size: 0.8rem;
-  text-align: center;
-  color: rgba(248, 246, 241, 0.75);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
-}
-
-.splat-tour__credit {
-  position: absolute;
-  left: max(24px, calc((100vw - 1180px) / 2));
-  bottom: 18px;
-  margin: 0;
-  font-size: 0.75rem;
-  color: rgba(248, 246, 241, 0.7);
+/* Reduced motion: the first view of the building, above the scenarios. */
+.building-tour__still {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+  border-radius: 14px;
 }
 
 .ask__source[data-kind="rule"] .ask__label {
@@ -1809,25 +1801,18 @@ svg {
 }
 
 @media (max-width: 760px) {
-  .splat-tour__head {
+  .building-tour__head {
     top: 96px;
     max-width: none;
     right: 16px;
   }
 
   /* The headline stays; its paragraph steps aside while a scenario window is up. */
-  .splat-tour__head[data-ask="true"] .splat-tour__lede {
+  .building-tour__head[data-ask="true"] .building-tour__lede {
     display: none;
   }
 
-  .splat-tour__credit {
-    top: 88px;
-    bottom: auto;
-    left: auto;
-    right: 16px;
-  }
-
-  .splat-tour__ask {
+  .building-tour__ask {
     top: auto;
     bottom: 16px;
     left: 16px;
@@ -1835,16 +1820,16 @@ svg {
     width: auto;
   }
 
-  .splat-tour__ask .ask__body {
-    max-height: 62vh;
+  .building-tour__ask .ask__body {
+    max-height: 38vh;
   }
 }
 
-.splat-tour[data-state="still"] {
+.building-tour[data-state="still"] {
   padding: 12vh 0;
 }
 
-.splat-tour__list {
+.building-tour__list {
   list-style: none;
   margin: 2.5rem 0 0;
   padding: 0;

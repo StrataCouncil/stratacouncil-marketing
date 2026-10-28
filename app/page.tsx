@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DemoRequestForm } from "@/components/DemoRequestForm";
+import { MeetingAgenda } from "@/components/MeetingAgenda";
 import { Reveal } from "@/components/Reveal";
 import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { SplatTour } from "@/components/SplatTour";
@@ -316,7 +317,7 @@ export default function Home() {
               <div className="step">
                 <div className="step__text">
                   <span className="step__num">1</span>
-                  <h3>Learn what council can and can&rsquo;t do</h3>
+                  <h3>Get the training you need to succeed on council</h3>
                   <p className="lede">
                     Council Ready training breaks down the responsibilities and practical decisions that come with
                     serving on a BC strata council. Short lessons cover duties, budgets and the CRF, meetings and voting,
@@ -373,8 +374,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Step 3 leads into the full-width building tour below, which is its example. */}
-              <div className="step step--solo">
+              <div className="step">
                 <div className="step__text">
                   <span className="step__num">3</span>
                   <h3>Run the meeting. Ask questions. See the sources.</h3>
@@ -385,6 +385,7 @@ export default function Home() {
                   </p>
                   <span className="pill step__free">First meeting free</span>
                 </div>
+                <MeetingAgenda />
               </div>
             </div>
           </div>

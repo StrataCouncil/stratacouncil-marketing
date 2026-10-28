@@ -10,7 +10,8 @@ import { useEffect, useRef, useState } from "react";
  * the question, the sources it would draw on, and an example answer.
  * Loads three.js, Spark and the scan only when the band comes into view.
  * People who prefer reduced motion, or whose browser lacks WebGL2, get the
- * scenarios as a plain list instead.
+ * scenarios as a plain list instead. The section sells the strata's
+ * memory: what was decided, when and why, with the records behind it.
  *
  * The scan is by Jose David Pabon Orejarena, used with credit: the SuperSplat
  * scene cut down to the tower and its block and thinned to 1.1 million
@@ -19,8 +20,6 @@ import { useEffect, useRef, useState } from "react";
  */
 const SCENE_URL = "/splats/tower.sog";
 export const SCAN_CREDIT = "3D scan by Jose David Pabon Orejarena";
-const CAPTION =
-  "Illustrative Stratasphere scenarios using fictional strata records. Answers depend on the documents, facts and applicable law in each case.";
 
 type Vec = [number, number, number];
 type Kind = "bylaw" | "rule" | "decision" | "record";
@@ -324,7 +323,7 @@ export function SplatTour() {
 
   if (state === "still") {
     return (
-      <section id="see-how-it-works" className="splat-tour" data-state="still" data-testid="splat-tour">
+      <section id="know-the-history" className="splat-tour" data-state="still" data-testid="splat-tour">
         <div className="wrap">
           <Intro />
           <ol className="splat-tour__list">
@@ -343,20 +342,18 @@ export function SplatTour() {
               </li>
             ))}
           </ol>
-          <p className="splat-tour__caption">
-            {CAPTION} {SCAN_CREDIT}.
-          </p>
+          <p className="splat-tour__caption">{SCAN_CREDIT}</p>
         </div>
       </section>
     );
   }
 
   return (
-    <section ref={tourRef} id="see-how-it-works" className="splat-tour" data-state={state} data-active={active} data-testid="splat-tour" style={{ height: `${STOPS.length * 100}vh` }}>
+    <section ref={tourRef} id="know-the-history" className="splat-tour" data-state={state} data-active={active} data-testid="splat-tour" style={{ height: `${STOPS.length * 100}vh` }}>
       <div className="splat-tour__stage">
         <div ref={canvasHost} className="splat-tour__canvas" aria-hidden />
         <div className="splat-tour__overlay">
-          <div className="splat-tour__head" data-on={active === 0}>
+          <div className="splat-tour__head" data-on="true" data-ask={Boolean(scenario)}>
             <Intro />
             {state === "loading" && (
               <p className="splat-tour__note">Loading the 3D scene&hellip;</p>
@@ -375,7 +372,6 @@ export function SplatTour() {
                 </div>
                 <Ask scenario={scenario} />
               </div>
-              <p className="splat-tour__caption">{CAPTION}</p>
             </div>
           )}
         </div>
@@ -388,11 +384,11 @@ function Intro() {
   return (
     <>
       <p className="eyebrow">Stratasphere&trade;</p>
-      <h2>See how it works</h2>
+      <h2>Know the history.</h2>
       <p className="splat-tour__lede">
-        The following scenarios demonstrate how Stratasphere can help a council work through real-world questions. Each
-        example uses a fictional strata and is intended to illustrate the workflow, not to replace council&rsquo;s
-        judgment or legal advice.
+        Every bylaw, set of minutes, report and past decision stays with the strata, not with whoever was on council at
+        the time. When a question comes back, ask Stratasphere what was decided, when and why, and see the records
+        behind the answer.
       </p>
     </>
   );

@@ -244,6 +244,11 @@ export default function Home() {
                 Free training so every member knows the role. Meetings run by the book, from agenda to minutes. Every
                 record kept with the strata, and answers with the source attached.
               </p>
+              <p className="lede">
+                No more guessing about your responsibilities, chasing records across emails, or trying to piece together
+                why a decision was made. Give your council the knowledge and tools to run better meetings, make informed
+                decisions, and keep everything organized in one place.
+              </p>
               <div className="actions">
                 <a href={SIGNUP_URL} className="button button-primary" data-testid="hero-primary-cta">
                   Start free training

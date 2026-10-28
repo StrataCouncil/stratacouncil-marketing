@@ -97,17 +97,29 @@ const KIND_NAMES: Record<Kind, string> = {
   record: "Document",
 };
 
+const NAVY = "#1b2a41";
+
 const TYPE_MS = 28;
 const SEARCH_MS = 800;
 const SOURCE_MS = 480;
 
-/** Hold the camera at each stop for the middle half of the scroll between stops. */
+/** How much of the scroll either side of a stop holds the camera still there. */
+const HOLD = 0.2;
+
+/** The camera's place on the flight, in stops, for a scroll position: held near each stop, easing out and in between. */
 function ease(s: number) {
   const i = Math.floor(s);
   const u = s - i;
-  const v = Math.min(1, Math.max(0, (u - 0.25) / 0.5));
+  const v = Math.min(1, Math.max(0, (u - HOLD) / (1 - 2 * HOLD)));
   return i + v * v * (3 - 2 * v);
 }
+
+/** How quickly the camera catches up with the scroll position, in seconds (smooths out wheel steps). */
+const FOLLOW_S = 0.14;
+
+/** On phones, the scenario window's share of the stage height (matches .building-tour__ask in globals.css). */
+const PHONE_ASK = 0.4;
+const PHONE_GAP = 16;
 
 function Ask({ scenario }: { scenario: Scenario }) {
   const [typed, setTyped] = useState(0);
@@ -196,6 +208,7 @@ function Answer({ text }: { text: string }) {
 export function BuildingTour() {
   const tourRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const headRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<"idle" | "loading" | "ready" | "still" | "error">("idle");
   const [active, setActive] = useState(0);
 
@@ -207,65 +220,120 @@ export function BuildingTour() {
       return;
     }
 
+    const canvas = canvasRef.current!;
+    const ctx = canvas.getContext("2d")!;
+    const head = headRef.current!;
+
     // Scroll position through the tour, in stops (0 to STOPS.length - 1), holding on the last.
     const stopAt = () => {
       const r = tour.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - window.innerHeight)));
+      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - canvas.clientHeight)));
       return Math.min(STOPS.length - 1, p * (STOPS.length - 1 + END_HOLD));
     };
 
-    const canvas = canvasRef.current!;
-    const ctx = canvas.getContext("2d")!;
     // Phones (and small windows) get the lighter frames.
     const set = Math.min(window.innerWidth, window.innerHeight) < 700 ? "small" : "large";
     const frames: (HTMLImageElement | null)[] = new Array(FRAMES).fill(null);
-    let shown = -1;
+    // The frame the camera is on (fractional: between two frames, the second fades in over the first).
     let wanted = 0;
+    let drawn = "";
+    // Where the building goes on tall screens: the space between the header panel and the scenario window.
+    let gapTop = 0;
+
+    const nearest = (i: number) => {
+      for (let d = 0; d < FRAMES; d++) {
+        if (frames[i - d]) return i - d;
+        if (frames[i + d]) return i + d;
+      }
+      return -1;
+    };
 
     const draw = () => {
-      // Nearest loaded frame to the one the scroll position wants.
-      let idx = -1;
-      for (let d = 0; d < FRAMES && idx < 0; d++) {
-        if (frames[wanted - d]) idx = wanted - d;
-        else if (frames[wanted + d]) idx = wanted + d;
-      }
-      if (idx < 0 || (idx === shown && canvas.dataset.size === `${canvas.width}x${canvas.height}`)) return;
-      const img = frames[idx]!;
       const { width: cw, height: ch } = canvas;
-      // Cover the stage on wide screens. On tall ones, a little wider than the screen and in the
-      // space between the header and the scenario window (the frames' navy fills the rest).
+      const a = Math.floor(wanted);
+      let t = wanted - a;
+      let first = a;
+      if (!frames[a] || (t > 0.01 && !frames[a + 1])) {
+        first = nearest(Math.round(wanted));
+        t = 0;
+      }
+      if (first < 0) return;
+      const key = `${first}:${t.toFixed(2)}:${cw}x${ch}:${gapTop}`;
+      if (key === drawn) return;
+      drawn = key;
+
+      const img = frames[first]!;
+      // Cover the stage on wide screens. On tall ones, a little wider than the screen, centred in the
+      // space between the header panel and the scenario window, its edges fading into the navy.
       const wide = cw / ch > 1;
-      const scale = wide ? Math.max(cw / img.width, ch / img.height) : (cw / img.width) * 1.3;
+      const scale = wide ? Math.max(cw / img.width, ch / img.height) : (cw / img.width) * 1.25;
       const w = img.width * scale;
       const h = img.height * scale;
-      ctx.fillStyle = "#1b2a41";
+      const x = (cw - w) / 2;
+      const gapBottom = ch * (1 - PHONE_ASK) - PHONE_GAP * (canvas.width / Math.max(1, canvas.clientWidth));
+      const y = wide ? (ch - h) / 2 : (gapTop + gapBottom) / 2 - h / 2;
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = NAVY;
       ctx.fillRect(0, 0, cw, ch);
-      ctx.drawImage(img, (cw - w) / 2, wide ? (ch - h) / 2 : ch * 0.4 - h / 2, w, h);
-      shown = idx;
-      canvas.dataset.size = `${cw}x${ch}`;
+      ctx.drawImage(img, x, y, w, h);
+      if (t > 0.01) {
+        ctx.globalAlpha = t;
+        ctx.drawImage(frames[first + 1]!, x, y, w, h);
+        ctx.globalAlpha = 1;
+      }
+      if (!wide) {
+        const fade = h * 0.12;
+        for (const [from, to] of [
+          [y, y + fade],
+          [y + h, y + h - fade],
+        ]) {
+          const g = ctx.createLinearGradient(0, from, 0, to);
+          g.addColorStop(0, NAVY);
+          g.addColorStop(1, "rgba(27, 42, 65, 0)");
+          ctx.fillStyle = g;
+          ctx.fillRect(0, Math.min(from, to), cw, fade);
+        }
+      }
+    };
+
+    const measure = () => {
+      const dpr = canvas.width / Math.max(1, canvas.clientWidth);
+      gapTop = Math.round((head.getBoundingClientRect().bottom - canvas.getBoundingClientRect().top) * dpr);
     };
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(canvas.clientWidth * dpr);
       canvas.height = Math.round(canvas.clientHeight * dpr);
-      shown = -1;
+      measure();
       draw();
     };
 
-    // The stop being held, or -1 while the camera flies between stops; and the frame to show.
+    // The camera follows the scroll position with a little lag, so it glides into and out of each stop
+    // instead of stepping with the wheel. `at` is where it is now, in stops.
+    let at = stopAt();
     let raf = 0;
-    const update = () => {
-      raf = 0;
-      const s = stopAt();
-      const i = Math.floor(s);
-      const u = s - i;
-      setActive(u <= 0.3 ? i : u >= 0.7 ? i + 1 : -1);
-      wanted = Math.min(FRAMES - 1, Math.round(ease(s) * FRAMES_PER_STOP));
+    let last = 0;
+    const show = () => {
+      const i = Math.floor(at);
+      const u = at - i;
+      // The stop being held, or -1 while the camera flies between stops.
+      setActive(u <= HOLD + 0.05 ? i : u >= 1 - HOLD - 0.05 ? i + 1 : -1);
+      wanted = Math.min(FRAMES - 1, ease(at) * FRAMES_PER_STOP);
       draw();
     };
+    const tick = (now: number) => {
+      const target = stopAt();
+      const dt = last ? Math.min(0.1, (now - last) / 1000) : 1 / 60;
+      last = now;
+      at += (target - at) * (1 - Math.exp(-dt / FOLLOW_S));
+      if (Math.abs(target - at) < 0.0005) at = target;
+      show();
+      raf = at === target ? 0 : requestAnimationFrame(tick);
+      if (!raf) last = 0;
+    };
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (!raf) raf = requestAnimationFrame(tick);
     };
 
     let disposed = false;
@@ -277,7 +345,7 @@ export function BuildingTour() {
         img.onload = () => {
           if (!disposed) {
             frames[i] = img;
-            if (Math.abs(i - wanted) <= Math.abs(shown - wanted)) draw();
+            draw(); // redraws only if this frame is nearer the camera than the one showing
           }
           resolve();
         };
@@ -310,13 +378,21 @@ export function BuildingTour() {
     );
     io.observe(tour);
 
+    // The header panel's height changes with the fonts and the window width.
+    const ro = new ResizeObserver(() => {
+      measure();
+      draw();
+    });
+    ro.observe(head);
+
     resize();
-    update();
+    show();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", resize);
     return () => {
       disposed = true;
       io.disconnect();
+      ro.disconnect();
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", resize);
@@ -358,7 +434,7 @@ export function BuildingTour() {
       <div className="building-tour__stage">
         <canvas ref={canvasRef} className="building-tour__canvas" aria-hidden />
         <div className="building-tour__overlay">
-          <div className="building-tour__head" data-on="true" data-ask={Boolean(scenario)}>
+          <div className="building-tour__head" ref={headRef}>
             <Intro />
             {state === "loading" && (
               <p className="building-tour__note">Loading the building&hellip;</p>

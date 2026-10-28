@@ -1773,6 +1773,15 @@ svg {
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
 
+.splat-tour__credit {
+  position: absolute;
+  left: max(24px, calc((100vw - 1180px) / 2));
+  bottom: 18px;
+  margin: 0;
+  font-size: 0.75rem;
+  color: rgba(248, 246, 241, 0.7);
+}
+
 .ask__source[data-kind="rule"] .ask__label {
   color: #e3bb63;
 }
@@ -1784,6 +1793,13 @@ svg {
 @media (max-width: 760px) {
   .splat-tour__head {
     top: 10vh;
+  }
+
+  .splat-tour__credit {
+    top: 12px;
+    bottom: auto;
+    left: auto;
+    right: 16px;
   }
 
   .splat-tour__ask {

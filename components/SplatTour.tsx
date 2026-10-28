@@ -11,12 +11,14 @@ import { useEffect, useRef, useState } from "react";
  * People who prefer reduced motion, or whose browser lacks WebGL2, get the
  * questions and answers as a plain list instead.
  *
- * The scan is a SuperSplat scene loaded from SuperSplat's own servers and
- * not copied here: its owner and licence aren't known, so it is for this
- * test only. The strata (Larchwood Commons, the demo strata) and its
- * records are fictional; owners appear by strata lot number only.
+ * The scan is by Jose David Pabon Orejarena, used with credit: the SuperSplat
+ * scene cut down to the tower and its block and thinned to 1.1 million
+ * splats (public/splats/tower.sog, about 14 MB). The strata (Larchwood
+ * Commons, the demo strata) and its records are fictional; owners appear by
+ * strata lot number only.
  */
-const SCENE_URL = "https://d28zzqy0iyovbz.cloudfront.net/f4d775e4/v1/scene.compressed.ply";
+const SCENE_URL = "/splats/tower.sog";
+export const SCAN_CREDIT = "3D scan by Jose David Pabon Orejarena";
 
 type Vec = [number, number, number];
 type Kind = "bylaw" | "rule" | "decision" | "law" | "record";
@@ -39,11 +41,11 @@ interface Stop {
 }
 
 const STOPS: Stop[] = [
-  { pos: [83.8, 95, 77.8], look: [6, 45, 0] },
+  { pos: [-205, 118, 40], look: [-128, 55, 112] },
   {
     place: "Roof",
-    pos: [18.4, 100, 38.6],
-    look: [8, 76, 0],
+    pos: [-165, 128, 72],
+    look: [-128, 92, 110],
     question: "When was the roof last replaced, and how did we pay for it?",
     sources: [
       {
@@ -70,9 +72,9 @@ const STOPS: Stop[] = [
   },
   {
     place: "Balconies",
-    pos: [46.5, 45, 6.1],
-    look: [12, 45, 0],
-    question: "SL58 wants to tile their balcony. What do they need?",
+    pos: [-165, 64, 70],
+    look: [-125, 60, 105],
+    question: "SL58 wants to put planter boxes on their balcony. What do they need?",
     sources: [
       {
         kind: "record",
@@ -89,17 +91,17 @@ const STOPS: Stop[] = [
       {
         kind: "decision",
         label: "Council decision · June 2025",
-        text: "Approved SL41's balcony tile, on condition the owner signed an agreement taking responsibility for it.",
+        text: "Approved SL41's balcony planters, on condition the owner signed an agreement taking responsibility for them and any water damage they cause.",
         meta: "Council meeting minutes, June 3, 2025",
       },
     ],
     answer:
-      "Council's written approval first: the balcony is limited common property, so Bylaw 6.1 applies. In June 2025 council approved the same request from SL41 on condition of a signed alteration agreement, so those terms would be consistent.",
+      "Council's written approval first: the balcony is limited common property, so Bylaw 6.1 applies. In June 2025 council approved planters for SL41 on condition of a signed alteration agreement covering water damage, so those terms would be consistent.",
   },
   {
     place: "Parking",
-    pos: [96.7, 40, 13.8],
-    look: [45, 0, -5],
+    pos: [-172, 45, 78],
+    look: [-135, 14, 115],
     question: "Can I put an EV charger in my parking stall?",
     sources: [
       {
@@ -118,7 +120,7 @@ const STOPS: Stop[] = [
     answer:
       "Yes, with council's written approval. Under Rule 12 you pay for the charger, its installation and your electricity through a separate meter. Council approved the same request from SL12 in September 2025.",
   },
-  { pos: [131.6, 100, 33.6], look: [6, 40, 0] },
+  { pos: [-110, 150, -40], look: [-125, 45, 112] },
 ];
 
 const KIND_NAMES: Record<Kind, string> = {
@@ -282,10 +284,12 @@ export function SplatTour() {
           renderer.setSize(host.clientWidth, host.clientHeight);
           host.appendChild(renderer.domElement);
           const scene = new THREE.Scene();
-          const camera = new THREE.PerspectiveCamera(60, host.clientWidth / host.clientHeight, 0.5, 2000);
+          // The scan is cut out round the building; the brand navy fills the space around it.
+          scene.background = new THREE.Color(0x1b2a41);
+          const camera = new THREE.PerspectiveCamera(42, host.clientWidth / host.clientHeight, 0.5, 2000);
           scene.add(new SparkRenderer({ renderer }));
           const splat = new SplatMesh({ url: SCENE_URL });
-          // The scan is stored upside down and mirrored relative to three.js: turn it half way round the z axis.
+          // The scan is stored upside down relative to three.js: turn it half way round the z axis.
           splat.quaternion.set(0, 0, 1, 0);
           scene.add(splat);
           await splat.initialized;
@@ -312,8 +316,8 @@ export function SplatTour() {
             path.getPoint(u, pos);
             looks.getPoint(u, look);
             // A slow sway, so the scene reads as 3D even while the page is still.
-            pos.x += Math.sin(t / 2600) * 1.2;
-            pos.y += Math.sin(t / 3400) * 0.6;
+            pos.x += Math.sin(t / 2600) * 0.8;
+            pos.y += Math.sin(t / 3400) * 0.4;
             camera.position.copy(pos);
             camera.lookAt(look);
             renderer.render(scene, camera);
@@ -367,7 +371,7 @@ export function SplatTour() {
               </li>
             ))}
           </ol>
-          <p className="splat-tour__caption">An example, with a fictional strata.</p>
+          <p className="splat-tour__caption">An example, with a fictional strata. {SCAN_CREDIT}.</p>
         </div>
       </section>
     );
@@ -392,6 +396,7 @@ export function SplatTour() {
               Your minutes, bylaws, rules and documents, and BC strata law, in one place that stays with the strata.
             </p>
           </div>
+          <p className="splat-tour__credit">{SCAN_CREDIT}</p>
           {stop?.question && (
             <div className="ask splat-tour__ask" key={active}>
               <div className="ask__window">

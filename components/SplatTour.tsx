@@ -388,9 +388,8 @@ function Intro() {
       <p className="eyebrow">Stratasphere&trade;</p>
       <h2>Know the history.</h2>
       <p className="splat-tour__lede">
-        Every bylaw, set of minutes, report and past decision stays with the strata, not with whoever was on council at
-        the time. When a question comes back, ask Stratasphere what was decided, when and why, and see the records
-        behind the answer.
+        Every bylaw, proposal, contract, invoice, report, and decision is embedded in the institutional memory and
+        available whenever and wherever you need it.
       </p>
     </>
   );

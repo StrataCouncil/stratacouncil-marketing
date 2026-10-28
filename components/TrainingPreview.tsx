@@ -11,10 +11,13 @@ import { useEffect, useRef, useState } from "react";
  */
 
 const CARDS = [
-  { front: "Strata lot", back: "The home you own, as shown on the strata plan." },
-  { front: "Common property", back: "Hallways, roofs, grounds: owned by all the owners together." },
-  { front: "Limited common property", back: "Common property set aside for one lot, like a balcony." },
-  { front: "Common assets", back: "Things the corporation itself owns, like the gym equipment." },
+  { front: "Strata lot", back: "A lot shown on the strata plan: the part an owner owns." },
+  { front: "Common property", back: "Property shared by the owners, such as hallways, roofs and grounds." },
+  {
+    front: "Limited common property",
+    back: "Common property designated for the exclusive use of one or more specified lots, such as a balcony.",
+  },
+  { front: "Common assets", back: "Property owned by the strata corporation, such as gym equipment." },
 ];
 
 const OPTIONS = ["Each owner, for the area outside their door", "The strata corporation, acting through council", "The strata manager"];
@@ -81,7 +84,9 @@ export function TrainingPreview() {
 
         {phase.screen === "cards" ? (
           <div className="lesson__body" key="cards">
-            <p className="lesson__text">Four terms describe what you own and what you share. Turn each card over.</p>
+            <p className="lesson__text">
+              Four terms help explain what belongs to an individual owner and what is shared. Turn each card over.
+            </p>
             <div className="lesson__cards">
               {CARDS.map((c, i) => (
                 <div className="lesson__card" data-flipped={i < phase.flipped} key={c.front}>
@@ -96,7 +101,7 @@ export function TrainingPreview() {
               ))}
             </div>
             <p className="lesson__hint">
-              {phase.flipped >= CARDS.length ? "You've turned them all." : `Select each card to turn it over (${CARDS.length - phase.flipped} to go).`}
+              {phase.flipped >= CARDS.length ? "You’ve turned them all." : "Select each card to turn it over."}
             </p>
           </div>
         ) : (
@@ -111,8 +116,9 @@ export function TrainingPreview() {
               ))}
             </ul>
             <p className="lesson__feedback" data-shown={phase.chosen}>
-              <strong>Right.</strong> The strata corporation must repair and maintain common property (Strata
-              Property Act, s. 72), and council does that work on its behalf.
+              <strong>Correct.</strong> The strata corporation is responsible for repairing and maintaining common
+              property under section 72 of the Strata Property Act. Council carries out the corporation&rsquo;s
+              responsibilities, subject to the Act and the strata&rsquo;s bylaws.
             </p>
           </div>
         )}

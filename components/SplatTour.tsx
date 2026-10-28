@@ -3,131 +3,106 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * TEST ONLY (unlisted /lab/splat): a scroll-driven tour of a Gaussian-splat
- * scan. As the visitor scrolls, the camera flies between stops on the
- * building (the roof, the balconies, the parking) and, at each one, a
- * Stratasphere window asks and answers a question about a decision made
- * there. Loads three.js and Spark only when the tour comes into view.
+ * The home page's "See how it works" band: a scroll-driven tour of a
+ * Gaussian-splat scan of a tower. As the visitor scrolls, the camera flies
+ * between stops on the building (the roof, the balconies, the parking) and,
+ * at each one, a Stratasphere window plays one of the illustrative scenarios:
+ * the question, the sources it would draw on, and an example answer.
+ * Loads three.js, Spark and the scan only when the band comes into view.
  * People who prefer reduced motion, or whose browser lacks WebGL2, get the
- * questions and answers as a plain list instead.
+ * scenarios as a plain list instead.
  *
  * The scan is by Jose David Pabon Orejarena, used with credit: the SuperSplat
  * scene cut down to the tower and its block and thinned to 1.1 million
- * splats (public/splats/tower.sog, about 14 MB). The strata (Larchwood
- * Commons, the demo strata) and its records are fictional; owners appear by
- * strata lot number only.
+ * splats (public/splats/tower.sog, about 14 MB). The scenarios use fictional
+ * strata records.
  */
 const SCENE_URL = "/splats/tower.sog";
 export const SCAN_CREDIT = "3D scan by Jose David Pabon Orejarena";
+const CAPTION =
+  "Illustrative Stratasphere scenarios using fictional strata records. Answers depend on the documents, facts and applicable law in each case.";
 
 type Vec = [number, number, number];
-type Kind = "bylaw" | "rule" | "decision" | "law" | "record";
+type Kind = "bylaw" | "rule" | "decision" | "record";
 
 interface Source {
   kind: Kind;
   label: string;
-  text: string;
-  meta: string;
+}
+
+interface Scenario {
+  title: string;
+  question: string;
+  answer: string;
+  sources: Source[];
 }
 
 interface Stop {
-  place?: string;
   /** Camera position and the point it looks at, in the scan's coordinates (y up, after the flip below). */
   pos: Vec;
   look: Vec;
-  question?: string;
-  sources?: Source[];
-  answer?: string;
+  scenario?: Scenario;
 }
 
 const STOPS: Stop[] = [
   { pos: [-205, 118, 40], look: [-128, 55, 112] },
   {
-    place: "Roof",
     pos: [-165, 128, 72],
     look: [-128, 92, 110],
-    question: "When was the roof last replaced, and how did we pay for it?",
-    sources: [
-      {
-        kind: "decision",
-        label: "Owners' resolution · March 2019",
-        text: "A $412,000 special levy to replace the roof membrane, approved by a 3/4 vote.",
-        meta: "Special general meeting minutes, March 12, 2019",
-      },
-      {
-        kind: "law",
-        label: "Strata Property Act, s. 108",
-        text: "A special levy must be approved by a 3/4 vote at an annual or special general meeting.",
-        meta: "BC legislation",
-      },
-      {
-        kind: "record",
-        label: "Depreciation report · 2024",
-        text: "Roof membrane in good condition; next replacement expected around 2044.",
-        meta: "Larchwood Commons documents",
-      },
-    ],
-    answer:
-      "The membrane was replaced in 2019, paid for by a $412,000 special levy that owners approved by a 3/4 vote at a special general meeting, as section 108 requires. The 2024 depreciation report expects the next replacement around 2044.",
+    scenario: {
+      title: "Scenario 1: Roof replacement",
+      question:
+        "Our roof is approaching the end of its expected service life. What should council review before deciding whether to repair or replace it?",
+      answer:
+        "Start with the depreciation report, roof inspection records, previous repair invoices, warranty documents and the strata’s current financial position. Check what the report says about timing and estimated costs, and confirm whether newer inspections identify additional concerns. Council can then assess the available options, obtain any necessary professional advice and determine how the work should be funded.",
+      sources: [
+        { kind: "record", label: "Depreciation report" },
+        { kind: "record", label: "Roof inspection" },
+        { kind: "decision", label: "Previous council minutes" },
+        { kind: "record", label: "Financial statements" },
+      ],
+    },
   },
   {
-    place: "Balconies",
     pos: [-165, 64, 70],
     look: [-125, 60, 105],
-    question: "SL58 wants to put planter boxes on their balcony. What do they need?",
-    sources: [
-      {
-        kind: "record",
-        label: "Strata plan",
-        text: "Each balcony is limited common property for the strata lot it adjoins.",
-        meta: "Larchwood Commons documents",
-      },
-      {
-        kind: "bylaw",
-        label: "Bylaw 6.1",
-        text: "An owner must have the strata corporation's written approval before altering common property, including limited common property.",
-        meta: "Larchwood Commons registered bylaws",
-      },
-      {
-        kind: "decision",
-        label: "Council decision · June 2025",
-        text: "Approved SL41's balcony planters, on condition the owner signed an agreement taking responsibility for them and any water damage they cause.",
-        meta: "Council meeting minutes, June 3, 2025",
-      },
-    ],
-    answer:
-      "Council's written approval first: the balcony is limited common property, so Bylaw 6.1 applies. In June 2025 council approved planters for SL41 on condition of a signed alteration agreement covering water damage, so those terms would be consistent.",
+    scenario: {
+      title: "Scenario 2: Limited common property alteration",
+      question:
+        "An owner wants to make changes to their balcony, which is designated as limited common property. What should council do first?",
+      answer:
+        "Check the strata plan, bylaws and alteration policies to establish the status of the area and the approval requirements. Ask the owner for a written description of the proposed work and any necessary plans or specifications. Before deciding, consider potential impacts on the building envelope, waterproofing, appearance, insurance and future maintenance. Confirm the applicable approval process and document the decision and any conditions.",
+      sources: [
+        { kind: "record", label: "Strata plan" },
+        { kind: "bylaw", label: "Registered bylaws" },
+        { kind: "rule", label: "Alteration policy" },
+        { kind: "decision", label: "Relevant council minutes" },
+      ],
+    },
   },
   {
-    place: "Parking",
     pos: [-172, 45, 78],
     look: [-135, 14, 115],
-    question: "Can I put an EV charger in my parking stall?",
-    sources: [
-      {
-        kind: "rule",
-        label: "Rule 12 · EV charging",
-        text: "With council's written approval, an owner may install a Level 2 charger in their assigned stall, paying for the equipment, the installation and their electricity through a separate meter.",
-        meta: "Larchwood Commons rules, ratified at the 2025 AGM",
-      },
-      {
-        kind: "decision",
-        label: "Council decision · September 2025",
-        text: "Approved SL12's Level 2 charger in stall P1-34, on a separate meter.",
-        meta: "Council meeting minutes, September 9, 2025",
-      },
-    ],
-    answer:
-      "Yes, with council's written approval. Under Rule 12 you pay for the charger, its installation and your electricity through a separate meter. Council approved the same request from SL12 in September 2025.",
+    scenario: {
+      title: "Scenario 3: EV charger installation",
+      question: "An owner wants to install an EV charger in their parking stall. What does council need to consider?",
+      answer:
+        "Start by reviewing the strata’s EV charging policy, applicable bylaws and any previous decisions. Establish what electrical capacity and infrastructure are available, whether an electrical assessment is needed, and what approvals, permits and agreements may apply. Consider installation costs, ongoing electricity use, responsibility for maintenance, insurance and the effect on other owners. The next step is to identify the information still needed before council can make a decision.",
+      sources: [
+        { kind: "rule", label: "EV charging policy" },
+        { kind: "record", label: "Electrical assessment" },
+        { kind: "bylaw", label: "Relevant bylaws" },
+        { kind: "decision", label: "Previous council decisions" },
+      ],
+    },
   },
   { pos: [-110, 150, -40], look: [-125, 45, 112] },
 ];
 
 const KIND_NAMES: Record<Kind, string> = {
-  bylaw: "Bylaw",
-  rule: "Rule",
-  decision: "Decision",
-  law: "Legislation",
+  bylaw: "Bylaws",
+  rule: "Policy",
+  decision: "Council record",
   record: "Document",
 };
 
@@ -143,13 +118,12 @@ function ease(s: number) {
   return i + v * v * (3 - 2 * v);
 }
 
-function Ask({ stop }: { stop: Stop }) {
+function Ask({ scenario }: { scenario: Scenario }) {
   const [typed, setTyped] = useState(0);
   const [searching, setSearching] = useState(false);
   const [shown, setShown] = useState(0);
   const [answered, setAnswered] = useState(false);
-  const question = stop.question ?? "";
-  const sources = stop.sources ?? [];
+  const { question, sources } = scenario;
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -199,32 +173,30 @@ function Ask({ stop }: { stop: Stop }) {
         )}
       </p>
       <Sources sources={sources.slice(0, shown)} />
-      {answered && <Answer text={stop.answer ?? ""} />}
+      {answered && <Answer text={scenario.answer} />}
     </div>
   );
 }
 
 function Sources({ sources }: { sources: Source[] }) {
   return (
-    <ol className="ask__sources">
+    <ul className="splat-tour__sources" aria-label="Sources">
       {sources.map((s) => (
         <li key={s.label} className="ask__source" data-kind={s.kind}>
           <span className="ask__label">
             <span className="visually-hidden">{KIND_NAMES[s.kind]}: </span>
             {s.label}
           </span>
-          <p>{s.text}</p>
-          <span className="ask__meta">{s.meta}</span>
         </li>
       ))}
-    </ol>
+    </ul>
   );
 }
 
 function Answer({ text }: { text: string }) {
   return (
     <div className="ask__answer">
-      <span className="ask__label">Answer</span>
+      <span className="ask__label">Example answer</span>
       <p>{text}</p>
     </div>
   );
@@ -347,38 +319,40 @@ export function SplatTour() {
     };
   }, []);
 
-  const stop: Stop | undefined = STOPS[active];
-  const asks = STOPS.filter((s) => s.question);
+  const scenario = STOPS[active]?.scenario;
+  const scenarios = STOPS.flatMap((s) => (s.scenario ? [s.scenario] : []));
 
   if (state === "still") {
     return (
-      <section className="splat-tour" data-state="still" data-testid="splat-tour">
+      <section id="see-how-it-works" className="splat-tour" data-state="still" data-testid="splat-tour">
         <div className="wrap">
           <Intro />
           <ol className="splat-tour__list">
-            {asks.map((s) => (
-              <li key={s.place} className="ask">
+            {scenarios.map((s) => (
+              <li key={s.title} className="ask">
                 <div className="ask__window">
                   <div className="ask__chrome">
-                    <span className="ask__title">Stratasphere&trade; &middot; {s.place}</span>
+                    <span className="ask__title">{s.title}</span>
                   </div>
                   <div className="ask__body">
                     <p className="ask__question">{s.question}</p>
-                    <Sources sources={s.sources ?? []} />
-                    <Answer text={s.answer ?? ""} />
+                    <Sources sources={s.sources} />
+                    <Answer text={s.answer} />
                   </div>
                 </div>
               </li>
             ))}
           </ol>
-          <p className="splat-tour__caption">An example, with a fictional strata. {SCAN_CREDIT}.</p>
+          <p className="splat-tour__caption">
+            {CAPTION} {SCAN_CREDIT}.
+          </p>
         </div>
       </section>
     );
   }
 
   return (
-    <section ref={tourRef} className="splat-tour" data-state={state} data-active={active} data-testid="splat-tour" style={{ height: `${STOPS.length * 100}vh` }}>
+    <section ref={tourRef} id="see-how-it-works" className="splat-tour" data-state={state} data-active={active} data-testid="splat-tour" style={{ height: `${STOPS.length * 100}vh` }}>
       <div className="splat-tour__stage">
         <div ref={canvasHost} className="splat-tour__canvas" aria-hidden />
         <div className="splat-tour__overlay">
@@ -389,26 +363,19 @@ export function SplatTour() {
             )}
             {state === "error" && <p className="splat-tour__note">The 3D scene couldn&rsquo;t load.</p>}
           </div>
-          <div className="splat-tour__head" data-on={active === STOPS.length - 1}>
-            <p className="eyebrow">Stratasphere&trade;</p>
-            <h2>Every answer shows where it came from</h2>
-            <p className="splat-tour__lede">
-              Your minutes, bylaws, rules and documents, and BC strata law, in one place that stays with the strata.
-            </p>
-          </div>
           <p className="splat-tour__credit">{SCAN_CREDIT}</p>
-          {stop?.question && (
+          {scenario && (
             <div className="ask splat-tour__ask" key={active}>
               <div className="ask__window">
-                <div className="ask__chrome" aria-hidden="true">
-                  <span className="ask__dot" />
-                  <span className="ask__dot" />
-                  <span className="ask__dot" />
-                  <span className="ask__title">Stratasphere&trade; &middot; {stop.place}</span>
+                <div className="ask__chrome">
+                  <span className="ask__dot" aria-hidden="true" />
+                  <span className="ask__dot" aria-hidden="true" />
+                  <span className="ask__dot" aria-hidden="true" />
+                  <span className="ask__title">{scenario.title}</span>
                 </div>
-                <Ask stop={stop} />
+                <Ask scenario={scenario} />
               </div>
-              <p className="splat-tour__caption">An example, with a fictional strata.</p>
+              <p className="splat-tour__caption">{CAPTION}</p>
             </div>
           )}
         </div>
@@ -420,9 +387,13 @@ export function SplatTour() {
 function Intro() {
   return (
     <>
-      <p className="eyebrow">Every building has a history</p>
-      <h2>Every part of the building has a decision behind it</h2>
-      <p className="splat-tour__lede">Scroll to fly round the building and ask Stratasphere about each part.</p>
+      <p className="eyebrow">Stratasphere&trade;</p>
+      <h2>See how it works</h2>
+      <p className="splat-tour__lede">
+        The following scenarios demonstrate how Stratasphere can help a council work through real-world questions. Each
+        example uses a fictional strata and is intended to illustrate the workflow, not to replace council&rsquo;s
+        judgment or legal advice.
+      </p>
     </>
   );
 }

@@ -95,8 +95,10 @@ const STOPS: Stop[] = [
       ],
     },
   },
-  { pos: [-110, 150, -40], look: [-125, 45, 112] },
 ];
+
+/** Extra scroll, in stops, to hold on the last view (the EV charger) before the page moves on. */
+const END_HOLD = 0.6;
 
 const KIND_NAMES: Record<Kind, string> = {
   bylaw: "Bylaws",
@@ -223,11 +225,11 @@ export function SplatTour() {
       return;
     }
 
-    // Scroll position through the tour, in stops (0 to STOPS.length - 1).
+    // Scroll position through the tour, in stops (0 to STOPS.length - 1), holding on the last.
     const stopAt = () => {
       const r = tour.getBoundingClientRect();
       const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - window.innerHeight)));
-      return p * (STOPS.length - 1);
+      return Math.min(STOPS.length - 1, p * (STOPS.length - 1 + END_HOLD));
     };
     // The stop the camera is holding at, or -1 while it flies between stops.
     const onScroll = () => {
@@ -349,7 +351,7 @@ export function SplatTour() {
   }
 
   return (
-    <section ref={tourRef} id="know-the-history" className="splat-tour" data-state={state} data-active={active} data-testid="splat-tour" style={{ height: `${STOPS.length * 100}vh` }}>
+    <section ref={tourRef} id="know-the-history" className="splat-tour" data-state={state} data-active={active} data-testid="splat-tour" style={{ height: `${(STOPS.length + END_HOLD) * 100}vh` }}>
       <div className="splat-tour__stage">
         <div ref={canvasHost} className="splat-tour__canvas" aria-hidden />
         <div className="splat-tour__overlay">

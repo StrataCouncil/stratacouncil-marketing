@@ -238,16 +238,11 @@ export default function Home() {
                 For BC strata councils and strata managers
               </p>
               <h1>
-                Good council decisions start with <em>knowing the rules.</em>
+                Run your strata council <em>like a pro.</em>
               </h1>
               <p className="lede">
-                Council members are responsible for real decisions about other people&rsquo;s homes, money and shared
-                property. Yet most volunteers start with little training, records scattered across inboxes and binders,
-                and limited time to learn the rules.
-              </p>
-              <p className="lede">
-                StrataCouncil.ca helps you understand the role, keep your strata&rsquo;s knowledge in one place, and make
-                meetings and decisions easier to manage.
+                Free training so every member knows the role. Meetings run by the book, from agenda to minutes. Every
+                record kept with the strata, and answers with the source attached.
               </p>
               <div className="actions">
                 <a href={SIGNUP_URL} className="button button-primary" data-testid="hero-primary-cta">

@@ -228,8 +228,9 @@ svg {
   --header-room: 120px;
 }
 
+/* The header floats over the page and stays in view as it scrolls. */
 .site-header {
-  position: absolute;
+  position: fixed;
   top: 16px;
   left: 0;
   right: 0;
@@ -1058,7 +1059,7 @@ svg {
   color: var(--accent);
 }
 
-/* Animated example: Ask Stratasphere (components/AskStratasphere.tsx).
+/* App-window illustrations (the documents library, the building tour).
    A dark app window on the light page, in the brand's navy. */
 
 .ask,
@@ -1358,7 +1359,7 @@ svg {
 
 .lesson__card {
   perspective: 900px;
-  height: 118px;
+  height: 132px;
 }
 
 .lesson__card-inner {
@@ -1404,6 +1405,8 @@ svg {
 
 .lesson__face--back {
   transform: rotateY(180deg);
+  font-size: 0.8rem;
+  line-height: 1.4;
   background: var(--ink);
   color: var(--paper);
   justify-content: center;
@@ -1700,7 +1703,8 @@ svg {
 .splat-tour__head {
   position: absolute;
   top: 14vh;
-  max-width: 34rem;
+  /* Leaves room for the scenario window on the right. */
+  max-width: min(34rem, calc(100vw - 536px));
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -1735,7 +1739,7 @@ svg {
 
 .splat-tour__ask {
   position: absolute;
-  top: 24px;
+  top: 96px;
   bottom: 24px;
   right: max(24px, calc((100vw - 1180px) / 2));
   width: min(440px, calc(100vw - 48px));
@@ -1760,9 +1764,19 @@ svg {
   justify-content: flex-end;
 }
 
-/* In the tour, sources show their name and where they came from; the answer says what they mean. */
-.splat-tour__ask .ask__source p {
-  display: none;
+/* In the tour, sources are named in a row of chips above the example answer. */
+.splat-tour__sources {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.splat-tour__sources .ask__source {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
 }
 
 .splat-tour__caption {
@@ -1771,6 +1785,15 @@ svg {
   text-align: center;
   color: rgba(248, 246, 241, 0.75);
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.splat-tour__credit {
+  position: absolute;
+  left: max(24px, calc((100vw - 1180px) / 2));
+  bottom: 18px;
+  margin: 0;
+  font-size: 0.75rem;
+  color: rgba(248, 246, 241, 0.7);
 }
 
 .ask__source[data-kind="rule"] .ask__label {
@@ -1783,7 +1806,21 @@ svg {
 
 @media (max-width: 760px) {
   .splat-tour__head {
-    top: 10vh;
+    top: 96px;
+    max-width: none;
+    right: 16px;
+  }
+
+  /* The headline stays; its paragraph steps aside while a scenario window is up. */
+  .splat-tour__head[data-ask="true"] .splat-tour__lede {
+    display: none;
+  }
+
+  .splat-tour__credit {
+    top: 88px;
+    bottom: auto;
+    left: auto;
+    right: 16px;
   }
 
   .splat-tour__ask {
@@ -1810,4 +1847,147 @@ svg {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* How it works, step 3: a council meeting's agenda in Meeting Mode
+   (components/MeetingAgenda.tsx), in the same app window as the others. */
+
+.agenda {
+  --win-bg: #15223a;
+  --win-card: #1e2d48;
+  --win-line: rgba(248, 246, 241, 0.09);
+  --win-text: #e9e6de;
+  --win-muted: rgba(233, 230, 222, 0.55);
+  min-width: 0;
+}
+
+.agenda__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.agenda__quorum {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6fc79c;
+}
+
+.agenda .ask__window {
+  min-height: 0;
+}
+
+/* A short window onto the agenda; the list slides up as the meeting moves on. */
+.agenda__viewport {
+  height: 300px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent);
+  mask-image: linear-gradient(180deg, #000 78%, transparent);
+}
+
+.agenda__list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agenda__list {
+    transition: none;
+  }
+}
+
+.agenda__item {
+  transition: opacity 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.6rem;
+  background: var(--win-card);
+  border: 1px solid var(--win-line);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.agenda__item[data-status="done"] {
+  opacity: 0.62;
+}
+
+.agenda__item[data-status="now"] {
+  border-color: rgba(180, 96, 47, 0.7);
+  background: rgba(180, 96, 47, 0.13);
+}
+
+.agenda__num {
+  color: var(--win-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.agenda__purpose {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--win-muted);
+}
+
+.agenda__result {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #6fc79c;
+}
+
+.agenda__now {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f0b48e;
+}
+
+.agenda__motion {
+  grid-column: 2 / -1;
+  margin-top: 0.2rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--win-line);
+}
+
+.agenda__motion p {
+  margin: 0;
+}
+
+.agenda__motion .ask__label {
+  margin-right: 0.35rem;
+}
+
+.agenda__by {
+  margin-top: 0.3rem !important;
+  font-size: 0.75rem;
+  color: var(--win-muted);
+}
+
+.agenda__votes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  margin-top: 0.5rem !important;
+  font-size: 0.78rem;
+  color: var(--win-muted);
+}
+
+.agenda__votes strong {
+  color: #6fc79c;
+}
+
+/* Section links land below the fixed header. */
+html {
+  scroll-padding-top: 96px;
 }

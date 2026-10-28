@@ -20,9 +20,9 @@ const workSans = Work_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const TITLE = "StrataCouncil.ca — Training and governance tools for BC strata councils";
+const TITLE = "StrataCouncil.ca | Training and tools for BC strata councils";
 const DESCRIPTION =
-  "Free training for BC strata council members, one place for every strata record, and Stratasphere for running meetings and finding answers in your bylaws, minutes and BC law.";
+  "Free training for BC strata councils, a permanent home for strata records, and Stratasphere tools for meetings and answers grounded in your records and BC strata law.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

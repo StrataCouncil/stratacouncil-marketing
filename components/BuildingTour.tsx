@@ -463,11 +463,11 @@ export function BuildingTour() {
 function Intro() {
   return (
     <>
-      <p className="eyebrow">Stratasphere&trade;</p>
+      <p className="eyebrow">Stratasphere&trade; in use</p>
       <h2>Know the history.</h2>
       <p className="building-tour__lede">
-        Every bylaw, proposal, contract, invoice, report, and decision is embedded in the institutional memory and
-        available whenever and wherever you need it.
+        Questions a council might ask, and how Stratasphere answers them: from the strata&rsquo;s own bylaws, minutes,
+        contracts and reports, with the sources shown.
       </p>
     </>
   );

@@ -2034,3 +2034,94 @@ svg {
 html {
   scroll-padding-top: 96px;
 }
+
+/* Learn. Decide. Remember. (2026-11-05) */
+
+.lede--strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.cards--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pillar {
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.pillar:hover,
+.pillar:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.pillar__verb {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.pillar .card__tag {
+  margin-top: auto;
+}
+
+.pillars__note {
+  margin-top: 28px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.library {
+  margin-top: 40px;
+}
+
+/* Decide is the showpiece: a lighter tint behind it. */
+.section--feature {
+  background: var(--sky);
+}
+
+.section--feature .step {
+  background: var(--surface);
+}
+
+.questions li {
+  font-style: italic;
+}
+
+.plans .list-check {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.pill--accent {
+  background: var(--accent);
+  color: #fff;
+}
+
+.demo-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.demo-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 1000px) {
+  .cards--3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

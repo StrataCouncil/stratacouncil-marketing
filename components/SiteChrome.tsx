@@ -22,10 +22,11 @@ export function SiteHeader() {
         </Link>
         <nav aria-label="Primary" className="site-nav">
           <div className="site-nav__links">
-            <Link href="/#how-it-works">How it works</Link>
+            <Link href="/#learn">Training</Link>
+            <Link href="/#decide">Meeting Mode</Link>
+            <Link href="/#remember">Stratasphere&trade;</Link>
             <Link href="/#managers">For managers</Link>
-            <Link href="/#free">What&rsquo;s free</Link>
-            <Link href="/#faq">FAQ</Link>
+            <Link href="/#pricing">Pricing</Link>
           </div>
           <a href={SIGNIN_URL} className="site-nav__signin" data-testid="nav-signin">
             Sign in

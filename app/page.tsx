@@ -36,9 +36,15 @@ const DEMOS = {
 };
 
 const pillars = [
-  { id: "learn", verb: "Learn", line: "Know your role.", what: "Council Training and the Library", price: "Free" },
-  { id: "decide", verb: "Decide", line: "Run the meeting.", what: "Meeting Mode, in Stratasphere\u2122", price: "First meeting free" },
-  { id: "remember", verb: "Remember", line: "Retain knowledge.", what: "Stratasphere\u2122", price: "Free document storage" },
+  { id: "learn", verb: "Learn", line: "Know your role.", what: "Council Training and Reference Library", price: "Free training" },
+  { id: "decide", verb: "Decide", line: "Run the meeting.", what: "Set up, run, and document meetings with ease", price: "First meeting free" },
+  {
+    id: "remember",
+    verb: "Remember",
+    line: "Retain the knowledge.",
+    what: "Every decision council\u2019s ever made at your fingertips",
+    price: "Free document storage",
+  },
 ];
 
 /** What's in the Library, by kind (the titles themselves change as it grows). */

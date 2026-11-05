@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";
-const LAST_UPDATED = "October 26, 2026";
+const LAST_UPDATED = "November 5, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -353,8 +353,9 @@ export default function PrivacyPage() {
             <li>Stripe, for payment processing;</li>
             <li>Mailtrap, for transactional email delivery;</li>
             <li>Vercel, for application hosting and related infrastructure;</li>
-            <li>Inngest, for running background tasks such as indexing documents; and</li>
-            <li>Cloudflare, for content delivery, DNS, and related security or infrastructure services.</li>
+            <li>Inngest, for running background tasks such as indexing documents;</li>
+            <li>Cloudflare, for content delivery, DNS, and related security or infrastructure services; and</li>
+            <li>Supademo, for the product walkthroughs on our website.</li>
           </ul>
           <p>
             We select service providers appropriate to the functions they

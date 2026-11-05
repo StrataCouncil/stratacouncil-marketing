@@ -27,7 +27,7 @@ export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: {
  * until then the section shows its mockup and its button opens the demo form.
  */
 const DEMOS = {
-  meetingMode: null as string | null,
+  meetingMode: "cmw2t2m8l02diqmuzan368w86" as string | null,
   stratasphere: null as string | null,
 };
 
@@ -322,8 +322,14 @@ export default function Home() {
                   </DemoButton>
                 </div>
               </div>
-              {DEMOS.meetingMode ? <DemoEmbed demoId={DEMOS.meetingMode} title="Meeting Mode walkthrough" /> : <MeetingAgenda />}
+              <MeetingAgenda />
             </div>
+            {DEMOS.meetingMode && (
+              <div className="demo-block">
+                <h3>Take the tour</h3>
+                <DemoEmbed demoId={DEMOS.meetingMode} title="Meeting Mode walkthrough" />
+              </div>
+            )}
           </div>
         </section>
 

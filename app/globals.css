@@ -2105,7 +2105,8 @@ html {
 .demo-embed {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1.71;
+  max-height: 80vh;
   border-radius: var(--radius-card);
   overflow: hidden;
   border: 1px solid var(--line);
@@ -2124,4 +2125,12 @@ html {
   .cards--3 {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+.demo-block {
+  margin-top: 40px;
+}
+
+.demo-block h3 {
+  margin-bottom: 16px;
 }

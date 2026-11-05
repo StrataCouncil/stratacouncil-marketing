@@ -2090,13 +2090,6 @@ html {
   color: var(--win-text);
 }
 
-/* The security line, under the hero's buttons. */
-.assurance--hero {
-  margin-top: 0.5rem;
-  max-width: 34rem;
-  font-size: 0.8125rem;
-}
-
 /* Remember's example: one question, its answer and the sources. */
 .qa {
   display: flex;

@@ -36,9 +36,9 @@ const DEMOS = {
 };
 
 const pillars = [
-  { id: "learn", verb: "Learn", line: "Know the role.", what: "Council Training and the Library", price: "Free" },
+  { id: "learn", verb: "Learn", line: "Know your role.", what: "Council Training and the Library", price: "Free" },
   { id: "decide", verb: "Decide", line: "Run the meeting.", what: "Meeting Mode, in Stratasphere\u2122", price: "First meeting free" },
-  { id: "remember", verb: "Remember", line: "Keep the knowledge.", what: "Stratasphere\u2122", price: "Records free" },
+  { id: "remember", verb: "Remember", line: "Retain knowledge.", what: "Stratasphere\u2122", price: "Free document storage" },
 ];
 
 /** What's in the Library, by kind (the titles themselves change as it grows). */
@@ -65,7 +65,7 @@ const example = {
 
 const alwaysFree = [
   "Council Training",
-  "The Library: playbooks, guides, templates and forms",
+  "The Library: playbooks, guides, templates, and forms",
   "Storage for your strata\u2019s records",
   "Your first meeting in Meeting Mode",
 ];
@@ -76,8 +76,8 @@ const withSubscription = [
 ];
 
 const managerPoints = [
-  "Motions, votes and conflicts recorded as the meeting happens, with draft minutes at adjournment.",
-  "Councils find answers in their own bylaws, minutes and BC strata law, with the sources.",
+  "Motions, votes, and conflicts recorded as the meeting happens, with draft minutes at adjournment.",
+  "Councils find answers in their own bylaws, minutes, and BC strata law, with the sources.",
   "New council members learn the basics, free.",
   "Works alongside your management software; it doesn\u2019t replace it.",
 ];
@@ -97,7 +97,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         <p>
-          Council training, the Library (playbooks, guides, templates and forms), storage for your strata&rsquo;s
+          Council training, the Library (playbooks, guides, templates, and forms), storage for your strata&rsquo;s
           records, the owner roster, and your first meeting in Meeting Mode are free.
         </p>
         <p>
@@ -159,11 +159,11 @@ const faqs: { q: string; a: React.ReactNode }[] = [
       <>
         <p>
           Strata management software typically supports the day-to-day administration of a building, including
-          accounting, owner payments, maintenance requests and bookings.
+          accounting, owner payments, maintenance requests, and bookings.
         </p>
         <p>
           StrataCouncil.ca focuses on the council and its decisions: helping members learn their responsibilities,
-          organize records, run meetings and find relevant information when questions arise.
+          organize records, run meetings, and find relevant information when questions arise.
         </p>
         <p>It is designed to work alongside your existing management software and strata manager, not replace them.</p>
       </>
@@ -174,11 +174,11 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         <p>
-          No. Stratasphere helps councils prepare for meetings, maintain records and find relevant information. It can be
+          No. Stratasphere helps councils prepare for meetings, maintain records, and find relevant information. It can be
           used alongside a strata manager or by a self-managed strata.
         </p>
         <p>
-          It does not replace the professional judgment of a strata manager, qualified specialist or lawyer, and it is not
+          It does not replace the professional judgment of a strata manager, qualified specialist, or lawyer, and it is not
           legal advice.
         </p>
       </>
@@ -221,7 +221,7 @@ export default function Home() {
                 Build a <em>better</em> strata council.
               </h1>
               <p className="lede">
-                Training, meetings and records for BC strata councils, designed to work alongside your strata manager.
+                Training, meeting tools, and institutional memory to make your strata council super-effective.
               </p>
               <div className="actions">
                 <a href={SIGNUP_URL} className="button button-primary" data-testid="hero-primary-cta">
@@ -231,11 +231,7 @@ export default function Home() {
                   Request a demo
                 </a>
               </div>
-              <p className="assurance assurance--hero">
-                <span>Data stored in Canada</span>
-                <span>Personal information removed before anything reaches Stratasphere&rsquo;s AI</span>
-                <span>Two-factor sign-in available</span>
-              </p>
+              
             </div>
             <figure className="hero__media">
               <img src={PHOTOS.hero.src} alt={PHOTOS.hero.alt} />
@@ -270,9 +266,9 @@ export default function Home() {
             <div className="step">
               <div className="step__text">
                 <p className="eyebrow">Learn &middot; Council Training and the Library</p>
-                <h2>Know the role. Have the playbook.</h2>
+                <h2>Know your role. Have the playbook.</h2>
                 <p className="lede">
-                  Short, free lessons on council duties, budgets and the CRF, meetings and voting, bylaws and fines. The
+                  Short, free lessons on council duties, budgets and the CRF, meetings and voting, and bylaws and fines. The
                   Library keeps the tools beside them.
                 </p>
                 <ul className="chips" aria-label="What's in the Library">
@@ -311,8 +307,7 @@ export default function Home() {
                 <span className="pill">First meeting free</span>
                 <p className="small">
                   Quorum and thresholds are based on the Strata Property Act and the Standard Bylaws. If your bylaws
-                  differ, they govern, and council remains responsible for following the Act, its bylaws and applicable
-                  meeting requirements.
+                  differ, they govern, and council remains responsible for following the Act, its bylaws, and applicable meeting requirements.
                 </p>
               </div>
               {DEMOS.meetingMode ? (
@@ -331,15 +326,14 @@ export default function Home() {
                 <p className="eyebrow">Remember &middot; Stratasphere&trade;</p>
                 <h2>Never lose what your council knows.</h2>
                 <p className="lede">
-                  Ask a question and get an answer grounded in your strata&rsquo;s records, its past decisions and BC
-                  strata law, with references you can check. When the answer isn&rsquo;t in the records, it says so.
+                  Ask a question and get an answer grounded in your strata&rsquo;s records, its past decisions, and BC strata law, with references you can check. When the answer isn&rsquo;t in the records, it says so.
                 </p>
                 <p className="lede">Your records stay free to store, so they stay with the strata, whoever is on council.</p>
                 <div className="actions">
                   <DemoButton demoId={DEMOS.stratasphere} className="button button-primary">
                     Explore Stratasphere
                   </DemoButton>
-                  <span className="pill">Records free</span>
+                  <span className="pill">Free document storage</span>
                 </div>
               </div>
               {DEMOS.stratasphere ? (
@@ -436,6 +430,11 @@ export default function Home() {
                 </p>
               </article>
             </div>
+            <p className="assurance">
+              <span>Data stored in Canada</span>
+              <span>Personal information removed before anything reaches Stratasphere&rsquo;s AI</span>
+              <span>Two-factor sign-in available</span>
+            </p>
           </div>
         </section>
 
@@ -467,7 +466,7 @@ export default function Home() {
               <div className="section-head section-head--tight">
                 <h2>Take a closer look.</h2>
                 <p className="lede">
-                  We&rsquo;ll set up a demo strata so you can explore the records, run a meeting and ask Stratasphere.
+                  We&rsquo;ll set up a demo strata so you can explore the records, run a meeting, and ask Stratasphere.
                   Or <a href={SIGNUP_URL}>start the free training</a> now.
                 </p>
               </div>

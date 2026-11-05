@@ -47,7 +47,7 @@ const STOPS: Stop[] = [
       question:
         "Our roof is approaching the end of its expected service life. What should council review before deciding whether to repair or replace it?",
       answer:
-        "Start with the depreciation report, roof inspection records, previous repair invoices, warranty documents and the strata’s current financial position. Check what the report says about timing and estimated costs, and confirm whether newer inspections identify additional concerns. Council can then assess the available options, obtain any necessary professional advice and determine how the work should be funded.",
+        "Start with the depreciation report, roof inspection records, previous repair invoices, warranty documents, and the strata’s current financial position. Check what the report says about timing and estimated costs, and confirm whether newer inspections identify additional concerns. Council can then assess the available options, obtain any necessary professional advice, and determine how the work should be funded.",
       sources: [
         { kind: "record", label: "Depreciation report" },
         { kind: "record", label: "Roof inspection" },
@@ -62,7 +62,7 @@ const STOPS: Stop[] = [
       question:
         "An owner wants to make changes to their balcony, which is designated as limited common property. What should council do first?",
       answer:
-        "Check the strata plan, bylaws and alteration policies to establish the status of the area and the approval requirements. Ask the owner for a written description of the proposed work and any necessary plans or specifications. Before deciding, consider potential impacts on the building envelope, waterproofing, appearance, insurance and future maintenance. Confirm the applicable approval process and document the decision and any conditions.",
+        "Check the strata plan, bylaws, and alteration policies to establish the status of the area and the approval requirements. Ask the owner for a written description of the proposed work and any necessary plans or specifications. Before deciding, consider potential impacts on the building envelope, waterproofing, appearance, insurance, and future maintenance. Confirm the applicable approval process and document the decision and any conditions.",
       sources: [
         { kind: "record", label: "Strata plan" },
         { kind: "bylaw", label: "Registered bylaws" },
@@ -76,7 +76,7 @@ const STOPS: Stop[] = [
       title: "Scenario 3: EV charger installation",
       question: "An owner wants to install an EV charger in their parking stall. What does council need to consider?",
       answer:
-        "Start by reviewing the strata’s EV charging policy, applicable bylaws and any previous decisions. Establish what electrical capacity and infrastructure are available, whether an electrical assessment is needed, and what approvals, permits and agreements may apply. Consider installation costs, ongoing electricity use, responsibility for maintenance, insurance and the effect on other owners. The next step is to identify the information still needed before council can make a decision.",
+        "Start by reviewing the strata’s EV charging policy, applicable bylaws, and any previous decisions. Establish what electrical capacity and infrastructure are available, whether an electrical assessment is needed, and what approvals, permits, and agreements may apply. Consider installation costs, ongoing electricity use, responsibility for maintenance, insurance, and the effect on other owners. The next step is to identify the information still needed before council can make a decision.",
       sources: [
         { kind: "rule", label: "EV charging policy" },
         { kind: "record", label: "Electrical assessment" },

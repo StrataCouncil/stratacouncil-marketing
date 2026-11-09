@@ -467,7 +467,7 @@ function Intro() {
       <h2>Know the history.</h2>
       <p className="building-tour__lede">
         Questions a council might ask, and how Stratasphere answers them: from the strata&rsquo;s own bylaws, minutes,
-        contracts and reports, with the sources shown.
+        contracts, and reports, with the sources shown.
       </p>
     </>
   );

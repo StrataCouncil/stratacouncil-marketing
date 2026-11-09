@@ -477,7 +477,7 @@ export default function PrivacyPage() {
           <p>
             Stratasphere&rsquo;s AI features are tools for assisting with
             research and governance. They are not legal advice and do not
-            replace the judgment of a strata council, strata manager,
+            replace the judgement of a strata council, strata manager,
             professional advisor, or lawyer.
           </p>
 

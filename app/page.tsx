@@ -184,7 +184,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
           used alongside a strata manager or by a self-managed strata.
         </p>
         <p>
-          It does not replace the professional judgment of a strata manager, qualified specialist, or lawyer, and it is not
+          It does not replace the professional judgement of a strata manager, qualified specialist, or lawyer, and it is not
           legal advice.
         </p>
       </>

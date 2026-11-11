@@ -355,7 +355,11 @@ export default function PrivacyPage() {
             <li>Vercel, for application hosting and related infrastructure;</li>
             <li>Inngest, for running background tasks such as indexing documents;</li>
             <li>Zoom, for video and audio in electronic and hybrid meetings; and</li>
-            <li>Cloudflare, for content delivery, DNS, and related security or infrastructure services.</li>
+            <li>
+              Cloudflare, for content delivery, DNS, and related security or infrastructure services, including
+              Turnstile, which checks that our sign-up, sign-in, and other forms are filled in by a person rather
+              than an automated program.
+            </li>
           </ul>
           <p>
             We select service providers appropriate to the functions they

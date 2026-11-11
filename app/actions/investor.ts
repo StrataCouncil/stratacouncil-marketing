@@ -27,6 +27,8 @@ export async function requestInvestorBriefing(_prev: InvestorRequestState, form:
       disclaimer: form.get("disclaimer") === "on",
       accredited: form.get("accredited") === "on",
       website: String(form.get("website") ?? ""),
+      // The bot check (components/Turnstile.tsx); the app verifies it.
+      turnstile: String(form.get("cf-turnstile-response") ?? ""),
     }),
     cache: "no-store",
   }).catch((err: unknown) => {

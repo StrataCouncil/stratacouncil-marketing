@@ -3,7 +3,6 @@ import { DemoRequestForm } from "@/components/DemoRequestForm";
 import { MeetingAgenda } from "@/components/MeetingAgenda";
 import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
-import { DemoButton, DemoEmbed } from "@/components/Supademo";
 
 export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: { url: "/" } };
 
@@ -20,20 +19,17 @@ export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: {
  *
  * Layout (2026-11-05): tight, in the manner of Glide and Amperos. Each
  * section is a headline, a line or two, one visual and at most one button.
- * Nothing fades in on scroll, and the Meeting Mode walkthrough is the only
- * thing that moves. The building flight (components/BuildingTour.tsx) is
+ * Nothing fades in on scroll, and nothing moves. The building flight (components/BuildingTour.tsx) is
  * off the home page for now.
  */
 
 /**
- * Supademo walkthroughs, by demo ID (the code in `Supademo.open('…')`).
- * Null until each one is ready and shows only the fictional demo strata;
- * until then the section shows its mockup and its button opens the demo form.
+ * A still of Meeting Mode (2026-11-11), from a Super Admin sandbox on the
+ * demo site, so only the fictional strata appears. Until it's added, the
+ * section shows its mockup. Interactives (an interactive walkthrough built
+ * into the app) replace it later.
  */
-const DEMOS = {
-  meetingMode: "cmw2t2m8l02diqmuzan368w86" as string | null,
-  stratasphere: null as string | null,
-};
+const MEETING_STILL: { src: string; width: number; height: number } | null = null;
 
 const pillars = [
   { id: "learn", verb: "Learn", line: "Know your role.", what: "Council Training and Reference Library", price: "Free training" },
@@ -316,8 +312,16 @@ export default function Home() {
                   differ, they govern, and council remains responsible for following the Act, its bylaws, and applicable meeting requirements.
                 </p>
               </div>
-              {DEMOS.meetingMode ? (
-                <DemoEmbed demoId={DEMOS.meetingMode} title="Meeting Mode walkthrough" />
+              {MEETING_STILL ? (
+                <figure className="product-still">
+                  <img
+                    src={MEETING_STILL.src}
+                    width={MEETING_STILL.width}
+                    height={MEETING_STILL.height}
+                    alt="Meeting Mode running a council meeting: the agenda, the motion, and a live vote with the result worked out"
+                    loading="lazy"
+                  />
+                </figure>
               ) : (
                 <MeetingAgenda />
               )}
@@ -336,36 +340,32 @@ export default function Home() {
                 </p>
                 <p className="lede">Your records stay free to store, so they stay with the strata, whoever is on council.</p>
                 <div className="actions">
-                  <DemoButton demoId={DEMOS.stratasphere} className="button button-primary">
+                  <a href={DEMO_HREF} className="button button-primary">
                     Explore Stratasphere
-                  </DemoButton>
+                  </a>
                   <span className="pill">Free document storage</span>
                 </div>
               </div>
-              {DEMOS.stratasphere ? (
-                <DemoEmbed demoId={DEMOS.stratasphere} title="Stratasphere walkthrough" />
-              ) : (
-                <div className="records" aria-label="An example question for Stratasphere">
-                  <div className="ask__window">
-                    <div className="ask__chrome" aria-hidden="true">
-                      <span className="ask__dot" />
-                      <span className="ask__dot" />
-                      <span className="ask__dot" />
-                      <span className="ask__title">Ask Stratasphere&trade;</span>
-                    </div>
-                    <div className="ask__body qa">
-                      <p className="qa__q">{example.question}</p>
-                      <p className="qa__a">{example.answer}</p>
-                      <ul className="chips chips--small" aria-label="Sources">
-                        {example.sources.map((x) => (
-                          <li key={x}>{x}</li>
-                        ))}
-                      </ul>
-                    </div>
+              <div className="records" aria-label="An example question for Stratasphere">
+                <div className="ask__window">
+                  <div className="ask__chrome" aria-hidden="true">
+                    <span className="ask__dot" />
+                    <span className="ask__dot" />
+                    <span className="ask__dot" />
+                    <span className="ask__title">Ask Stratasphere&trade;</span>
                   </div>
-                  <p className="ask__caption">An example, for a fictional strata.</p>
+                  <div className="ask__body qa">
+                    <p className="qa__q">{example.question}</p>
+                    <p className="qa__a">{example.answer}</p>
+                    <ul className="chips chips--small" aria-label="Sources">
+                      {example.sources.map((x) => (
+                        <li key={x}>{x}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              )}
+                <p className="ask__caption">An example, for a fictional strata.</p>
+              </div>
             </div>
           </div>
         </section>

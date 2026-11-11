@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";
-const LAST_UPDATED = "November 9, 2026";
+const LAST_UPDATED = "November 11, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -354,9 +354,8 @@ export default function PrivacyPage() {
             <li>Mailtrap, for transactional email delivery;</li>
             <li>Vercel, for application hosting and related infrastructure;</li>
             <li>Inngest, for running background tasks such as indexing documents;</li>
-            <li>Zoom, for video and audio in electronic and hybrid meetings;</li>
-            <li>Cloudflare, for content delivery, DNS, and related security or infrastructure services; and</li>
-            <li>Supademo, for the product walkthroughs on our website.</li>
+            <li>Zoom, for video and audio in electronic and hybrid meetings; and</li>
+            <li>Cloudflare, for content delivery, DNS, and related security or infrastructure services.</li>
           </ul>
           <p>
             We select service providers appropriate to the functions they

@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { requestInvestorBriefing, type InvestorRequestState } from "@/app/actions/investor";
+import { Turnstile } from "@/components/Turnstile";
 
 /** The Legal Disclaimer, on its own page in the app. */
 const DISCLAIMER_URL = "https://app.stratacouncil.ca/investors/disclaimer";
@@ -69,6 +70,7 @@ export function InvestorRequestForm() {
           {state.message}
         </p>
       )}
+      <Turnstile action="investor" resetKey={state} />
       <button type="submit" className="button button-primary site-form__submit" disabled={pending}>
         {pending ? "Sending…" : "Email me the briefing"}
       </button>

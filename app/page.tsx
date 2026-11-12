@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DemoRequestForm } from "@/components/DemoRequestForm";
 import { MeetingAgenda } from "@/components/MeetingAgenda";
+import { Pricing } from "@/components/Pricing";
 import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
 
@@ -68,20 +69,6 @@ const example = {
   sources: ["Depreciation report", "Roof inspection", "Previous council minutes", "Financial statements"],
 };
 
-const alwaysFree = [
-  "Council Training",
-  "The Library: playbooks, guides, templates, and forms",
-  "Storage for your strata\u2019s records",
-  "Council and committee meetings in Meeting Mode",
-];
-const withSubscription = [
-  "The Stratasphere\u2122 assistant, as often as council needs it",
-  "Answers grounded in your records and BC strata law, with sources",
-  "AGMs and SGMs in Meeting Mode",
-  "Built-in video for meetings",
-  "Drafts of notices, letters, and minutes",
-];
-
 const managerPoints = [
   "Motions, votes, and conflicts recorded as the meeting happens, with draft minutes at adjournment.",
   "Councils find answers in their own bylaws, minutes, and BC strata law, with the sources.",
@@ -98,37 +85,83 @@ const PHOTOS = {
   demo: { src: "/photos/demo.jpg", alt: "A group listening to a colleague at a meeting table." },
 };
 
-const faqs: { q: string; a: React.ReactNode }[] = [
+/**
+ * Pricing questions (2026-11-12), under the comparison table. Each answer
+ * must match the app: lib/stripe/prices.ts, billing/actions.ts (how each
+ * plan cancels), and the 0090 gates (who can use Stratasphere).
+ */
+const pricingFaqs: { q: string; a: React.ReactNode }[] = [
   {
-    q: "How much does Stratasphere™ cost?",
+    q: "Is Free really free for good?",
+    a: (
+      <p>
+        Yes. There is no trial, no time limit, and no card. Council Training, the Library, council and committee meetings
+        in Meeting Mode, and storage for your records stay free. You pay only if you want Stratasphere.
+      </p>
+    ),
+  },
+  {
+    q: "How is Stratasphere billed?",
     a: (
       <>
         <p>
-          Council training, the Library (playbooks, guides, templates, and forms), storage for your strata&rsquo;s
-          records, the owner roster, and council and committee meetings in Meeting Mode are free.
+          Monthly, to the strata corporation, by card or pre-authorized debit. Monthly is $30 per strata plus $3 per strata
+          lot, so a 45-lot strata pays $165 a month. Yearly is $25 plus $2.50 per lot on a 12-month commitment, still
+          billed monthly, so the same strata pays $137.50 a month.
         </p>
-        <p>
-          A subscription adds the Stratasphere assistant, with no limit on questions, AGMs and SGMs in Meeting Mode,
-          built-in video for meetings, and drafting. The subscription is paid by the strata corporation.
-        </p>
-        <ul>
-          <li>
-            <strong>Monthly:</strong> $30 per month plus $3 per strata lot per month. Cancel at any time.
-          </li>
-          <li>
-            <strong>Yearly:</strong> $25 per month plus $2.50 per strata lot per month, on a 12-month commitment, billed
-            monthly.
-          </li>
-          <li>
-            <strong>Over 100 lots, or managing several stratas:</strong> talk to us.
-          </li>
-        </ul>
-        <p>
-          Prices are in Canadian dollars, plus GST. If you cancel, your strata&rsquo;s records stay free to store.
-        </p>
+        <p>Prices are in Canadian dollars, plus GST.</p>
       </>
     ),
   },
+  {
+    q: "Can council approve it without a general meeting?",
+    a: (
+      <p>
+        Spending that isn&rsquo;t in the budget is limited by your bylaws and the Strata Property Act. If your limit is
+        $2,000, a full year of the Yearly plan stays under it, GST included, for stratas of up to 53 lots (Monthly: up to
+        42). Check your own bylaws, or add it to the next budget.
+      </p>
+    ),
+  },
+  {
+    q: "Who can use it?",
+    a: (
+      <p>
+        Council, your strata manager and their assistants, and the admins named on your Council page. There is no charge
+        per person. Owners don&rsquo;t sign in: this is a tool for the people who run the strata, not an owner portal.
+      </p>
+    ),
+  },
+  {
+    q: "What happens to our records if we stop?",
+    a: (
+      <p>
+        Nothing is lost. Your records stay, free to store, and the strata moves back to Free. The assistant, search, AGMs
+        and SGMs, and built-in video turn off. Anything you add in the meantime is read as soon as you subscribe again.
+      </p>
+    ),
+  },
+  {
+    q: "Can we cancel?",
+    a: (
+      <p>
+        Yes. On Monthly, the subscription ends at the end of the month you&rsquo;ve paid for. On Yearly, it doesn&rsquo;t
+        renew, and billing and access continue to the end of the 12-month term.
+      </p>
+    ),
+  },
+  {
+    q: "Can we use it with our strata manager?",
+    a: (
+      <p>
+        Yes. Invite your strata manager, and the record stays with the strata if you ever change management companies.
+        Management companies running several stratas can talk to us about one agreed price.
+      </p>
+    ),
+  },
+];
+
+const faqs: { q: string; a: React.ReactNode }[] = [
   {
     q: "Is Stratasphere secure?",
     a: (
@@ -413,46 +446,26 @@ export default function Home() {
 
         <section className="section section--paper" id="pricing">
           <div className="wrap">
-            <div className="section-head">
+            <div className="section-head section-head--center">
               <p className="eyebrow">Pricing</p>
-              <h2>Training and council meetings are free.</h2>
+              <h2>Free for every council. Pay only for the memory.</h2>
+              <p className="lede">
+                Training, council meetings, and your records cost nothing, for as long as you use them. Stratasphere adds
+                answers from your records, general meetings, and built-in video.
+              </p>
             </div>
-            <div className="cards plans" data-testid="plans">
-              <article className="card">
-                <span className="pill card__tag">Always free</span>
-                <h3>Free for every strata</h3>
-                <ul className="list-check">
-                  {alwaysFree.map((x) => (
-                    <li key={x}>{x}</li>
-                  ))}
-                </ul>
-              </article>
-              <article className="card">
-                <span className="pill card__tag pill--accent">Stratasphere&trade; subscription</span>
-                <h3>Paid by the strata corporation</h3>
-                <ul className="list-check">
-                  {withSubscription.map((x) => (
-                    <li key={x}>{x}</li>
-                  ))}
-                </ul>
-                <p>
-                  <strong>Monthly:</strong> $30 per month plus $3 per strata lot per month. Cancel at any time.
-                  <br />
-                  <strong>Yearly:</strong> $25 per month plus $2.50 per strata lot per month, on a 12-month commitment,
-                  billed monthly.
-                  <br />
-                  <strong>Over 100 lots, or managing several stratas:</strong> talk to us.
-                </p>
-                <p className="small">
-                  Canadian dollars, plus GST. If you stop subscribing, your strata&rsquo;s records stay free to store.
-                </p>
-              </article>
+            <Pricing signupUrl={SIGNUP_URL} contactHref={DEMO_HREF} />
+            <div className="pricing-faq">
+              <h3 className="compare__title pricing-faq__title">Pricing questions</h3>
+              <div className="faq pricing-faq__list" data-testid="pricing-faq">
+                {pricingFaqs.map((f) => (
+                  <details className="faq__item" key={f.q} open>
+                    <summary>{f.q}</summary>
+                    <div className="faq__answer">{f.a}</div>
+                  </details>
+                ))}
+              </div>
             </div>
-            <p className="assurance">
-              <span>Data stored in Canada</span>
-              <span>Personal information removed before anything reaches Stratasphere&rsquo;s AI</span>
-              <span>Two-factor sign-in available</span>
-            </p>
           </div>
         </section>
 

@@ -448,7 +448,7 @@ export default function Home() {
           <div className="wrap">
             <div className="section-head section-head--center">
               <p className="eyebrow">Pricing</p>
-              <h2>Free for every council. Pay only for the memory.</h2>
+              <h2>Free for every council. Pay only for the Stratasphere.</h2>
               <p className="lede">
                 Training, council meetings, and your records cost nothing, for as long as you use them. Stratasphere adds
                 answers from your records, general meetings, and built-in video.

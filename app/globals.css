@@ -1027,7 +1027,7 @@ svg {
   transition: transform 0.2s ease;
 }
 
-.faq__item[open] summary::after {
+.faq__item[open] > summary::after {
   transform: rotate(45deg);
 }
 
@@ -2470,29 +2470,28 @@ html {
   }
 }
 
-.pricing-faq {
-  margin-top: 4.5rem;
+/* Pricing questions: a group inside the main FAQ, opened like any item. */
+
+.faq--sub {
+  max-width: none;
+  margin: 0 0 1.25rem 1.25rem;
+  padding-left: 1.25rem;
+  border-top: 0;
+  border-left: 2px solid var(--line);
 }
 
-.pricing-faq__title {
-  text-align: center;
+.faq--sub .faq__item summary {
+  font-size: 1rem;
+  padding: 1rem 0;
 }
 
-.pricing-faq__list {
-  max-width: 880px;
-  margin: 0 auto;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  padding: 0.5rem 2.5rem;
-}
-
-.pricing-faq__list .faq__item:last-child {
+.faq--sub .faq__item:last-child {
   border-bottom: 0;
 }
 
 @media (max-width: 640px) {
-  .pricing-faq__list {
-    padding: 0.25rem 1.25rem;
+  .faq--sub {
+    margin-left: 0;
+    padding-left: 0.9rem;
   }
 }

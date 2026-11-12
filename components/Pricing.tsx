@@ -9,7 +9,8 @@ import { useState } from "react";
  * Free: Learn, council and committee meetings, and record storage; nothing
  * on it costs us per use. Stratasphere: everything that does (the
  * assistant, search, AI drafting, built-in video) plus AGMs and SGMs.
- * Enterprise: over 100 lots, or management companies, at an agreed price.
+ * Enterprise: management companies (or a strata past Stripe's $3,000 a
+ * payment), at an agreed price. Any size of strata can subscribe itself.
  *
  * Every row in the table must match a gate in the app. If the app changes
  * what's free, change it here too.
@@ -191,7 +192,7 @@ export function Pricing({ signupUrl, contactHref }: { signupUrl: string; contact
           <div className="plan__head">
             <h3>Enterprise</h3>
           </div>
-          <p className="plan__for">For large stratas and management companies</p>
+          <p className="plan__for">For management companies running several stratas</p>
           <p className="plan__price">
             <span className="plan__amount">Custom</span>
           </p>
@@ -203,7 +204,6 @@ export function Pricing({ signupUrl, contactHref }: { signupUrl: string; contact
             <li>
               <strong>Everything in Stratasphere, plus:</strong>
             </li>
-            <li>Stratas over 100 lots</li>
             <li>Several stratas under one agreed price</li>
             <li>Help getting set up</li>
           </ul>

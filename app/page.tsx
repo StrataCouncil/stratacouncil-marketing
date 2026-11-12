@@ -14,7 +14,7 @@ export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: {
  * meetings in Meeting Mode are free; Stratasphere is the paid product (the
  * assistant, search across the records, AGMs and SGMs, and AI drafting).
  * Prices (2026-11-12): $30 a month plus $3 a lot, or $25 plus $2.50 on a
- * 12-month commitment, billed monthly; over 100 lots, talk to us.
+ * 12-month commitment, billed monthly; management companies talk to us.
  *
  * Copy rules: outcomes, not features; nothing about learning from other
  * stratas; no "knows everything"; no Zoom until it's live; Meeting Mode's

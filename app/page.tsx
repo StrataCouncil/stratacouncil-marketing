@@ -455,17 +455,6 @@ export default function Home() {
               </p>
             </div>
             <Pricing signupUrl={SIGNUP_URL} contactHref={DEMO_HREF} />
-            <div className="pricing-faq">
-              <h3 className="compare__title pricing-faq__title">Pricing questions</h3>
-              <div className="faq pricing-faq__list" data-testid="pricing-faq">
-                {pricingFaqs.map((f) => (
-                  <details className="faq__item" key={f.q} open>
-                    <summary>{f.q}</summary>
-                    <div className="faq__answer">{f.a}</div>
-                  </details>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
@@ -481,6 +470,17 @@ export default function Home() {
                   <div className="faq__answer">{f.a}</div>
                 </details>
               ))}
+              <details className="faq__item faq__item--group" data-testid="pricing-faq">
+                <summary>Pricing questions</summary>
+                <div className="faq faq--sub">
+                  {pricingFaqs.map((f) => (
+                    <details className="faq__item" key={f.q}>
+                      <summary>{f.q}</summary>
+                      <div className="faq__answer">{f.a}</div>
+                    </details>
+                  ))}
+                </div>
+              </details>
             </div>
           </div>
         </section>

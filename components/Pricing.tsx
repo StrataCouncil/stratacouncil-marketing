@@ -48,7 +48,6 @@ const TABLE: { group: string; rows: Row[] }[] = [
       { label: "Conflicts of interest declared and recorded", free: true, paid: true, enterprise: true },
       { label: "Draft minutes when you adjourn", free: true, paid: true, enterprise: true },
       { label: "Discussions and votes between meetings", free: true, paid: true, enterprise: true },
-      { label: "Your own video link for meetings", free: true, paid: true, enterprise: true },
       { label: "Built-in video for meetings", free: false, paid: true, enterprise: true },
       { label: "AGMs and SGMs in Meeting Mode", free: false, paid: true, enterprise: true },
     ],

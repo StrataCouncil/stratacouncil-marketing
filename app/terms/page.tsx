@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const EFFECTIVE_DATE = "September 29, 2026";
-const LAST_UPDATED = "October 9, 2026";
+const LAST_UPDATED = "November 12, 2026";
 
 export default function TermsPage() {
   return (
@@ -214,8 +214,8 @@ export default function TermsPage() {
             features such as:
           </p>
           <ul>
-            <li>Meeting Mode;</li>
-            <li>governance document storage;</li>
+            <li>Meeting Mode for annual and special general meetings;</li>
+            <li>built-in video for meetings;</li>
             <li>document search;</li>
             <li>an AI knowledge base;</li>
             <li>AI-assisted search and analysis;</li>
@@ -223,21 +223,11 @@ export default function TermsPage() {
             <li>other governance tools identified as included with the applicable subscription.</li>
           </ul>
 
-          <h3>Trial or introductory access</h3>
-          <p>
-            Each eligible strata corporation may receive one full Meeting
-            Mode session before subscribing, at no charge and without
-            providing a payment method.
-          </p>
-          <p>
-            We may change or discontinue introductory offers for future
-            users.
-          </p>
 
           <h3>Subscription term</h3>
           <p>
-            Subscriptions may be billed monthly or annually, as shown at the
-            time of purchase.
+            Subscriptions are billed monthly, either month to month or on a
+            12-month commitment, as shown at the time of purchase.
           </p>
           <p>
             Unless otherwise stated at the time of purchase, a subscription
@@ -304,16 +294,16 @@ export default function TermsPage() {
             that cannot lawfully be excluded.
           </p>
 
-          <h3>Annual subscriptions</h3>
+          <h3>12-month commitments</h3>
           <p>
-            If you purchase an annual subscription, the annual charge covers
-            the applicable annual subscription period.
+            If you choose a 12-month commitment, you agree to pay the monthly
+            charge for each month of the 12-month term.
           </p>
           <p>
-            Cancelling during that period prevents the next renewal but does
-            not, unless required by law or otherwise expressly agreed, create
-            a right to a prorated refund for the unused portion of the
-            current annual term.
+            Cancelling during that term prevents the next renewal. Unless
+            required by law or otherwise expressly agreed, billing and access
+            continue to the end of the current term, and no refund is owed
+            for the remaining months.
           </p>
 
           <h3>Price changes</h3>

@@ -9,8 +9,11 @@ export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: {
 /**
  * One promise, three capabilities (2026-11-05): Learn. Decide. Remember.
  * StrataCouncil.ca builds effective councils; it isn't strata management
- * software. Council Training and the Library are free; Stratasphere is the
- * paid product (Meeting Mode and the assistant).
+ * software. Council Training, the Library, and council and committee
+ * meetings in Meeting Mode are free; Stratasphere is the paid product (the
+ * assistant, search across the records, AGMs and SGMs, and AI drafting).
+ * Prices (2026-11-12): $30 a month plus $3 a lot, or $25 plus $2.50 on a
+ * 12-month commitment, billed monthly; over 100 lots, talk to us.
  *
  * Copy rules: outcomes, not features; nothing about learning from other
  * stratas; no "knows everything"; no Zoom until it's live; Meeting Mode's
@@ -33,7 +36,7 @@ const MEETING_STILL: { src: string; width: number; height: number } | null = nul
 
 const pillars = [
   { id: "learn", verb: "Learn", line: "Know your role.", what: "Council Training and Reference Library", price: "Free training" },
-  { id: "decide", verb: "Decide", line: "Run the meeting.", what: "Set up, run, and document meetings with ease", price: "First meeting free" },
+  { id: "decide", verb: "Decide", line: "Run the meeting.", what: "Set up, run, and document meetings with ease", price: "Council meetings free" },
   {
     id: "remember",
     verb: "Remember",
@@ -69,12 +72,14 @@ const alwaysFree = [
   "Council Training",
   "The Library: playbooks, guides, templates, and forms",
   "Storage for your strata\u2019s records",
-  "Your first meeting in Meeting Mode",
+  "Council and committee meetings in Meeting Mode",
 ];
 const withSubscription = [
-  "Meeting Mode for every meeting",
-  "The Stratasphere\u2122 assistant",
+  "The Stratasphere\u2122 assistant, as often as council needs it",
   "Answers grounded in your records and BC strata law, with sources",
+  "AGMs and SGMs in Meeting Mode",
+  "Built-in video for meetings",
+  "Drafts of notices, letters, and minutes",
 ];
 
 const managerPoints = [
@@ -100,18 +105,22 @@ const faqs: { q: string; a: React.ReactNode }[] = [
       <>
         <p>
           Council training, the Library (playbooks, guides, templates, and forms), storage for your strata&rsquo;s
-          records, the owner roster, and your first meeting in Meeting Mode are free.
+          records, the owner roster, and council and committee meetings in Meeting Mode are free.
         </p>
         <p>
-          A paid subscription adds Meeting Mode for every meeting and the Stratasphere assistant. The subscription is paid
-          by the strata corporation.
+          A subscription adds the Stratasphere assistant, with no limit on questions, AGMs and SGMs in Meeting Mode,
+          built-in video for meetings, and drafting. The subscription is paid by the strata corporation.
         </p>
         <ul>
           <li>
-            <strong>Annual plan:</strong> $82.50 per month plus $2.08 per strata lot per month, on a 12-month term.
+            <strong>Monthly:</strong> $30 per month plus $3 per strata lot per month. Cancel at any time.
           </li>
           <li>
-            <strong>Monthly plan:</strong> $99 per month plus $2.49 per strata lot per month. Cancel at any time.
+            <strong>Yearly:</strong> $25 per month plus $2.50 per strata lot per month, on a 12-month commitment, billed
+            monthly.
+          </li>
+          <li>
+            <strong>Over 100 lots, or managing several stratas:</strong> talk to us.
           </li>
         </ul>
         <p>
@@ -306,7 +315,7 @@ export default function Home() {
                     <li key={o}>{o}</li>
                   ))}
                 </ul>
-                <span className="pill">First meeting free</span>
+                <span className="pill">Council meetings free</span>
                 <p className="small">
                   Quorum and thresholds are based on the Strata Property Act and the Standard Bylaws. If your bylaws
                   differ, they govern, and council remains responsible for following the Act, its bylaws, and applicable meeting requirements.
@@ -406,7 +415,7 @@ export default function Home() {
           <div className="wrap">
             <div className="section-head">
               <p className="eyebrow">Pricing</p>
-              <h2>Training is free. Your first meeting is on us.</h2>
+              <h2>Training and council meetings are free.</h2>
             </div>
             <div className="cards plans" data-testid="plans">
               <article className="card">
@@ -427,9 +436,12 @@ export default function Home() {
                   ))}
                 </ul>
                 <p>
-                  <strong>Annual:</strong> $82.50 per month plus $2.08 per strata lot per month, on a 12-month term.
+                  <strong>Monthly:</strong> $30 per month plus $3 per strata lot per month. Cancel at any time.
                   <br />
-                  <strong>Monthly:</strong> $99 per month plus $2.49 per strata lot per month. Cancel at any time.
+                  <strong>Yearly:</strong> $25 per month plus $2.50 per strata lot per month, on a 12-month commitment,
+                  billed monthly.
+                  <br />
+                  <strong>Over 100 lots, or managing several stratas:</strong> talk to us.
                 </p>
                 <p className="small">
                   Canadian dollars, plus GST. If you stop subscribing, your strata&rsquo;s records stay free to store.

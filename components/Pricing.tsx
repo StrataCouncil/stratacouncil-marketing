@@ -73,9 +73,8 @@ const TABLE: { group: string; rows: Row[] }[] = [
     ],
   },
   {
-    group: "Large stratas and management companies",
+    group: "Management companies",
     rows: [
-      { label: "Strata size", free: "Any size", paid: "Up to 100 lots", enterprise: "Over 100 lots" },
       { label: "Several stratas under one agreed price", free: false, paid: false, enterprise: true },
     ],
   },

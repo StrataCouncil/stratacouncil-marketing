@@ -8,7 +8,8 @@ import { useState } from "react";
  *
  * Free: Learn, council and committee meetings, and record storage; nothing
  * on it costs us per use. Stratasphere: everything that does (the
- * assistant, search, AI drafting, built-in video) plus AGMs and SGMs.
+ * assistant, search, AI drafting, built-in video), and AGMs and SGMs
+ * once they're built (the app says "coming soon"; so does this page).
  * Enterprise: management companies (or a strata past Stripe's $3,000 a
  * payment), at an agreed price. Any size of strata can subscribe itself.
  *
@@ -50,7 +51,7 @@ const TABLE: { group: string; rows: Row[] }[] = [
       { label: "Draft minutes when you adjourn", free: true, paid: true, enterprise: true },
       { label: "Discussions and votes between meetings", free: true, paid: true, enterprise: true },
       { label: "Built-in video for meetings", free: false, paid: true, enterprise: true },
-      { label: "AGMs and SGMs in Meeting Mode", free: false, paid: true, enterprise: true },
+      { label: "AGMs and SGMs in Meeting Mode", free: false, paid: "Coming soon", enterprise: "Coming soon" },
     ],
   },
   {
@@ -181,7 +182,7 @@ export function Pricing({ signupUrl, contactHref }: { signupUrl: string; contact
             <li>Answers from your records and BC strata law, with sources</li>
             <li>Search across every document</li>
             <li>
-              <strong>AGMs and SGMs</strong> in Meeting Mode
+              <strong>AGMs and SGMs</strong> in Meeting Mode, coming soon
             </li>
             <li>Built-in video for meetings</li>
             <li>Motions drafted, agendas and past minutes read for you</li>

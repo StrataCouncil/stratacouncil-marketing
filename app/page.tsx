@@ -12,7 +12,8 @@ export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: {
  * StrataCouncil.ca builds effective councils; it isn't strata management
  * software. Council Training, the Library, and council and committee
  * meetings in Meeting Mode are free; Stratasphere is the paid product (the
- * assistant, search across the records, AGMs and SGMs, and AI drafting).
+ * assistant, search across the records, AI drafting, and AGMs and SGMs
+ * once they're built).
  * Prices (2026-11-12): $30 a month plus $3 a lot, or $25 plus $2.50 on a
  * 12-month commitment, billed monthly; management companies talk to us.
  *
@@ -36,7 +37,7 @@ export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: {
 const MEETING_STILL: { src: string; width: number; height: number } | null = null;
 
 const pillars = [
-  { id: "learn", verb: "Learn", line: "Know your role.", what: "Council Training and Reference Library", price: "Free training" },
+  { id: "learn", verb: "Learn", line: "Know the role.", what: "Council Training and the Library", price: "Free training" },
   { id: "decide", verb: "Decide", line: "Run the meeting.", what: "Set up, run, and document meetings with ease", price: "Council meetings free" },
   {
     id: "remember",
@@ -136,8 +137,8 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     q: "What happens to our records if we stop?",
     a: (
       <p>
-        Nothing is lost. Your records stay, free to store, and the strata moves back to Free. The assistant, search, AGMs
-        and SGMs, and built-in video turn off. Anything you add in the meantime is read as soon as you subscribe again.
+        Nothing is lost. Your records stay, free to store, and the strata moves back to Free. The assistant, search, AI
+        drafting, and built-in video turn off. Anything you add in the meantime is read as soon as you subscribe again.
       </p>
     ),
   },
@@ -310,7 +311,7 @@ export default function Home() {
             <div className="step">
               <div className="step__text">
                 <p className="eyebrow">Learn &middot; Council Training and the Library</p>
-                <h2>Know your role. Have the playbook.</h2>
+                <h2>Know the role. Have the playbook.</h2>
                 <p className="lede">
                   Short, free lessons on council duties, budgets and the CRF, meetings and voting, and bylaws and fines. The
                   Library keeps the tools beside them.
@@ -338,7 +339,7 @@ export default function Home() {
               <p className="eyebrow">Decide &middot; Meeting Mode</p>
               <h2>Make every meeting count.</h2>
               <p className="lede">
-                From agenda to adjournment, with Stratasphere beside the agenda for questions as they come up.
+                From agenda to adjournment. With Stratasphere, answers sit beside the agenda as questions come up.
               </p>
             </div>
             <div className="decide">
@@ -451,7 +452,7 @@ export default function Home() {
               <h2>Free for every council. Pay only for the Stratasphere.</h2>
               <p className="lede">
                 Training, council meetings, and your records cost nothing, for as long as you use them. Stratasphere adds
-                answers from your records, general meetings, and built-in video.
+                answers from your records and built-in video, with AGMs and SGMs coming soon.
               </p>
             </div>
             <Pricing signupUrl={SIGNUP_URL} contactHref={DEMO_HREF} />

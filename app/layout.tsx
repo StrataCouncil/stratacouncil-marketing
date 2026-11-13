@@ -5,8 +5,8 @@ import { CampaignTags } from "@/components/CampaignTags";
 import { SITE_URL } from "@/app/site-url";
 import "./globals.css";
 
-// Variable, with the SOFT axis: headings use it at full softness and a
-// light weight, which keeps the serif from reading formal.
+// Variable, with the SOFT axis: headings use it at full softness and
+// weight 500 (globals.css), which keeps the serif from reading formal.
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",

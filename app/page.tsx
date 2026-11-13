@@ -377,7 +377,7 @@ export default function Home() {
           <div className="wrap">
             <div className="step">
               <div className="step__text">
-                <p className="eyebrow">Remember</p>
+                <p className="eyebrow">Remember &middot; Stratasphere&trade;</p>
                 <h2>Your council&rsquo;s collective memory.</h2>
                 <p className="lede">
                   Stratasphere&trade; connects your bylaws, meeting minutes, documents, and past decisions, giving your

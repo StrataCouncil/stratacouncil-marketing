@@ -3413,3 +3413,657 @@ html {
     display: none;
   }
 }
+
+/* Taller app screens (the runner's Meeting Mode, the Ask page). */
+.appshot--tall .appframe__screen {
+  height: 500px;
+}
+
+.amm__card--still {
+  animation: none;
+}
+
+.amm__actions {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.amm__btn {
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.amm__btn--primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  transition: opacity 0.3s;
+}
+
+.amm__btn--primary[data-off] {
+  opacity: 0.45;
+}
+
+.amm__result--in {
+  margin: 8px 10px 10px;
+}
+
+/* The runner's live vote panel (LiveVote.tsx). */
+.amm-live {
+  margin-bottom: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+  animation: ask-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.amm-live__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--paper);
+}
+
+.amm-live__badge,
+.amm-live__counted {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #fbeee3;
+  color: var(--accent-dark);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.amm-live__badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: ask-blink 1.2s steps(1) infinite;
+}
+
+.amm-live__counted {
+  background: var(--free-bg);
+  color: var(--free);
+}
+
+.amm-live__meta {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.amm-live__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 10px;
+  border-top: 1px solid var(--line);
+}
+
+.amm-live__who {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.amm-live__who small {
+  font-weight: 400;
+  font-size: 9.5px;
+  color: var(--muted);
+}
+
+.amm-ch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 10.5px;
+  font-weight: 600;
+  animation: ask-in 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.amm-ch--for {
+  border-color: var(--free);
+  background: var(--free-bg);
+  color: var(--free);
+}
+
+.amm-ch--against {
+  border-color: var(--danger);
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.amm-ch--idle {
+  color: var(--locked);
+  animation: none;
+}
+
+.amm-live__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  padding: 6px 10px;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  font-size: 11px;
+}
+
+.amm-live__foot b {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 15px;
+}
+
+.amm-live__need {
+  flex-basis: 100%;
+}
+
+.amm-live__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  border-top: 1px solid var(--line);
+}
+
+/* The runner's right column with Stratasphere open (MeetingStratasphere.tsx). */
+.amm__cols--runner {
+  grid-template-columns: 22% 1fr 32%;
+}
+
+.amm__side--ask {
+  padding: 10px 0 0;
+}
+
+.amm__side--ask > .amm__sidehead,
+.amm__side--ask > .amm__quorum {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.amm__sidehead--open {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.amm-ask {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.amm-ask__focus {
+  padding: 6px 10px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+
+.amm-ask__body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 10px;
+  font-size: 11px;
+}
+
+.amm-ask__suggest {
+  display: grid;
+  gap: 5px;
+}
+
+.amm-ask__suggest span {
+  padding: 5px 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+.amm-ask__q {
+  align-self: flex-end;
+  max-width: 90%;
+  margin: 0;
+  padding: 5px 8px;
+  border-radius: 10px 10px 2px 10px;
+  background: var(--ink);
+  color: #fff;
+  animation: ask-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.amm-ask__thinking {
+  margin: 0;
+  color: var(--muted);
+}
+
+.amm-ask__thinking span {
+  animation: ask-blink 0.9s steps(1) infinite;
+}
+
+.amm-ask__thinking span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.amm-ask__thinking span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.amm-ask__a {
+  animation: ask-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.amm-ask__a p {
+  margin: 0;
+}
+
+.amm-ask__sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.amm-ask__chip {
+  padding: 1px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 9.5px;
+}
+
+.amm-ask__note {
+  margin-top: 5px !important;
+  font-size: 9.5px;
+  color: var(--muted);
+}
+
+.amm-ask__compose {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 10px;
+  border-top: 1px solid var(--line);
+}
+
+.amm-ask__input {
+  min-height: 30px;
+  padding: 5px 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+}
+
+.amm-ask__input i {
+  font-style: normal;
+  color: var(--locked);
+}
+
+.amm-ask__send {
+  align-self: flex-end;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 600;
+  opacity: 0.45;
+  transition: opacity 0.3s;
+}
+
+.amm-ask__send[data-ready] {
+  opacity: 1;
+}
+
+@container (max-width: 640px) {
+  .amm__cols--runner {
+    grid-template-columns: 1fr 40%;
+  }
+  .amm__cols--runner .amm__nav {
+    display: none;
+  }
+}
+
+@container (max-width: 470px) {
+  .amm__cols--runner {
+    grid-template-columns: 1fr;
+  }
+  .amm__cols--runner .amm__side {
+    display: none;
+  }
+}
+
+/* Stratasphere's own window: the Ask page (StratasphereChat.tsx). */
+.ach {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  height: 100%;
+  margin: 12px;
+  height: calc(100% - 24px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.ach__side {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 10px;
+  background: var(--paper);
+  border-right: 1px solid var(--line);
+  font-size: 11px;
+}
+
+.ach__new {
+  margin-bottom: 6px;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  text-align: center;
+  font-weight: 600;
+}
+
+.ach__section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ach__section:first-of-type {
+  border-top: 0;
+}
+
+.ach__section em {
+  font-style: normal;
+  color: var(--accent);
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 10px;
+}
+
+.ach__date {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.ach__item {
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ach__item--in {
+  padding-left: 16px;
+}
+
+.ach__item--active {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  animation: ask-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.ach__project {
+  padding: 2px 6px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.ach__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ach__head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.ach__head span {
+  font-size: 9.5px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.ach__transcript {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+}
+
+.ach__empty {
+  margin: auto;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.ach__q {
+  align-self: flex-end;
+  max-width: 85%;
+  margin: 0;
+  padding: 7px 11px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  animation: ask-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.ach__answer {
+  max-width: 88%;
+}
+
+.ach__a {
+  margin: 0;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.ach__a--dots {
+  display: inline-flex;
+  gap: 4px;
+  align-self: flex-start;
+}
+
+.ach__a--dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: ask-pulse 1s ease-in-out infinite;
+}
+
+.ach__a--dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.ach__a--dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.ach__sources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  animation: ask-in 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.ach__srclabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.ach__chip {
+  padding: 1px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 10px;
+}
+
+.ach__chip[data-doc] {
+  color: var(--accent);
+}
+
+.ach__composer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 12px 4px;
+  border-top: 1px solid var(--line);
+}
+
+.ach__input {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 9px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+.ach__input i {
+  font-style: normal;
+  color: var(--locked);
+}
+
+.ach__send {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  opacity: 0.45;
+  transition: opacity 0.3s;
+}
+
+.ach__send[data-ready] {
+  opacity: 1;
+}
+
+.ach__disclaimer {
+  margin: 0;
+  padding: 4px 12px 10px;
+  font-size: 9.5px;
+  color: var(--muted);
+}
+
+@container (max-width: 520px) {
+  .ach {
+    grid-template-columns: 1fr;
+  }
+  .ach__side {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .amm-live,
+  .amm-ch,
+  .amm-live__badge::before,
+  .amm-ask__q,
+  .amm-ask__a,
+  .amm-ask__thinking span,
+  .ach__item--active,
+  .ach__q,
+  .ach__a--dots span,
+  .ach__sources {
+    animation: none;
+  }
+}
+
+.appshot--runner .appframe__screen {
+  height: 560px;
+}
+
+/* While the vote is open the motion shows its text only, as space is short. */
+.amm__card[data-compact] .amm__by {
+  display: none;
+}
+
+.amm__card[data-compact] .amm__motion {
+  margin-bottom: 0;
+}
+
+.amm-ask__compose {
+  flex-direction: row;
+  align-items: center;
+}
+
+.amm-ask__input {
+  flex: 1;
+  min-width: 0;
+}
+
+.amm-ask__send {
+  align-self: center;
+}
+
+@container (max-width: 470px) {
+  .amm__card[data-compact] {
+    display: none;
+  }
+}
+
+/* Columns fill the screen exactly; each clips its own overflow. */
+.amm__cols {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.amm__main {
+  overflow: hidden;
+}

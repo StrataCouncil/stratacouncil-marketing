@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DemoRequestForm } from "@/components/DemoRequestForm";
 import { MeetingAgenda } from "@/components/MeetingAgenda";
 import { Pricing } from "@/components/Pricing";
+import { StratasphereDemo } from "@/components/StratasphereDemo";
 import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
 
@@ -57,18 +58,6 @@ const meetingOutcomes = [
   "Conflicts of interest declared and recorded with the item.",
   "Draft minutes the moment you adjourn.",
 ];
-
-/**
- * One example question and answer, for a fictional strata. Illustrative:
- * not a promise about any one strata's documents.
- */
-const example = {
-  question:
-    "Our roof is near the end of its service life. What should council review before deciding whether to repair or replace it?",
-  answer:
-    "Start with the depreciation report, the latest roof inspection, past repair invoices and warranties, and the strata\u2019s financial position. Then weigh the options, get professional advice where it\u2019s needed, and decide how the work will be funded.",
-  sources: ["Depreciation report", "Roof inspection", "Previous council minutes", "Financial statements"],
-};
 
 const managerPoints = [
   "Motions, votes, and conflicts recorded as the meeting happens, with draft minutes at adjournment.",
@@ -376,12 +365,16 @@ export default function Home() {
           <div className="wrap">
             <div className="step">
               <div className="step__text">
-                <p className="eyebrow">Remember &middot; Stratasphere&trade;</p>
-                <h2>Never lose what your council knows.</h2>
+                <p className="eyebrow">Remember</p>
+                <h2>Your council&rsquo;s collective memory.</h2>
                 <p className="lede">
-                  Ask a question and get an answer grounded in your strata&rsquo;s records, its past decisions, and BC strata law, with references you can check. When the answer isn&rsquo;t in the records, it says so.
+                  Stratasphere&trade; connects your bylaws, meeting minutes, documents, and past decisions, giving your
+                  council instant access to the knowledge it needs to make informed decisions.
                 </p>
-                <p className="lede">Your records stay free to store, so they stay with the strata, whoever is on council.</p>
+                <p className="lede">
+                  Ask questions, uncover historical context, and find answers grounded in your strata&rsquo;s records and
+                  BC legislation, with references you can verify.
+                </p>
                 <div className="actions">
                   <a href={DEMO_HREF} className="button button-primary">
                     Explore Stratasphere
@@ -389,26 +382,7 @@ export default function Home() {
                   <span className="pill">Free document storage</span>
                 </div>
               </div>
-              <div className="records" aria-label="An example question for Stratasphere">
-                <div className="ask__window">
-                  <div className="ask__chrome" aria-hidden="true">
-                    <span className="ask__dot" />
-                    <span className="ask__dot" />
-                    <span className="ask__dot" />
-                    <span className="ask__title">Ask Stratasphere&trade;</span>
-                  </div>
-                  <div className="ask__body qa">
-                    <p className="qa__q">{example.question}</p>
-                    <p className="qa__a">{example.answer}</p>
-                    <ul className="chips chips--small" aria-label="Sources">
-                      {example.sources.map((x) => (
-                        <li key={x}>{x}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <p className="ask__caption">An example, for a fictional strata.</p>
-              </div>
+              <StratasphereDemo />
             </div>
           </div>
         </section>

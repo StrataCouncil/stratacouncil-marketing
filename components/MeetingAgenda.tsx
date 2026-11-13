@@ -1,96 +1,104 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { AppFrame, prefersReducedMotion, useInView } from "@/components/AppFrame";
 
 /**
- * How it works, step 3's illustration: a council meeting playing out in
- * Meeting Mode, in a short window. Once it scrolls into view, the current
- * item moves down the agenda (which scrolls to keep it near the top);
- * motions appear, their votes count up and the result is recorded; then it
- * loops. With reduced motion it holds on the roof item, motion recorded.
+ * The Meeting Mode section's illustration: the app's Meeting Mode
+ * (components/meetings/MeetingMode.tsx in the app), with its top bar, the
+ * agenda down the left, the open item in the middle, and who's in
+ * attendance on the right. Once in view the meeting moves down the agenda;
+ * motions are moved and seconded, their votes count up, and the result is
+ * recorded; then it loops. With reduced motion it holds on the roof item,
+ * its vote recorded.
  *
- * Items follow the app's council meeting template and purposes. Votes are
- * counted the way Meeting Mode counts a council vote: carried by a majority
- * of the members present (5 of a council of 7 here, quorum being 4). A
- * fictional strata; officers by role, owners by strata lot.
+ * Items follow the app's council meeting template. Votes are counted the
+ * way Meeting Mode counts a council vote: carried by a majority of the
+ * members present (5 of a council of 7 here; quorum is 4). A fictional
+ * strata; officers by role, owners by strata lot.
  */
 
 interface Motion {
   text: string;
   votes: [number, number, number];
+  moved: string;
+  seconded: string;
 }
 
 interface Item {
+  cat: string;
   text: string;
   purpose: string;
   motion?: Motion;
-  /** Recorded once the item is dealt with. */
-  result?: string;
 }
 
 const ITEMS: Item[] = [
-  { text: "Call to Order", purpose: "For information" },
-  { text: "Approve Agenda", purpose: "For approval", result: "Carried" },
-  { text: "Approve Minutes of Previous Council Meeting", purpose: "For approval", result: "Carried" },
-  { text: "Review Financial Statements", purpose: "For approval", result: "Carried" },
+  { cat: "Opening", text: "Call to Order", purpose: "For information" },
+  { cat: "Administrative", text: "Approve Agenda", purpose: "For approval" },
+  { cat: "Administrative", text: "Approve Minutes of Previous Council Meeting", purpose: "For approval" },
+  { cat: "Financial", text: "Review Financial Statements", purpose: "For approval" },
   {
+    cat: "New Business",
     text: "Roof: depreciation report and inspection",
     purpose: "For decision",
-    motion: { text: "To obtain three quotes for roof replacement and report back at the next meeting.", votes: [4, 1, 0] },
-    result: "Carried",
+    motion: {
+      text: "To obtain three quotes for roof replacement and report back at the next meeting.",
+      votes: [4, 1, 0],
+      moved: "SL012, Treasurer",
+      seconded: "SL015, Secretary",
+    },
   },
   {
+    cat: "New Business",
     text: "Balcony alteration request, SL58",
     purpose: "For decision",
-    motion: { text: "To approve SL58’s balcony alteration, subject to a signed alteration agreement.", votes: [5, 0, 0] },
-    result: "Carried",
+    motion: {
+      text: "To approve SL58’s balcony alteration, subject to a signed alteration agreement.",
+      votes: [5, 0, 0],
+      moved: "SL015, Secretary",
+      seconded: "SL010, President",
+    },
   },
-  { text: "EV charging policy", purpose: "For discussion" },
-  { text: "Set Next Meeting Date", purpose: "For information" },
-  { text: "Adjournment", purpose: "For approval", result: "Carried" },
+  { cat: "New Business", text: "EV charging policy", purpose: "For discussion" },
+  { cat: "Next Meeting", text: "Set Next Meeting Date", purpose: "For information" },
+  { cat: "Closing", text: "Adjournment", purpose: "For approval" },
+];
+
+const PRESENT = [
+  { lot: "SL010", role: "President" },
+  { lot: "SL011", role: "Vice President" },
+  { lot: "SL012", role: "Treasurer" },
+  { lot: "SL015", role: "Secretary" },
+  { lot: "SL021", role: "Member at Large" },
 ];
 
 const ROOF = 4;
 const STEP_MS = 1500;
-const VOTE_MS = 380;
-const HOLD_MS = 1800;
+const VOTE_MS = 420;
+const HOLD_MS = 2000;
 
-/** How far through the meeting it is: the current item, and how many of its votes are counted. */
+/** How far through the meeting it is: the open item, and how many of its vote counts are in. */
 interface Phase {
   at: number;
   counted: number;
 }
 
+const clock = (s: number) => [Math.floor(s / 3600), Math.floor(s / 60) % 60, s % 60].map((n) => String(n).padStart(2, "0")).join(":");
+
 export function MeetingAgenda() {
+  const { ref, seen } = useInView<HTMLDivElement>();
   const [phase, setPhase] = useState<Phase>({ at: 0, counted: 0 });
-  const [started, setStarted] = useState(false);
+  const [seconds, setSeconds] = useState(1);
   const [offset, setOffset] = useState(0);
-  const root = useRef<HTMLDivElement>(null);
   const rows = useRef<(HTMLLIElement | null)[]>([]);
 
   useEffect(() => {
-    const el = root.current;
-    if (!el) return;
-    if (!("IntersectionObserver" in window)) return setStarted(true);
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setStarted(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.35 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (prefersReducedMotion()) {
       setPhase({ at: ROOF, counted: 3 });
+      setSeconds(1336);
       return;
     }
-    if (!started) return;
+    if (!seen) return;
     const timers: ReturnType<typeof setTimeout>[] = [];
     const at = (ms: number, fn: () => void) => timers.push(setTimeout(fn, ms));
     const loop = () => {
@@ -106,79 +114,144 @@ export function MeetingAgenda() {
           t += HOLD_MS;
         }
       });
-      at(t, () => setPhase({ at: ITEMS.length, counted: 0 }));
+      at(t, () => setPhase({ at: ITEMS.length - 1, counted: 3 }));
       t += HOLD_MS + 1200;
-      at(t, loop);
+      at(t, () => {
+        setSeconds(1);
+        loop();
+      });
     };
     loop();
-    return () => timers.forEach(clearTimeout);
-  }, [started]);
+    const tick = setInterval(() => setSeconds((s) => s + 37), 1000);
+    return () => {
+      timers.forEach(clearTimeout);
+      clearInterval(tick);
+    };
+  }, [seen]);
 
-  // Keep the current item second from the top of the window.
+  // Keep the open item near the top of the agenda column.
   useLayoutEffect(() => {
-    const prev = rows.current[Math.min(phase.at, ITEMS.length - 1) - 1];
-    setOffset(prev ? prev.offsetTop : 0);
+    const prev = rows.current[Math.max(phase.at - 2, 0)];
+    setOffset(phase.at >= 3 && prev ? prev.offsetTop : 0);
   }, [phase.at]);
 
+  const item = ITEMS[phase.at];
+  const m = item.motion;
+  const done = (i: number) => i < phase.at || (i === phase.at && (!ITEMS[i].motion ? false : phase.counted === 3));
+
   return (
-    <div className="agenda" ref={root} aria-label="An example council meeting in Meeting Mode">
-      <div className="ask__window">
-        <div className="ask__chrome" aria-hidden="true">
-          <span className="ask__dot" />
-          <span className="ask__dot" />
-          <span className="ask__dot" />
-          <span className="ask__title">Stratasphere&trade; &middot; Meeting Mode</span>
-        </div>
-        <div className="ask__body">
-          <div className="agenda__head">
-            <strong>Council meeting</strong>
-            <span className="agenda__quorum">Quorum met &middot; 5 of 7 present</span>
-          </div>
-          <div className="agenda__viewport">
-            <ol className="agenda__list" style={{ transform: `translateY(-${offset}px)` }}>
-              {ITEMS.map((it, i) => {
-                const status = i < phase.at ? "done" : i === phase.at ? "now" : "next";
-                const counted = i === phase.at ? phase.counted : i < phase.at ? 3 : 0;
-                const recorded = status === "done" || (status === "now" && it.motion && counted === 3);
-                return (
-                  <li
-                    key={it.text}
-                    ref={(el) => {
-                      rows.current[i] = el;
-                    }}
-                    className="agenda__item"
-                    data-status={status}
-                  >
-                    <span className="agenda__num">{i + 1}</span>
-                    <span className="agenda__text">
-                      {it.text}
-                      <span className="agenda__purpose">{it.purpose}</span>
-                    </span>
-                    {recorded && it.result ? (
-                      <span className="agenda__result">{it.result}</span>
-                    ) : status === "now" ? (
-                      <span className="agenda__now">Now</span>
-                    ) : null}
-                    {it.motion && status === "now" && (
-                      <div className="agenda__motion">
-                        <p>
-                          <span className="ask__label">Motion</span> {it.motion.text}
-                        </p>
-                        <p className="agenda__by">Moved by the treasurer &middot; Seconded by the secretary</p>
-                        <p className="agenda__votes">
-                          <span>For {counted >= 1 ? it.motion.votes[0] : "–"}</span>
-                          <span>Against {counted >= 2 ? it.motion.votes[1] : "–"}</span>
-                          <span>Abstain {counted >= 3 ? it.motion.votes[2] : "–"}</span>
-                        </p>
-                      </div>
+    <div className="appshot" ref={ref}>
+      <AppFrame url="app.stratacouncil.ca/strata/meetings/run" label="Meeting Mode in the app running a council meeting: the agenda, the motion, and the vote counted and recorded">
+        <div className="amm">
+          <header className="amm__bar">
+            <div>
+              <strong>Strata Council Meeting</strong>
+              <span>Harbourview Commons</span>
+            </div>
+            <span className="amm__clock">{clock(seconds)}</span>
+            <span className="amm__saved">Saved</span>
+            <span className="amm__avatar">S</span>
+            <span className="amm__handover">Hand over</span>
+          </header>
+          <div className="amm__cols">
+            <nav className="amm__nav">
+              <p className="amm__chair">Chair: President</p>
+              <div className="amm__navport">
+                <ol style={{ transform: `translateY(-${offset}px)` }}>
+                  {ITEMS.map((it, i) => (
+                    <li
+                      key={it.text}
+                      ref={(el) => {
+                        rows.current[i] = el;
+                      }}
+                      data-active={i === phase.at ? "" : undefined}
+                      data-done={done(i) ? "" : undefined}
+                    >
+                      {(i === 0 || ITEMS[i - 1].cat !== it.cat) && <span className="amm__cat">{it.cat}</span>}
+                      <span className="amm__row">
+                        <span className="amm__tick" />
+                        {i + 1}. {it.text}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </nav>
+            <main className="amm__main">
+              <span className="amm__itemcat">{item.cat}</span>
+              <h4 className="amm__title">
+                {phase.at + 1}. {item.text}
+              </h4>
+              <div className="amm__pills">
+                <span className="amm__pill amm__pill--accent">{item.purpose}</span>
+                {m && <span className="amm__pill">Majority of council members present</span>}
+              </div>
+              {m ? (
+                <>
+                  <section className="amm__card">
+                    <span className="amm__label">Motion</span>
+                    <p className="amm__motion">{m.text}</p>
+                    <div className="amm__by">
+                      <span>
+                        <em>Moved by</em> {m.moved}
+                      </span>
+                      <span>
+                        <em>Seconded by</em> {m.seconded}
+                      </span>
+                    </div>
+                  </section>
+                  <section className="amm__card">
+                    <span className="amm__label">Vote</span>
+                    <div className="amm__votes">
+                      {(["For", "Against", "Abstain"] as const).map((k, j) => (
+                        <span key={k} data-kind={k.toLowerCase()}>
+                          <b>{phase.counted > j ? m.votes[j] : "–"}</b>
+                          {k}
+                        </span>
+                      ))}
+                    </div>
+                    {phase.counted === 3 ? (
+                      <p className="amm__result">
+                        Carried, {m.votes[0]} to {m.votes[1]}. Recorded in the draft minutes.
+                      </p>
+                    ) : (
+                      <p className="amm__hint">Council members are voting on their own screens.</p>
                     )}
+                  </section>
+                </>
+              ) : (
+                <section className="amm__card">
+                  <span className="amm__label">Procedure</span>
+                  <p className="amm__hint">
+                    {item.purpose === "For approval"
+                      ? "Moved, seconded, and carried by a majority of the members present."
+                      : item.purpose === "For discussion"
+                        ? "Discussed; no motion. Notes go to the minutes summary."
+                        : "Noted in the minutes."}
+                  </p>
+                </section>
+              )}
+            </main>
+            <aside className="amm__side">
+              <p className="amm__sidehead">
+                <span>&minus;</span> In attendance (5)
+              </p>
+              <p className="amm__quorum">Quorum met: 5 of 7 council members</p>
+              <ul className="amm__people">
+                {PRESENT.map((p) => (
+                  <li key={p.lot}>
+                    <span className="amm__dot" />
+                    {p.lot} <em>{p.role}</em>
                   </li>
-                );
-              })}
-            </ol>
+                ))}
+              </ul>
+              <p className="amm__sidehead amm__sidehead--foot">
+                <span>+</span> Stratasphere&trade;
+              </p>
+            </aside>
           </div>
         </div>
-      </div>
+      </AppFrame>
       <p className="ask__caption">Example meeting using a fictional strata.</p>
     </div>
   );

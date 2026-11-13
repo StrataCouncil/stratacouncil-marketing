@@ -59,11 +59,23 @@ const meetingOutcomes = [
   "Draft minutes the moment you adjourn.",
 ];
 
-const managerPoints = [
-  "Motions, votes, and conflicts recorded as the meeting happens, with draft minutes at adjournment.",
-  "Councils find answers in their own bylaws, minutes, and BC strata law, with the sources.",
-  "New council members learn the basics, free.",
-  "Works alongside your management software; it doesn\u2019t replace it.",
+const managerPoints: { lead: string; rest: string }[] = [
+  {
+    lead: "Meetings that practically run themselves.",
+    rest: "Manage agendas, attendance, motions, voting, and decisions in one place, with structured draft minutes ready for review.",
+  },
+  {
+    lead: "Answers without the endless email chains.",
+    rest: "Give councils access to their bylaws, meeting history, and relevant BC legislation through Stratasphere, with verifiable sources.",
+  },
+  {
+    lead: "Better-informed council members.",
+    rest: "Free, practical training helps new and experienced volunteers understand their responsibilities.",
+  },
+  {
+    lead: "Works with the tools you already use.",
+    rest: "StrataCouncil.ca complements your existing management software rather than replacing it.",
+  },
 ];
 
 /**
@@ -400,10 +412,11 @@ export default function Home() {
           <div className="wrap split">
             <div>
               <p className="eyebrow">For strata managers</p>
-              <h2>Better-prepared councils. Less meeting administration.</h2>
+              <h2>Less administration. More effective councils.</h2>
               <p className="lede">
-                Councils that know their responsibilities, and meetings that end with organized decisions and draft
-                minutes.
+                Strata managers have enough on their plates. StrataCouncil.ca helps councils take greater responsibility for
+                their own governance, streamlines meetings and decision-making, and makes important information easier to
+                find. Less time chasing paperwork and answering repetitive questions. More time managing properties.
               </p>
               <div className="actions">
                 <a href={DEMO_HREF} className="button button--light">
@@ -413,7 +426,9 @@ export default function Home() {
             </div>
             <ul className="list-check">
               {managerPoints.map((p) => (
-                <li key={p}>{p}</li>
+                <li key={p.lead}>
+                  <strong>{p.lead}</strong> {p.rest}
+                </li>
               ))}
             </ul>
           </div>

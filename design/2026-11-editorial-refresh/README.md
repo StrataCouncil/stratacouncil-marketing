@@ -12,8 +12,9 @@ CSS, not a parallel system; the app is unchanged.
   with *better* in clay italic, the two buttons, and the hero illustration
   fading into the cream.
 - **The three tools:** alternating rows divided by thin rules, each with an
-  illustrated laptop on one side and the words on the other, a thin rule
-  between them. The live app demos (TrainingPreview, MeetingAgenda,
+  illustrated laptop on one side, running out to the page edge, and the
+  words on the other, a thin clay rule between them. Meeting Mode uses the
+  training laptop mirrored. The live app demos (TrainingPreview, MeetingAgenda,
   StratasphereDemo) run on the laptops' screens: `components/Device.tsx`
   places each demo over the drawn screen (percentages per illustration in
   `.device--training` and so on) and scales it from three times the
@@ -46,8 +47,9 @@ original reference image from the brief is not used anywhere.
 
 ## Copy
 
-Unchanged except where the layout needed shorter lines. Two lines in the
-approved design were reworded to stay accurate: Meeting Mode's minutes are
-drafted from the meeting record, not by AI, and the legal side is "worked
-out for you", never a promise of compliance. The Strata Property Act note
-stays under Meeting Mode.
+The three tools use the approved design's short lines, with two kept
+accurate: Council Training is "free, on-demand lessons, guides, and
+templates" (it is lessons, not courses), and Meeting Mode's minutes are
+"draft minutes", not AI-assisted (they are drafted from the meeting
+record). The fictional-strata and Strata Property Act notes sit under the
+rows. Headlines are Fraunces 700, as in the design.

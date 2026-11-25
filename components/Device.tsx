@@ -8,24 +8,10 @@
  */
 export type Art = { src: string; width: number; height: number; alt: string };
 
-export function Device({
-  art,
-  variant,
-  children,
-}: {
-  art: Art;
-  variant: string;
-  children: React.ReactNode;
-}) {
+export function Device({ art, variant, children }: { art: Art; variant: string; children: React.ReactNode }) {
   return (
     <figure className={`device device--${variant}`}>
-      <img
-        src={art.src}
-        width={art.width}
-        height={art.height}
-        alt={art.alt}
-        loading="lazy"
-      />
+      <img src={art.src} width={art.width} height={art.height} alt={art.alt} loading="lazy" />
       <div className="device__screen">
         <div className="device__scaler">{children}</div>
       </div>

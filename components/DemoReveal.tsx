@@ -23,10 +23,7 @@ export function DemoReveal({ signupUrl }: { signupUrl: string }) {
   }, []);
 
   useEffect(() => {
-    if (open)
-      panel.current
-        ?.querySelector<HTMLInputElement>("input")
-        ?.focus({ preventScroll: true });
+    if (open) panel.current?.querySelector<HTMLInputElement>("input")?.focus({ preventScroll: true });
   }, [open]);
 
   return (
@@ -46,12 +43,7 @@ export function DemoReveal({ signupUrl }: { signupUrl: string }) {
           Start free training
         </a>
       </div>
-      <div
-        className="panel closer__form"
-        id="demo-form"
-        ref={panel}
-        hidden={!open}
-      >
+      <div className="panel closer__form" id="demo-form" ref={panel} hidden={!open}>
         <DemoRequestForm page="home" legal />
       </div>
     </>

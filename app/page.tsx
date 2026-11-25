@@ -4,12 +4,7 @@ import { type Art, Device } from "@/components/Device";
 import { MeetingAgenda } from "@/components/MeetingAgenda";
 import { Pricing } from "@/components/Pricing";
 import { StratasphereDemo } from "@/components/StratasphereDemo";
-import {
-  DEMO_HREF,
-  SiteFooter,
-  SiteHeader,
-  SIGNUP_URL,
-} from "@/components/SiteChrome";
+import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
 
 export const metadata: Metadata = {
@@ -47,8 +42,7 @@ export const metadata: Metadata = {
  * section shows its mockup. Interactives (an interactive walkthrough built
  * into the app) replace it later.
  */
-const MEETING_STILL: { src: string; width: number; height: number } | null =
-  null;
+const MEETING_STILL: { src: string; width: number; height: number } | null = null;
 
 const managerPoints: { lead: string; rest: string }[] = [
   {
@@ -75,10 +69,7 @@ const managerPoints: { lead: string; rest: string }[] = [
  * backgrounds. The three laptops carry the live app demos on their screens
  * (components/Device.tsx). Kept in public/illustrations at 1400px wide.
  */
-const ART: Record<
-  "hero" | "training" | "meeting" | "stratasphere" | "managers" | "closer",
-  Art
-> = {
+const ART: Record<"hero" | "training" | "meeting" | "stratasphere" | "managers" | "closer", Art> = {
   hero: {
     src: "/illustrations/hero.webp",
     width: 1400,
@@ -127,9 +118,8 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     q: "Is Free really free for good?",
     a: (
       <p>
-        Yes. There is no trial, no time limit, and no card. Council Training,
-        the Library, council and committee meetings in Meeting Mode, and storage
-        for your records stay free. You pay only if you want Stratasphere.
+        Yes. There is no trial, no time limit, and no card. Council Training, the Library, council and committee
+        meetings in Meeting Mode, and storage for your records stay free. You pay only if you want Stratasphere.
       </p>
     ),
   },
@@ -138,11 +128,9 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         <p>
-          Monthly, to the strata corporation, by card or pre-authorized debit.
-          Monthly is $30 per strata plus $3 per strata lot, so a 45-lot strata
-          pays $165 a month. Yearly is $25 plus $2.50 per lot on a 12-month
-          commitment, still billed monthly, so the same strata pays $137.50 a
-          month.
+          Monthly, to the strata corporation, by card or pre-authorized debit. Monthly is $30 per strata plus $3 per
+          strata lot, so a 45-lot strata pays $165 a month. Yearly is $25 plus $2.50 per lot on a 12-month commitment,
+          still billed monthly, so the same strata pays $137.50 a month.
         </p>
         <p>Prices are in Canadian dollars, plus GST.</p>
       </>
@@ -152,11 +140,9 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     q: "Can council approve it without a general meeting?",
     a: (
       <p>
-        Spending that isn&rsquo;t in the budget is limited by your bylaws and
-        the Strata Property Act. If your limit is $2,000, a full year of the
-        Yearly plan stays under it, GST included, for stratas of up to 53 lots
-        (Monthly: up to 42). Check your own bylaws, or add it to the next
-        budget.
+        Spending that isn&rsquo;t in the budget is limited by your bylaws and the Strata Property Act. If your limit is
+        $2,000, a full year of the Yearly plan stays under it, GST included, for stratas of up to 53 lots (Monthly: up
+        to 42). Check your own bylaws, or add it to the next budget.
       </p>
     ),
   },
@@ -164,10 +150,8 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     q: "Who can use it?",
     a: (
       <p>
-        Council, your strata manager and their assistants, and the admins named
-        on your Council page. There is no charge per person. Owners don&rsquo;t
-        sign in: this is a tool for the people who run the strata, not an owner
-        portal.
+        Council, your strata manager and their assistants, and the admins named on your Council page. There is no charge
+        per person. Owners don&rsquo;t sign in: this is a tool for the people who run the strata, not an owner portal.
       </p>
     ),
   },
@@ -175,10 +159,8 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     q: "What happens to our records if we stop?",
     a: (
       <p>
-        Nothing is lost. Your records stay, free to store, and the strata moves
-        back to Free. The assistant, search, AI drafting, and built-in video
-        turn off. Anything you add in the meantime is read as soon as you
-        subscribe again.
+        Nothing is lost. Your records stay, free to store, and the strata moves back to Free. The assistant, search, AI
+        drafting, and built-in video turn off. Anything you add in the meantime is read as soon as you subscribe again.
       </p>
     ),
   },
@@ -186,9 +168,8 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     q: "Can we cancel?",
     a: (
       <p>
-        Yes. On Monthly, the subscription ends at the end of the month
-        you&rsquo;ve paid for. On Yearly, it doesn&rsquo;t renew, and billing
-        and access continue to the end of the 12-month term.
+        Yes. On Monthly, the subscription ends at the end of the month you&rsquo;ve paid for. On Yearly, it
+        doesn&rsquo;t renew, and billing and access continue to the end of the 12-month term.
       </p>
     ),
   },
@@ -196,9 +177,8 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     q: "Can we use it with our strata manager?",
     a: (
       <p>
-        Yes. Invite your strata manager, and the record stays with the strata if
-        you ever change management companies. Management companies running
-        several stratas can talk to us about one agreed price.
+        Yes. Invite your strata manager, and the record stays with the strata if you ever change management companies.
+        Management companies running several stratas can talk to us about one agreed price.
       </p>
     ),
   },
@@ -209,43 +189,33 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     q: "Is Stratasphere secure?",
     a: (
       <>
-        <p>
-          Strata records can contain sensitive information. Protecting that
-          information is essential.
-        </p>
+        <p>Strata records can contain sensitive information. Protecting that information is essential.</p>
         <p>Stratasphere&rsquo;s safeguards include:</p>
         <ul>
           <li>
-            <strong>Data stored in Canada:</strong> Strata records and files are
-            stored in Canada.
+            <strong>Data stored in Canada:</strong> Strata records and files are stored in Canada.
           </li>
           <li>
-            <strong>Encryption:</strong> Data is encrypted in transit and at
-            rest.
+            <strong>Encryption:</strong> Data is encrypted in transit and at rest.
           </li>
           <li>
-            <strong>Access controls:</strong> Row-level security limits access
-            to records according to the user&rsquo;s permissions.
+            <strong>Access controls:</strong> Row-level security limits access to records according to the user&rsquo;s
+            permissions.
           </li>
           <li>
             <strong>Two-factor sign-in:</strong> Available on every account.
           </li>
           <li>
-            <strong>Hosting standards:</strong> The hosting provider is SOC 2
-            and ISO 27001 compliant.
+            <strong>Hosting standards:</strong> The hosting provider is SOC 2 and ISO 27001 compliant.
           </li>
           <li>
-            <strong>Privacy before AI processing:</strong> Names and personal
-            details are removed before information is sent to
-            Stratasphere&rsquo;s AI. Information sent to the AI is not used to
-            train AI models.
+            <strong>Privacy before AI processing:</strong> Names and personal details are removed before information is
+            sent to Stratasphere&rsquo;s AI. Information sent to the AI is not used to train AI models.
           </li>
         </ul>
         <p>
-          StrataCouncil.ca is designed to support compliance with BC&rsquo;s
-          Personal Information Protection Act (PIPA). See the{" "}
-          <a href="/privacy">Privacy Policy</a> for details about how personal
-          information is handled.
+          StrataCouncil.ca is designed to support compliance with BC&rsquo;s Personal Information Protection Act (PIPA).
+          See the <a href="/privacy">Privacy Policy</a> for details about how personal information is handled.
         </p>
       </>
     ),
@@ -255,19 +225,14 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         <p>
-          Strata management software typically supports the day-to-day
-          administration of a building, including accounting, owner payments,
-          maintenance requests, and bookings.
+          Strata management software typically supports the day-to-day administration of a building, including
+          accounting, owner payments, maintenance requests, and bookings.
         </p>
         <p>
-          StrataCouncil.ca focuses on the council and its decisions: helping
-          members learn their responsibilities, organize records, run meetings,
-          and find relevant information when questions arise.
+          StrataCouncil.ca focuses on the council and its decisions: helping members learn their responsibilities,
+          organize records, run meetings, and find relevant information when questions arise.
         </p>
-        <p>
-          It is designed to work alongside your existing management software and
-          strata manager, not replace them.
-        </p>
+        <p>It is designed to work alongside your existing management software and strata manager, not replace them.</p>
       </>
     ),
   },
@@ -276,13 +241,12 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         <p>
-          No. Stratasphere helps councils prepare for meetings, maintain
-          records, and find relevant information. It can be used alongside a
-          strata manager or by a self-managed strata.
+          No. Stratasphere helps councils prepare for meetings, maintain records, and find relevant information. It can
+          be used alongside a strata manager or by a self-managed strata.
         </p>
         <p>
-          It does not replace the professional judgement of a strata manager,
-          qualified specialist, or lawyer, and it is not legal advice.
+          It does not replace the professional judgement of a strata manager, qualified specialist, or lawyer, and it is
+          not legal advice.
         </p>
       </>
     ),
@@ -291,9 +255,8 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     q: "Do I need to be on council to take the training?",
     a: (
       <p>
-        No. The training is free and open to anyone. If you own a strata lot and
-        are considering running for council, it can help you understand the
-        responsibilities before the next AGM.
+        No. The training is free and open to anyone. If you own a strata lot and are considering running for council, it
+        can help you understand the responsibilities before the next AGM.
       </p>
     ),
   },
@@ -326,15 +289,10 @@ export default function Home() {
                 strata council.
               </h1>
               <p className="lede">
-                Training, meeting tools, and institutional memory to make your
-                strata council more effective.
+                Training, meeting tools, and institutional memory to make your strata council more effective.
               </p>
               <div className="actions">
-                <a
-                  href={SIGNUP_URL}
-                  className="button button-primary"
-                  data-testid="hero-primary-cta"
-                >
+                <a href={SIGNUP_URL} className="button button-primary" data-testid="hero-primary-cta">
                   Start free training <span aria-hidden="true">&rarr;</span>
                 </a>
                 <a href={DEMO_HREF} className="button button-secondary">
@@ -343,12 +301,7 @@ export default function Home() {
               </div>
             </div>
             <figure className="hero__media">
-              <img
-                src={ART.hero.src}
-                width={ART.hero.width}
-                height={ART.hero.height}
-                alt={ART.hero.alt}
-              />
+              <img src={ART.hero.src} width={ART.hero.width} height={ART.hero.height} alt={ART.hero.alt} />
             </figure>
           </div>
         </section>
@@ -363,9 +316,7 @@ export default function Home() {
                 <p className="eyebrow">Council Training</p>
                 <h2>Practical training for real-world strata governance.</h2>
                 <p className="lede">
-                  Short, free lessons on council duties, budgets and the CRF,
-                  meetings and voting, and bylaws and fines, with the
-                  Library&rsquo;s playbooks, templates, and forms beside them.
+                  Free, on-demand lessons, guides, and templates for council members, owners, and strata managers.
                 </p>
                 <a href={SIGNUP_URL} className="tool__link">
                   Explore training <span aria-hidden="true">&rarr;</span>
@@ -391,19 +342,11 @@ export default function Home() {
                 <p className="eyebrow">Meeting Mode</p>
                 <h2>Run effective meetings and capture the details.</h2>
                 <p className="lede">
-                  Agendas, quorum and thresholds worked out for you, live voting
-                  from members&rsquo; own screens, and draft minutes the moment
-                  you adjourn.
+                  Agendas, live voting, and draft minutes that turn discussion into action.
                 </p>
                 <a href={DEMO_HREF} className="tool__link">
                   See Meeting Mode <span aria-hidden="true">&rarr;</span>
                 </a>
-                <p className="small tool__note">
-                  Quorum and thresholds are based on the Strata Property Act and
-                  the Standard Bylaws. If your bylaws differ, they govern, and
-                  council remains responsible for following the Act, its bylaws,
-                  and applicable meeting requirements.
-                </p>
               </div>
             </article>
 
@@ -415,9 +358,7 @@ export default function Home() {
                 <p className="eyebrow">Stratasphere&trade;</p>
                 <h2>Your strata knowledge, instantly accessible.</h2>
                 <p className="lede">
-                  Your council&rsquo;s collective memory: answers grounded in
-                  your bylaws, minutes, documents, and past decisions, and in BC
-                  legislation, with references you can verify.
+                  A private, AI-powered knowledge base for your bylaws, minutes, contracts, and decisions.
                 </p>
                 <a href={DEMO_HREF} className="tool__link">
                   Explore Stratasphere <span aria-hidden="true">&rarr;</span>
@@ -425,7 +366,9 @@ export default function Home() {
               </div>
             </article>
             <p className="small tools__note">
-              The screens show a fictional strata.
+              The screens show a fictional strata. Quorum and thresholds are based on the Strata Property Act and the
+              Standard Bylaws. If your bylaws differ, they govern, and council remains responsible for following the Act,
+              its bylaws, and applicable meeting requirements.
             </p>
           </div>
         </section>
@@ -436,11 +379,9 @@ export default function Home() {
               <p className="eyebrow">For strata managers</p>
               <h2>Less administration. More effective councils.</h2>
               <p className="lede">
-                Strata managers have enough on their plates. StrataCouncil.ca
-                helps councils take greater responsibility for their own
-                governance, streamlines meetings and decision-making, and makes
-                important information easier to find. Less time chasing
-                paperwork and answering repetitive questions. More time managing
+                Strata managers have enough on their plates. StrataCouncil.ca helps councils take greater responsibility
+                for their own governance, streamlines meetings and decision-making, and makes important information
+                easier to find. Less time chasing paperwork and answering repetitive questions. More time managing
                 properties.
               </p>
               <div className="actions">
@@ -476,9 +417,8 @@ export default function Home() {
               <p className="eyebrow">Pricing</p>
               <h2>Free for every council. Pay only for the Stratasphere.</h2>
               <p className="lede">
-                Training, council meetings, and your records cost nothing, for
-                as long as you use them. Stratasphere adds answers from your
-                records and built-in video, with AGMs and SGMs coming soon.
+                Training, council meetings, and your records cost nothing, for as long as you use them. Stratasphere
+                adds answers from your records and built-in video, with AGMs and SGMs coming soon.
               </p>
             </div>
             <Pricing signupUrl={SIGNUP_URL} contactHref={DEMO_HREF} />
@@ -497,10 +437,7 @@ export default function Home() {
                   <div className="faq__answer">{f.a}</div>
                 </details>
               ))}
-              <details
-                className="faq__item faq__item--group"
-                data-testid="pricing-faq"
-              >
+              <details className="faq__item faq__item--group" data-testid="pricing-faq">
                 <summary>Pricing questions</summary>
                 <div className="faq faq--sub">
                   {pricingFaqs.map((f) => (
@@ -520,9 +457,8 @@ export default function Home() {
             <div className="closer__text">
               <h2>Take a closer look.</h2>
               <p className="lede">
-                We&rsquo;ll set up a demo strata so you can explore the records,
-                run a meeting, and ask Stratasphere. Or start the free training
-                now.
+                We&rsquo;ll set up a demo strata so you can explore the records, run a meeting, and ask Stratasphere. Or
+                start the free training now.
               </p>
               <DemoReveal signupUrl={SIGNUP_URL} />
             </div>

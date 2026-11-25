@@ -31,7 +31,7 @@
   --teal: #71958e;
   --terracotta: #d47c54;
   --sand: #ead9bd;
-  --cream: #fbf5ec; /* the page: a warm cream, as in the approved design */
+  --cream: #fcf3e6; /* the page: a warm cream, as in the approved design */
 
   --radius-sm: 6px;
   --radius-lg: 10px;
@@ -67,14 +67,14 @@ body {
 h1,
 h2 {
   font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 500;
+  font-weight: 700;
   font-variation-settings: "SOFT" 100;
   letter-spacing: -0.01em;
   margin: 0;
 }
 
 h1 {
-  font-size: clamp(2.75rem, 6.2vw, 5.25rem);
+  font-size: clamp(3rem, 6.6vw, 5.75rem);
   line-height: 1;
   letter-spacing: -0.025em;
 }
@@ -250,17 +250,23 @@ svg {
   top: 0;
   z-index: 10;
   background: var(--cream);
-  border-bottom: 1px solid var(--line);
 }
 
 .site-header__inner {
-  max-width: 1200px;
+  max-width: 1152px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 12px 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e6d9c6;
+}
+
+@media (max-width: 1200px) {
+  .site-header__inner {
+    margin: 0 24px;
+  }
 }
 
 /* The brand lockup: mark 1.51em tall, 0.33em gap, so the wordmark's
@@ -319,7 +325,17 @@ svg {
   display: none;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1100px) {
+  .site-nav,
+  .site-nav__links {
+    gap: 1.25rem;
+  }
+  .site-nav {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 900px) {
   .site-nav__links {
     display: none;
   }
@@ -329,7 +345,8 @@ svg {
    the footer. */
 @media (max-width: 640px) {
   .site-header__inner {
-    padding: 10px 16px;
+    margin: 0 16px;
+    padding: 10px 0;
   }
   .wordmark {
     font-size: 1.0625rem;
@@ -402,12 +419,21 @@ svg {
 
 .hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  align-items: center;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: end;
   gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px 56px;
+  padding: 40px 24px 0;
+}
+
+.hero__text {
+  align-self: center;
+  padding-bottom: 40px;
+}
+
+.hero .eyebrow {
+  font-size: 0.95rem;
 }
 
 .hero__text {
@@ -428,23 +454,26 @@ svg {
 }
 
 .hero__media {
-  margin: 0 -24px 0 0;
+  margin: 0 calc(-1 * (max(0px, (100vw - 1200px) / 2) + 24px)) 0 0;
 }
 
+/* The scene's room (lamp, picture, window) fades away; the people, the
+   speech bubbles, and the table stay, resting on the rule below. */
 .hero__media img {
+  display: block;
   width: 100%;
   height: auto;
-  -webkit-mask-image: radial-gradient(ellipse 58% 62% at 55% 52%, #000 70%, transparent 100%);
-  mask-image: radial-gradient(ellipse 58% 62% at 55% 52%, #000 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 62% 100% at 54% 100%, #000 66%, transparent 100%);
+  mask-image: radial-gradient(ellipse 62% 100% at 54% 100%, #000 66%, transparent 100%);
 }
 
 @media (max-width: 900px) {
   .hero__inner {
     grid-template-columns: minmax(0, 1fr);
-    padding: 32px 24px 40px;
+    padding: 32px 24px 0;
   }
   .hero__media {
-    margin: 0 -12px;
+    margin: 0 -24px;
   }
 }
 
@@ -4087,10 +4116,10 @@ html {
 
 .tool {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   align-items: center;
-  column-gap: 72px;
-  padding: 56px 0;
+  column-gap: 64px;
+  padding: 40px 0;
   scroll-margin-top: 72px;
   position: relative;
 }
@@ -4102,14 +4131,14 @@ html {
 .tool::after {
   content: "";
   position: absolute;
-  top: 56px;
-  bottom: 56px;
-  left: calc(55% + 0px);
+  top: 64px;
+  bottom: 64px;
+  left: calc(60% + 6px);
   border-left: 1px solid var(--line);
 }
 
 .tool--flip {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
 }
 
 .tool--flip .device {
@@ -4117,7 +4146,21 @@ html {
 }
 
 .tool--flip::after {
-  left: 45%;
+  left: calc(40% - 6px);
+}
+
+/* Each laptop runs out to the edge of the page on its side. */
+.tool .device {
+  margin-left: calc(-1 * (max(0px, (100vw - 1200px) / 2) + 24px));
+}
+
+.tool--flip .device {
+  margin-left: 0;
+  margin-right: calc(-1 * (max(0px, (100vw - 1200px) / 2) + 24px));
+}
+
+.tool .eyebrow {
+  font-size: 0.95rem;
 }
 
 .tool__text {
@@ -4128,7 +4171,7 @@ html {
 }
 
 .tool__text h2 {
-  font-size: clamp(2rem, 3.4vw, 2.9rem);
+  font-size: clamp(2.25rem, 3.8vw, 3.25rem);
 }
 
 .tool__text .lede {
@@ -4139,6 +4182,7 @@ html {
 .tool__link {
   margin-top: 0.25rem;
   color: var(--accent);
+  font-size: 1.125rem;
   font-weight: 600;
   text-decoration: none;
 }
@@ -4166,6 +4210,10 @@ html {
   }
   .tool--flip .device {
     order: 0;
+  }
+  .tool .device,
+  .tool--flip .device {
+    margin: 0 -24px;
   }
   .tool::after {
     display: none;
@@ -4228,16 +4276,12 @@ html {
   height: 50.8%;
 }
 
+/* Meeting Mode uses the training laptop, mirrored. */
 .device--meeting .device__screen {
-  left: 27.21%;
-  top: 20.72%;
-  width: 42.88%;
-  height: 44.31%;
-}
-
-/* This laptop's scene has its own background: a soft organic edge. */
-.device--meeting > img {
-  border-radius: 46% 54% 44% 56% / 52% 48% 52% 48%;
+  left: 18.24%;
+  top: 31.03%;
+  width: 49.04%;
+  height: 50.8%;
 }
 
 .device--stratasphere .device__screen {
@@ -4322,4 +4366,182 @@ html {
 #pricing,
 #faq {
   scroll-margin-top: 72px;
+}
+
+/* Matched to the approved design (2026-11-25). */
+.hero .eyebrow,
+.tool .eyebrow {
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+}
+
+.eyebrow--ruled::after {
+  width: 80px;
+}
+
+.hero h1 {
+  letter-spacing: -0.03em;
+}
+
+.hero .lede {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.button-secondary {
+  border-color: var(--ink);
+}
+
+.tools {
+  border-top: 0;
+}
+
+.tools > .wrap {
+  border-top: 1px solid #e6d9c6;
+}
+
+.tool + .tool {
+  border-top-color: #e6d9c6;
+}
+
+/* The rule between a laptop and its words is a thin clay line. */
+.tool::after {
+  border-left-color: rgba(180, 96, 47, 0.55);
+}
+
+.tool__text {
+  gap: 0.85rem;
+}
+
+.tool__text .lede {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  opacity: 1;
+}
+
+.tools__note {
+  text-align: left;
+  max-width: 52rem;
+  padding-top: 8px;
+}
+
+.closer-section {
+  border-top: 0;
+}
+
+.closer-section > .wrap {
+  border-top: 1px solid #e6d9c6;
+  padding-top: 72px;
+}
+
+/* Hero proportions as in the approved design: two-line headline that may
+   run slightly over the illustration, which is large and bleeds right. */
+.hero__inner {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+}
+
+.hero h1 {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+  font-size: clamp(2.75rem, 6.4vw, 5.5rem);
+}
+
+.hero__media {
+  margin-left: -10%;
+}
+
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero h1 {
+    white-space: normal;
+  }
+  .hero__media {
+    margin-left: -24px;
+  }
+}
+
+/* Row proportions as in the approved design. */
+.tool {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  padding: 28px 0;
+}
+
+.tool--flip {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+.tool::after {
+  left: calc(52.5% + 0px);
+  top: 48px;
+  bottom: 48px;
+}
+
+.tool--flip::after {
+  left: calc(47.5% - 0px);
+}
+
+.tool__text h2 {
+  font-size: clamp(2.25rem, 3.9vw, 3.4rem);
+}
+
+.hero .actions {
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 900px) {
+  .tool,
+  .tool--flip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero .actions {
+    flex-wrap: wrap;
+  }
+}
+
+.hero__text {
+  position: relative;
+  z-index: 1;
+}
+
+.hero .eyebrow,
+.tool .eyebrow {
+  font-size: 1.1rem;
+}
+
+.tool__link {
+  font-size: 1.2rem;
+}
+
+/* The laptops a touch larger than their column, growing toward the page
+   edge, as in the approved design. */
+.tool .device {
+  transform: scale(1.12);
+  transform-origin: left center;
+}
+
+.tool--flip .device {
+  transform-origin: right center;
+}
+
+@media (max-width: 900px) {
+  .tool .device,
+  .tool--flip .device {
+    transform: none;
+  }
+}
+
+.hero .button-secondary {
+  background: var(--cream);
+}
+
+.hero__media {
+  margin-left: -6%;
+}
+
+.hero__media img {
+  -webkit-mask-image: radial-gradient(ellipse 52% 100% at 55% 100%, #000 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse 52% 100% at 55% 100%, #000 70%, transparent 100%);
 }

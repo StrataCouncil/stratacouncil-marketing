@@ -4584,3 +4584,175 @@ html {
 .hero__media {
   margin-left: 0;
 }
+
+/* Revisions (2026-11-25, second round). */
+
+/* Larger laptops, so the live screens can be read. Each grows away from its
+   words and may run off the page; the row clips the overflow. */
+.tools {
+  overflow-x: clip;
+}
+
+.tool {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+}
+
+.tool--flip {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+}
+
+.tool::after {
+  left: calc(57.5% + 0px);
+}
+
+.tool--flip::after {
+  left: calc(42.5% - 0px);
+}
+
+/* Sized by width (not transform) so each row grows with its laptop. The
+   screen's inner edge stays beside the words; the drawing runs out past
+   the page edge. */
+.tool .device {
+  transform: none;
+  width: 175%;
+  max-width: none;
+  margin-left: -58%;
+  margin-right: 0;
+}
+
+.tool--flip .device {
+  margin-left: -20%;
+}
+
+@media (max-width: 900px) {
+  .tool .device,
+  .tool--flip .device {
+    transform: none;
+    width: 150%;
+    margin-left: -25%;
+  }
+}
+
+/* The screens drawn a little larger inside the laptops. */
+.tool .device__scaler {
+  width: 160%;
+  transform: scale(0.625);
+}
+
+/* The drawing fades out before the words' column. */
+.tool .device {
+  -webkit-mask-image: linear-gradient(to right, #000 84%, transparent 92%);
+  mask-image: linear-gradient(to right, #000 84%, transparent 92%);
+}
+
+.tool--flip .device {
+  -webkit-mask-image: linear-gradient(to left, #000 84%, transparent 92%);
+  mask-image: linear-gradient(to left, #000 84%, transparent 92%);
+}
+
+@media (max-width: 900px) {
+  .tool .device,
+  .tool--flip .device {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* The Stratasphere plan is the one on offer: navy, lifted, clay button. */
+.plan--free {
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.plan--paid {
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  color: #fff;
+  box-shadow: 0 24px 48px -20px rgba(21, 34, 58, 0.55);
+  transform: translateY(-12px);
+}
+
+.plan--paid h3,
+.plan--paid .plan__amount,
+.plan--paid .plan__list strong {
+  color: #fff;
+}
+
+.plan--paid .plan__for,
+.plan--paid .plan__unit,
+.plan--paid .plan__note,
+.plan--paid .plan__list li {
+  color: #cfd6e1;
+}
+
+.plan--paid .plan__list li::before {
+  color: #e9b48f;
+}
+
+@media (max-width: 900px) {
+  .plan--paid {
+    transform: none;
+  }
+}
+
+/* Questions and answers on navy. */
+.faq-section h2 {
+  color: #fff;
+}
+
+.faq-section .faq,
+.faq-section .faq__item {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.faq-section .faq__item summary {
+  color: #fff;
+}
+
+.faq-section .faq__item summary::after {
+  color: #e9b48f;
+}
+
+.faq-section .faq__item summary:focus-visible {
+  outline-color: #e9b48f;
+}
+
+.faq-section .faq__answer,
+.faq-section .faq__answer p,
+.faq-section .faq__answer li {
+  color: #cfd6e1;
+}
+
+.faq-section .faq__answer strong {
+  color: #fff;
+}
+
+.faq-section .faq__answer a {
+  color: #e9b48f;
+}
+
+/* The demo form shown outright. */
+.closer__text .lede a {
+  color: var(--accent);
+}
+
+.closer__form {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .tool,
+  .tool--flip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tool::after {
+    display: none;
+  }
+  .tool--flip .device {
+    order: 0;
+  }
+  .tool .device__scaler {
+    width: 220%;
+    transform: scale(0.4545);
+  }
+}

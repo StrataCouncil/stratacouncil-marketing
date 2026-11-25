@@ -11,7 +11,10 @@ CSS, not a parallel system; the app is unchanged.
 - **Hero:** "Learn. Decide. Remember." with a short clay rule, the headline
   with *better* in clay italic, the two buttons, and the hero illustration:
   the three council members cut out on a transparent ground, no room
-  behind them, shown as drawn.
+  behind them, shown as drawn. On windows wider than 900px the hero
+  fills the first screen (less the header, up to 1000px tall) with its
+  content centred, a larger headline, and a wider column for the
+  illustration, so nothing from the next section shows beneath it.
 - **The three tools:** alternating rows divided by thin rules, eyebrowed
   Learn, Decide, and Remember, each with a large illustrated laptop on one
   side and the words on the other, a thin clay rule between them. The

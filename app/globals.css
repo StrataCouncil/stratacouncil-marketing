@@ -4613,15 +4613,20 @@ html {
    screen's inner edge stays beside the words; the drawing runs out past
    the page edge. */
 .tool .device {
+  /* The edge of the page beside this column: the screen must stay 16px
+     inside it. Screens sit at 22.9-77.5% of the drawing's width. */
+  --side: calc(max(0px, (100vw - 1200px) / 2) + 24px - 16px);
+  --w: min(195%, calc((100% + var(--side)) / 0.546));
   transform: none;
-  width: 175%;
+  width: var(--w);
   max-width: none;
-  margin-left: -58%;
+  margin-left: calc(100% - 0.775 * var(--w));
   margin-right: 0;
 }
 
 .tool--flip .device {
-  margin-left: -20%;
+  --w: min(195%, calc((100% + var(--side)) / 0.508));
+  margin-left: calc(-0.27 * var(--w));
 }
 
 @media (max-width: 900px) {
@@ -4639,23 +4644,19 @@ html {
   transform: scale(0.625);
 }
 
-/* The drawing fades out before the words' column. */
+/* The drawing runs behind the words and the clay rule. */
 .tool .device {
-  -webkit-mask-image: linear-gradient(to right, #000 84%, transparent 92%);
-  mask-image: linear-gradient(to right, #000 84%, transparent 92%);
+  position: relative;
+  z-index: 0;
 }
 
-.tool--flip .device {
-  -webkit-mask-image: linear-gradient(to left, #000 84%, transparent 92%);
-  mask-image: linear-gradient(to left, #000 84%, transparent 92%);
+.tool__text {
+  position: relative;
+  z-index: 1;
 }
 
-@media (max-width: 900px) {
-  .tool .device,
-  .tool--flip .device {
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
+.tool::after {
+  z-index: 1;
 }
 
 /* The Stratasphere plan is the one on offer: navy, lifted, clay button. */

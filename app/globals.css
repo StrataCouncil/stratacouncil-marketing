@@ -22,9 +22,20 @@
   --danger: #a6342a; /* muted, warm brick red */
   --danger-bg: #f5e1de;
 
+  /* Supporting colours (2026-11-25, editorial refresh). Petrol is the
+     one dark band and the darkest illustration tone; sand is the alternate
+     section tone. Teal and terracotta fail contrast as text on paper
+     (about 3:1): illustrations and small accents only, never text or
+     buttons. */
+  --petrol: #234b4d;
+  --teal: #71958e;
+  --terracotta: #d47c54;
+  --sand: #ead9bd;
+  --cream: #fbf5ec; /* the page: a warm cream, as in the approved design */
+
   --radius-sm: 6px;
-  --radius-lg: 12px;
-  --radius-card: 24px;
+  --radius-lg: 10px;
+  --radius-card: 10px;
   --shadow: 0 8px 28px rgba(27, 42, 65, 0.09);
 }
 
@@ -39,7 +50,7 @@ body {
 }
 
 body {
-  background: var(--surface);
+  background: var(--cream);
   color: var(--ink);
   font-family: var(--font-work-sans), system-ui, sans-serif;
   font-size: 1rem;
@@ -63,13 +74,15 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 4.6vw, 3.75rem);
-  line-height: 1.05;
+  font-size: clamp(2.75rem, 6.2vw, 5.25rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
 }
 
 h2 {
-  font-size: clamp(2rem, 3.4vw, 2.75rem);
-  line-height: 1.1;
+  font-size: clamp(2.125rem, 4vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }
 
 h3 {
@@ -141,19 +154,20 @@ svg {
   color: var(--free);
 }
 
-/* Buttons: pills. Primary is clay; secondary is outlined; --light is for
-   navy panels. */
+/* Buttons: squared corners like the app's (2026-11-25; they were pills).
+   Primary is clay; secondary is outlined; --light is for the dark band. */
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5em;
   font-family: var(--font-work-sans), system-ui, sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.2;
   padding: 0.9em 1.6em;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
@@ -171,9 +185,9 @@ svg {
 }
 
 .button-secondary {
-  background: var(--surface);
+  background: transparent;
   color: var(--ink);
-  border-color: var(--line);
+  border-color: rgba(27, 42, 65, 0.3);
 }
 
 .button-secondary:hover {
@@ -223,34 +237,30 @@ svg {
   padding: 0 24px;
 }
 
-/* Header: a white bar floating over the top of every page. Each page's
-   first block leaves room for it (--header-room). */
+/* Header (2026-11-25): a flat bar on paper with a thin rule beneath, part
+   of the page rather than floating over it. It stays in view as the page
+   scrolls. Each page's first block leaves --header-room above its content. */
 
 :root {
-  --header-room: 120px;
+  --header-room: 40px;
 }
 
-/* The header floats over the page and stays in view as it scrolls. */
 .site-header {
-  position: fixed;
-  top: 16px;
-  left: 0;
-  right: 0;
+  position: sticky;
+  top: 0;
   z-index: 10;
-  padding: 0 16px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
 }
 
 .site-header__inner {
-  max-width: 1232px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  background: var(--surface);
-  border-radius: 999px;
-  padding: 10px 10px 10px 24px;
-  box-shadow: var(--shadow);
+  padding: 12px 24px;
 }
 
 /* The brand lockup: mark 1.51em tall, 0.33em gap, so the wordmark's
@@ -318,12 +328,8 @@ svg {
 /* Phones: the logo and Start free only; the rest is on the page and in
    the footer. */
 @media (max-width: 640px) {
-  .site-header {
-    top: 10px;
-    padding: 0 10px;
-  }
   .site-header__inner {
-    padding: 8px 8px 8px 16px;
+    padding: 10px 16px;
   }
   .wordmark {
     font-size: 1.0625rem;
@@ -340,15 +346,19 @@ svg {
   }
 }
 
-/* Sections: one rhythm. Backgrounds alternate white and --paper; one navy
-   band (.section--ink) and the hero's --sky are the only other colours. */
+/* Sections (2026-11-25, approved design): one warm cream page, sections
+   divided by thin rules; the managers band is the one dark section. */
 
 .section {
-  padding: 64px 0;
+  padding: 96px 0;
 }
 
 .section--paper {
-  background: var(--paper);
+  background: transparent;
+}
+
+.section--sand {
+  background: var(--sand);
 }
 
 .section--ink {
@@ -375,83 +385,72 @@ svg {
 
 @media (max-width: 640px) {
   .section {
-    padding: 48px 0;
+    padding: 64px 0;
   }
   .section-head {
     margin-bottom: 1.5rem;
   }
 }
 
-/* Hero: text on the left; on the right, a photo cut on an angle. */
+/* Hero (2026-11-25, approved design): the headline on the left; the
+   illustration on the right, its edges fading into the cream. */
 
 .hero {
   position: relative;
-  background: var(--sky);
   overflow: hidden;
 }
 
 .hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  /* Shorter than a screen, so the three essentials show beneath it. */
-  min-height: 560px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 56px;
 }
 
 .hero__text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.25rem;
-  padding: calc(var(--header-room) + 16px) 48px 56px
-    max(24px, calc((100vw - 1200px) / 2 + 24px));
+  gap: 1.5rem;
 }
 
 .hero h1 em {
-  font-style: normal;
+  font-style: italic;
   color: var(--accent);
 }
 
 .hero .lede {
-  max-width: 34rem;
-}
-
-.hero .lede + .lede {
-  margin-top: -0.5rem;
+  max-width: 30rem;
+  font-size: 1.25rem;
+  color: var(--ink);
 }
 
 .hero__media {
-  position: relative;
-  margin: 0;
-  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%, 0 24%);
+  margin: 0 -24px 0 0;
 }
 
 .hero__media img {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Mirrored, so the group faces into the page. */
-  transform: scaleX(-1);
+  height: auto;
+  -webkit-mask-image: radial-gradient(ellipse 58% 62% at 55% 52%, #000 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse 58% 62% at 55% 52%, #000 70%, transparent 100%);
 }
 
 @media (max-width: 900px) {
   .hero__inner {
     grid-template-columns: minmax(0, 1fr);
-    min-height: 0;
-  }
-  .hero__text {
-    padding: calc(var(--header-room) - 16px) 24px 48px;
+    padding: 32px 24px 40px;
   }
   .hero__media {
-    min-height: 300px;
-    clip-path: polygon(0 16%, 60% 0, 100% 0, 100% 100%, 0 100%);
+    margin: 0 -12px;
   }
 }
 
 @media (max-width: 640px) {
-  .hero__text {
-    padding: 104px 16px 40px;
+  .hero__inner {
+    padding: 28px 16px 32px;
   }
   .hero .actions .button {
     flex: 1 1 100%;
@@ -517,16 +516,17 @@ svg {
   gap: 24px;
 }
 
-/* On wide screens each step is a --paper card, so the three sit together
-   as one block instead of floating in white space. */
+/* Each product section: text beside its demo, straight on the page with
+   no panel behind it (2026-11-25). */
 .step {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: 3rem;
+  gap: 4rem;
   align-items: center;
-  background: var(--paper);
-  border-radius: var(--radius-card);
-  padding: 40px;
+}
+
+.step--flip {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
 }
 
 .step--flip > :first-child {
@@ -700,7 +700,7 @@ svg {
   align-items: center;
 }
 
-.photo-split--flip > .photo {
+.photo-split--flip > figure {
   order: 2;
 }
 
@@ -747,7 +747,7 @@ svg {
     grid-template-columns: minmax(0, 1fr);
     gap: 2.5rem;
   }
-  .photo-split--flip > .photo {
+  .photo-split--flip > figure {
     order: 0;
   }
   .photo img {
@@ -775,17 +775,6 @@ svg {
 
 .solutions p {
   color: var(--muted);
-}
-
-/* How it works sits on --paper, so its step cards are white. */
-.section--paper .step {
-  background: var(--surface);
-}
-
-@media (max-width: 960px) {
-  .section--paper .step {
-    background: none;
-  }
 }
 
 /* Investors in the footer opens a dialog (components/InvestorModal.tsx). */
@@ -2057,13 +2046,18 @@ html {
 }
 
 .pillars__note {
-  margin-top: 24px;
-  text-align: center;
+  margin-top: 56px;
+  max-width: 46rem;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-variation-settings: "SOFT" 100;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.4;
   color: var(--muted);
 }
 
 .pillars__note strong {
   color: var(--ink);
+  font-weight: 500;
 }
 
 /* Short labels in a row: the Library's contents, and an answer's sources. */
@@ -2078,10 +2072,10 @@ html {
 
 .chips li {
   font-size: 0.875rem;
-  padding: 0.35em 0.85em;
-  border-radius: 999px;
+  padding: 0.3em 0.75em;
+  border-radius: 4px;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: transparent;
 }
 
 .chips--small li {
@@ -2136,13 +2130,9 @@ html {
   }
 }
 
-/* Decide is the showpiece: a lighter tint behind it. */
+/* Decide is the showpiece: a light teal behind it (2026-11-25; it was --sky). */
 .section--feature {
-  background: var(--sky);
-}
-
-.section--feature .step {
-  background: var(--surface);
+  background: transparent;
 }
 
 .questions li {
@@ -2263,7 +2253,7 @@ html {
 }
 
 .plan--enterprise {
-  background: var(--sky);
+  background: transparent;
 }
 
 .plan__head {
@@ -4066,4 +4056,270 @@ html {
 
 .amm__main {
   overflow: hidden;
+}
+
+/* ------------------------------------------------------------------
+   Editorial refresh (2026-11-25): design/2026-11-editorial-refresh
+   Built to the approved design: a cream page, the three tools as
+   alternating rows with the live demos inside illustrated laptops, thin
+   rules between everything, and one illustration set throughout.
+   ------------------------------------------------------------------ */
+
+/* An eyebrow followed by a short clay rule. */
+.eyebrow--ruled {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.eyebrow--ruled::after {
+  content: "";
+  width: 72px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* The three tools: rows divided by thin rules, each an illustrated laptop
+   on one side and the words on the other, with a rule between them. */
+.tools {
+  border-top: 1px solid var(--line);
+}
+
+.tool {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  column-gap: 72px;
+  padding: 56px 0;
+  scroll-margin-top: 72px;
+  position: relative;
+}
+
+.tool + .tool {
+  border-top: 1px solid var(--line);
+}
+
+.tool::after {
+  content: "";
+  position: absolute;
+  top: 56px;
+  bottom: 56px;
+  left: calc(55% + 0px);
+  border-left: 1px solid var(--line);
+}
+
+.tool--flip {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.tool--flip .device {
+  order: 2;
+}
+
+.tool--flip::after {
+  left: 45%;
+}
+
+.tool__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 34rem;
+}
+
+.tool__text h2 {
+  font-size: clamp(2rem, 3.4vw, 2.9rem);
+}
+
+.tool__text .lede {
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+.tool__link {
+  margin-top: 0.25rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tool__link:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+.tool__note {
+  margin-top: 0.5rem;
+}
+
+.tools__note {
+  padding-bottom: 24px;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .tool,
+  .tool--flip {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 24px;
+    padding: 40px 0;
+  }
+  .tool--flip .device {
+    order: 0;
+  }
+  .tool::after {
+    display: none;
+  }
+  .tools__note {
+    text-align: left;
+  }
+}
+
+/* An illustrated laptop with a live demo on its screen. The screen box is
+   placed over the drawn screen, in percentages of the image. */
+.device {
+  position: relative;
+  margin: 0;
+}
+
+.device > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.device__screen {
+  position: absolute;
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: 4px;
+}
+
+.device__scaler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  transform: scale(0.3333);
+  transform-origin: top left;
+}
+
+.device__scaler .appframe {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.device__scaler .appshot {
+  margin: 0;
+}
+
+/* Hide the demos' captions inside a laptop: the fictional strata note
+   sits under the rows instead. */
+.device__scaler figcaption,
+.device__scaler .appshot__caption,
+.device__scaler .ask__caption {
+  display: none;
+}
+
+.device--training .device__screen {
+  left: 32.72%;
+  top: 31.03%;
+  width: 49.04%;
+  height: 50.8%;
+}
+
+.device--meeting .device__screen {
+  left: 27.21%;
+  top: 20.72%;
+  width: 42.88%;
+  height: 44.31%;
+}
+
+/* This laptop's scene has its own background: a soft organic edge. */
+.device--meeting > img {
+  border-radius: 46% 54% 44% 56% / 52% 48% 52% 48%;
+}
+
+.device--stratasphere .device__screen {
+  left: 30.27%;
+  top: 22.89%;
+  width: 46.67%;
+  height: 54.34%;
+}
+
+/* For strata managers: the illustration above the list. */
+.managers__side {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.managers__media {
+  margin: 0;
+}
+
+.managers__media img {
+  width: 100%;
+  height: auto;
+}
+
+/* Take a closer look: the words and buttons, and the meeting scene. */
+.closer-section {
+  border-top: 1px solid var(--line);
+}
+
+.closer {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.closer__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.closer__text .lede {
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+.closer__form {
+  margin-top: 0.5rem;
+  max-width: 30rem;
+}
+
+.closer__form[hidden] {
+  display: none;
+}
+
+.closer__media {
+  margin: 0;
+}
+
+.closer__media img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .closer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* The product demos keep a fine hairline frame where they stand alone. */
+.appframe {
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px var(--line), 0 24px 48px -32px rgba(27, 42, 65, 0.35);
+}
+
+/* Anchored sections land below the sticky header. */
+#demo,
+#managers,
+#pricing,
+#faq {
+  scroll-margin-top: 72px;
 }

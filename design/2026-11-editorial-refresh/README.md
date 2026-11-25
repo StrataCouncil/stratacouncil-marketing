@@ -50,7 +50,8 @@ CSS, not a parallel system; the app is unchanged.
 One set, made with an AI image tool whose terms allow commercial use, on
 transparent backgrounds, in `public/illustrations` at 1400px wide:
 `hero`, `training`, `meeting-mode`, `stratasphere`, `managers` (the
-council member at a laptop), `closer-look`. People are warm and smiling; no lettering, buildings as a
+council member at a laptop), `closer-look`. The Stratasphere drawing's pen
+cup was painted out (it sat behind the headline once the laptops grew). People are warm and smiling; no lettering, buildings as a
 motif, or fake app screens (the laptops show the real demos). The
 original reference image from the brief is not used anywhere.
 

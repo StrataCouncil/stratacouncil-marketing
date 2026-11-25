@@ -15,9 +15,11 @@ CSS, not a parallel system; the app is unchanged.
 - **The three tools:** alternating rows divided by thin rules, eyebrowed
   Learn, Decide, and Remember, each with a large illustrated laptop on one
   side and the words on the other, a thin clay rule between them. The
-  laptops are sized by width (175% of their column) so the screens can be
-  read: each screen's inner edge sits beside the words, the drawing runs
-  off the page edge, and it fades out before the words' column. Each laptop
+  laptops are sized by width (up to 195% of their column, less on narrower
+  windows so the screen stays 16px inside the page) so the screens can be
+  read: each screen's inner edge sits at the column edge, and the rest of
+  the drawing runs off the page and behind the words and the clay rule,
+  with no fade. Each laptop
   illustration was drawn for its row (Meeting Mode with its mug). The live app demos (TrainingPreview, MeetingAgenda,
   StratasphereDemo) run on the laptops' screens: `components/Device.tsx`
   places each demo over the drawn screen (percentages per illustration in

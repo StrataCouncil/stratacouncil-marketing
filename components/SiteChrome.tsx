@@ -32,9 +32,6 @@ export function SiteHeader() {
             Sign in
           </a>
           <div className="site-nav__buttons">
-            <Link href={DEMO_HREF} className="button button-secondary button--small site-nav__demo">
-              Request a demo
-            </Link>
             <a href={SIGNUP_URL} className="button button-primary button--small" data-testid="nav-cta">
               <span className="site-nav__full">Start free training</span>
               <span className="site-nav__short">Start free</span>

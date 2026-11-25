@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { DemoRequestForm } from "@/components/DemoRequestForm";
+import { DemoReveal } from "@/components/DemoReveal";
+import { type Art, Device } from "@/components/Device";
 import { MeetingAgenda } from "@/components/MeetingAgenda";
 import { Pricing } from "@/components/Pricing";
 import { StratasphereDemo } from "@/components/StratasphereDemo";
 import { DEMO_HREF, SiteFooter, SiteHeader, SIGNUP_URL } from "@/components/SiteChrome";
 import { TrainingPreview } from "@/components/TrainingPreview";
 
-export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: { url: "/" } };
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
+};
 
 /**
  * One promise, three capabilities (2026-11-05): Learn. Decide. Remember.
@@ -23,10 +27,13 @@ export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: {
  * legal side is "worked out for you", never a promise of compliance; the
  * security FAQ stays word for word.
  *
- * Layout (2026-11-05): tight, in the manner of Glide and Amperos. Each
+ * Layout (2026-11-25, editorial refresh; design/2026-11-editorial-refresh):
+ * one continuous page on paper, sections divided by thin rules rather than
+ * boxes. Learn. Decide. Remember. is a typographic band, the product demos
+ * are the main visuals, and two illustrations carry the people. Each
  * section is a headline, a line or two, one visual and at most one button.
- * Nothing fades in on scroll, and nothing moves. The building flight (components/BuildingTour.tsx) is
- * off the home page for now.
+ * Nothing fades in on scroll. The building flight (components/BuildingTour.tsx)
+ * is off the home page for now.
  */
 
 /**
@@ -36,28 +43,6 @@ export const metadata: Metadata = { alternates: { canonical: "/" }, openGraph: {
  * into the app) replace it later.
  */
 const MEETING_STILL: { src: string; width: number; height: number } | null = null;
-
-const pillars = [
-  { id: "learn", verb: "Learn", line: "Know the role.", what: "Council Training and the Library", price: "Free training" },
-  { id: "decide", verb: "Decide", line: "Run the meeting.", what: "Set up, run, and document meetings with ease", price: "Council meetings free" },
-  {
-    id: "remember",
-    verb: "Remember",
-    line: "Retain the knowledge.",
-    what: "Every decision council\u2019s ever made at your fingertips",
-    price: "Free document storage",
-  },
-];
-
-/** What's in the Library, by kind (the titles themselves change as it grows). */
-const libraryKinds = ["Emergency playbooks", "Policy templates", "Forms", "Practical guides"];
-
-const meetingOutcomes = [
-  "Quorum and voting thresholds worked out for you, as people arrive and leave.",
-  "Members vote from their own screens, and every result is recorded.",
-  "Conflicts of interest declared and recorded with the item.",
-  "Draft minutes the moment you adjourn.",
-];
 
 const managerPoints: { lead: string; rest: string }[] = [
   {
@@ -79,12 +64,48 @@ const managerPoints: { lead: string; rest: string }[] = [
 ];
 
 /**
- * The page's photos, chosen by a person: one shoot, by Theo Decker on
- * Pexels (credited in the footer). Kept in public/photos at web sizes.
+ * The page's illustrations (2026-11-25, editorial refresh): one set, made
+ * with an AI image tool whose terms allow commercial use, on transparent
+ * backgrounds. The three laptops carry the live app demos on their screens
+ * (components/Device.tsx). Kept in public/illustrations at 1400px wide.
  */
-const PHOTOS = {
-  hero: { src: "/photos/hero.jpg", alt: "A group reviewing documents together at a table." },
-  demo: { src: "/photos/demo.jpg", alt: "A group listening to a colleague at a meeting table." },
+const ART: Record<"hero" | "training" | "meeting" | "stratasphere" | "managers" | "closer", Art> = {
+  hero: {
+    src: "/illustrations/hero.webp",
+    width: 1400,
+    height: 795,
+    alt: "Three council members of different ages talking around a table with a laptop, notebooks, and coffee.",
+  },
+  training: {
+    src: "/illustrations/training.webp",
+    width: 1400,
+    height: 788,
+    alt: "",
+  },
+  meeting: {
+    src: "/illustrations/meeting-mode.webp",
+    width: 1400,
+    height: 788,
+    alt: "",
+  },
+  stratasphere: {
+    src: "/illustrations/stratasphere.webp",
+    width: 1400,
+    height: 700,
+    alt: "",
+  },
+  managers: {
+    src: "/illustrations/managers.webp",
+    width: 1400,
+    height: 700,
+    alt: "A council member at a laptop, smiling, with notebooks and coffee.",
+  },
+  closer: {
+    src: "/illustrations/closer-look.webp",
+    width: 1400,
+    height: 700,
+    alt: "Council members around a table with laptops, notebooks, and coffee, talking and smiling.",
+  },
 };
 
 /**
@@ -97,8 +118,8 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     q: "Is Free really free for good?",
     a: (
       <p>
-        Yes. There is no trial, no time limit, and no card. Council Training, the Library, council and committee meetings
-        in Meeting Mode, and storage for your records stay free. You pay only if you want Stratasphere.
+        Yes. There is no trial, no time limit, and no card. Council Training, the Library, council and committee
+        meetings in Meeting Mode, and storage for your records stay free. You pay only if you want Stratasphere.
       </p>
     ),
   },
@@ -107,9 +128,9 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         <p>
-          Monthly, to the strata corporation, by card or pre-authorized debit. Monthly is $30 per strata plus $3 per strata
-          lot, so a 45-lot strata pays $165 a month. Yearly is $25 plus $2.50 per lot on a 12-month commitment, still
-          billed monthly, so the same strata pays $137.50 a month.
+          Monthly, to the strata corporation, by card or pre-authorized debit. Monthly is $30 per strata plus $3 per
+          strata lot, so a 45-lot strata pays $165 a month. Yearly is $25 plus $2.50 per lot on a 12-month commitment,
+          still billed monthly, so the same strata pays $137.50 a month.
         </p>
         <p>Prices are in Canadian dollars, plus GST.</p>
       </>
@@ -120,8 +141,8 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <p>
         Spending that isn&rsquo;t in the budget is limited by your bylaws and the Strata Property Act. If your limit is
-        $2,000, a full year of the Yearly plan stays under it, GST included, for stratas of up to 53 lots (Monthly: up to
-        42). Check your own bylaws, or add it to the next budget.
+        $2,000, a full year of the Yearly plan stays under it, GST included, for stratas of up to 53 lots (Monthly: up
+        to 42). Check your own bylaws, or add it to the next budget.
       </p>
     ),
   },
@@ -147,8 +168,8 @@ const pricingFaqs: { q: string; a: React.ReactNode }[] = [
     q: "Can we cancel?",
     a: (
       <p>
-        Yes. On Monthly, the subscription ends at the end of the month you&rsquo;ve paid for. On Yearly, it doesn&rsquo;t
-        renew, and billing and access continue to the end of the 12-month term.
+        Yes. On Monthly, the subscription ends at the end of the month you&rsquo;ve paid for. On Yearly, it
+        doesn&rsquo;t renew, and billing and access continue to the end of the 12-month term.
       </p>
     ),
   },
@@ -220,12 +241,12 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         <p>
-          No. Stratasphere helps councils prepare for meetings, maintain records, and find relevant information. It can be
-          used alongside a strata manager or by a self-managed strata.
+          No. Stratasphere helps councils prepare for meetings, maintain records, and find relevant information. It can
+          be used alongside a strata manager or by a self-managed strata.
         </p>
         <p>
-          It does not replace the professional judgement of a strata manager, qualified specialist, or lawyer, and it is not
-          legal advice.
+          It does not replace the professional judgement of a strata manager, qualified specialist, or lawyer, and it is
+          not legal advice.
         </p>
       </>
     ),
@@ -251,7 +272,6 @@ const testimonial = {
   cite: "[Name], [Role], [Strata corporation]",
 };
 
-
 export default function Home() {
   return (
     <>
@@ -260,104 +280,53 @@ export default function Home() {
         <section className="hero">
           <div className="hero__inner">
             <div className="hero__text">
-              <p className="eyebrow" data-testid="hero-eyebrow">
+              <p className="eyebrow eyebrow--ruled" data-testid="hero-eyebrow">
                 Learn. Decide. Remember.
               </p>
               <h1>
-                Build a <em>better</em> strata council.
+                Build a <em>better</em>
+                <br />
+                strata council.
               </h1>
               <p className="lede">
-                Training, meeting tools, and institutional memory to make your strata council super-effective.
+                Training, meeting tools, and institutional memory to make your strata council more effective.
               </p>
               <div className="actions">
                 <a href={SIGNUP_URL} className="button button-primary" data-testid="hero-primary-cta">
-                  Start free training
+                  Start free training <span aria-hidden="true">&rarr;</span>
                 </a>
                 <a href={DEMO_HREF} className="button button-secondary">
                   Request a demo
                 </a>
               </div>
-              
             </div>
             <figure className="hero__media">
-              <img src={PHOTOS.hero.src} alt={PHOTOS.hero.alt} />
+              <img src={ART.hero.src} width={ART.hero.width} height={ART.hero.height} alt={ART.hero.alt} />
             </figure>
           </div>
         </section>
 
-        <section className="section section--tight" id="platform">
+        <section className="tools" id="platform" aria-label="The platform">
           <div className="wrap">
-            <div className="section-head">
-              <h2>Three essentials of an effective strata council.</h2>
-            </div>
-            <div className="cards cards--3 pillars" data-testid="pillars">
-              {pillars.map((p) => (
-                <a className="card pillar" href={`#${p.id}`} key={p.id}>
-                  <span className="pillar__verb">{p.verb}</span>
-                  <h3>{p.line}</h3>
-                  <p>{p.what}</p>
-                  <span className="pill card__tag">{p.price}</span>
-                </a>
-              ))}
-            </div>
-            <p className="pillars__note" id="different">
-              <strong>Not another property management platform.</strong> Your strata manager manages the property. Your
-              council governs the strata corporation. StrataCouncil.ca helps council do its job better.
-            </p>
-          </div>
-        </section>
-
-        <section className="section section--paper" id="learn">
-          <div className="wrap">
-            <div className="step">
-              <div className="step__text">
-                <p className="eyebrow">Learn &middot; Council Training and the Library</p>
-                <h2>Know the role. Have the playbook.</h2>
+            <article className="tool" id="learn">
+              <Device art={ART.training} variant="training">
+                <TrainingPreview />
+              </Device>
+              <div className="tool__text">
+                <p className="eyebrow">Council Training</p>
+                <h2>Practical training for real-world strata governance.</h2>
                 <p className="lede">
-                  Short, free lessons on council duties, budgets and the CRF, meetings and voting, and bylaws and fines. The
-                  Library keeps the tools beside them.
+                  Free, on-demand lessons, guides, and templates for council members, owners, and strata managers.
                 </p>
-                <ul className="chips" aria-label="What's in the Library">
-                  {libraryKinds.map((k) => (
-                    <li key={k}>{k}</li>
-                  ))}
-                </ul>
-                <div className="actions">
-                  <a href={SIGNUP_URL} className="button button-primary">
-                    Start free training
-                  </a>
-                  <span className="pill">Free</span>
-                </div>
+                <a href={SIGNUP_URL} className="tool__link">
+                  Explore training <span aria-hidden="true">&rarr;</span>
+                </a>
               </div>
-              <TrainingPreview />
-            </div>
-          </div>
-        </section>
+            </article>
 
-        <section className="section section--feature" id="decide">
-          <div className="wrap">
-            <div className="section-head">
-              <p className="eyebrow">Decide &middot; Meeting Mode</p>
-              <h2>Make every meeting count.</h2>
-              <p className="lede">
-                From agenda to adjournment. With Stratasphere, answers sit beside the agenda as questions come up.
-              </p>
-            </div>
-            <div className="decide">
-              <div className="decide__text">
-                <ul className="list-check">
-                  {meetingOutcomes.map((o) => (
-                    <li key={o}>{o}</li>
-                  ))}
-                </ul>
-                <span className="pill">Council meetings free</span>
-                <p className="small">
-                  Quorum and thresholds are based on the Strata Property Act and the Standard Bylaws. If your bylaws
-                  differ, they govern, and council remains responsible for following the Act, its bylaws, and applicable meeting requirements.
-                </p>
-              </div>
-              {MEETING_STILL ? (
-                <figure className="product-still">
+            <article className="tool tool--flip" id="decide">
+              <Device art={ART.meeting} variant="meeting">
+                {MEETING_STILL ? (
                   <img
                     src={MEETING_STILL.src}
                     width={MEETING_STILL.width}
@@ -365,48 +334,44 @@ export default function Home() {
                     alt="Meeting Mode running a council meeting: the agenda, the motion, and a live vote with the result worked out"
                     loading="lazy"
                   />
-                </figure>
-              ) : (
-                <MeetingAgenda />
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section className="section section--paper" id="remember">
-          <div className="wrap">
-            <div className="step">
-              <div className="step__text">
-                <p className="eyebrow">Remember &middot; Stratasphere&trade;</p>
-                <h2>Your council&rsquo;s collective memory.</h2>
+                ) : (
+                  <MeetingAgenda />
+                )}
+              </Device>
+              <div className="tool__text">
+                <p className="eyebrow">Meeting Mode</p>
+                <h2>Run effective meetings and capture the details.</h2>
                 <p className="lede">
-                  Stratasphere&trade; connects your bylaws, meeting minutes, documents, and past decisions, giving your
-                  council instant access to the knowledge it needs to make informed decisions.
+                  Agendas, live voting, and draft minutes that turn discussion into action.
                 </p>
-                <p className="lede">
-                  Ask questions, uncover historical context, and find answers grounded in your strata&rsquo;s records and
-                  BC legislation, with references you can verify.
-                </p>
-                <div className="actions">
-                  <a href={DEMO_HREF} className="button button-primary">
-                    Explore Stratasphere
-                  </a>
-                  <span className="pill">Free document storage</span>
-                </div>
+                <a href={DEMO_HREF} className="tool__link">
+                  See Meeting Mode <span aria-hidden="true">&rarr;</span>
+                </a>
               </div>
-              <StratasphereDemo />
-            </div>
+            </article>
+
+            <article className="tool" id="remember">
+              <Device art={ART.stratasphere} variant="stratasphere">
+                <StratasphereDemo />
+              </Device>
+              <div className="tool__text">
+                <p className="eyebrow">Stratasphere&trade;</p>
+                <h2>Your strata knowledge, instantly accessible.</h2>
+                <p className="lede">
+                  A private, AI-powered knowledge base for your bylaws, minutes, contracts, and decisions.
+                </p>
+                <a href={DEMO_HREF} className="tool__link">
+                  Explore Stratasphere <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </article>
+            <p className="small tools__note">
+              The screens show a fictional strata. Quorum and thresholds are based on the Strata Property Act and the
+              Standard Bylaws. If your bylaws differ, they govern, and council remains responsible for following the Act,
+              its bylaws, and applicable meeting requirements.
+            </p>
           </div>
         </section>
-
-        {SHOW_TESTIMONIAL && (
-          <section className="section section--paper">
-            <div className="wrap section-head">
-              <h2>&ldquo;{testimonial.quote}&rdquo;</h2>
-              <p className="small">{testimonial.cite}</p>
-            </div>
-          </section>
-        )}
 
         <section className="section section--ink" id="managers">
           <div className="wrap split">
@@ -414,9 +379,10 @@ export default function Home() {
               <p className="eyebrow">For strata managers</p>
               <h2>Less administration. More effective councils.</h2>
               <p className="lede">
-                Strata managers have enough on their plates. StrataCouncil.ca helps councils take greater responsibility for
-                their own governance, streamlines meetings and decision-making, and makes important information easier to
-                find. Less time chasing paperwork and answering repetitive questions. More time managing properties.
+                Strata managers have enough on their plates. StrataCouncil.ca helps councils take greater responsibility
+                for their own governance, streamlines meetings and decision-making, and makes important information
+                easier to find. Less time chasing paperwork and answering repetitive questions. More time managing
+                properties.
               </p>
               <div className="actions">
                 <a href={DEMO_HREF} className="button button--light">
@@ -424,13 +390,24 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <ul className="list-check">
-              {managerPoints.map((p) => (
-                <li key={p.lead}>
-                  <strong>{p.lead}</strong> {p.rest}
-                </li>
-              ))}
-            </ul>
+            <div className="managers__side">
+              <figure className="managers__media">
+                <img
+                  src={ART.managers.src}
+                  width={ART.managers.width}
+                  height={ART.managers.height}
+                  alt={ART.managers.alt}
+                  loading="lazy"
+                />
+              </figure>
+              <ul className="list-check">
+                {managerPoints.map((p) => (
+                  <li key={p.lead}>
+                    <strong>{p.lead}</strong> {p.rest}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -440,8 +417,8 @@ export default function Home() {
               <p className="eyebrow">Pricing</p>
               <h2>Free for every council. Pay only for the Stratasphere.</h2>
               <p className="lede">
-                Training, council meetings, and your records cost nothing, for as long as you use them. Stratasphere adds
-                answers from your records and built-in video, with AGMs and SGMs coming soon.
+                Training, council meetings, and your records cost nothing, for as long as you use them. Stratasphere
+                adds answers from your records and built-in video, with AGMs and SGMs coming soon.
               </p>
             </div>
             <Pricing signupUrl={SIGNUP_URL} contactHref={DEMO_HREF} />
@@ -475,26 +452,25 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section section--paper" id="demo">
-          <div className="wrap photo-split photo-split--flip">
-            <figure className="photo photo--wide">
-              <img src={PHOTOS.demo.src} alt={PHOTOS.demo.alt} loading="lazy" />
-              <figcaption className="photo__credit">
-                Photos by <a href="https://www.pexels.com/@theo-decker/">Theo Decker on Pexels</a>.
-              </figcaption>
-            </figure>
-            <div className="photo-split__text">
-              <div className="section-head section-head--tight">
-                <h2>Take a closer look.</h2>
-                <p className="lede">
-                  We&rsquo;ll set up a demo strata so you can explore the records, run a meeting, and ask Stratasphere.
-                  Or <a href={SIGNUP_URL}>start the free training</a> now.
-                </p>
-              </div>
-              <div className="panel">
-                <DemoRequestForm page="home" legal />
-              </div>
+        <section className="section closer-section" id="demo">
+          <div className="wrap closer">
+            <div className="closer__text">
+              <h2>Take a closer look.</h2>
+              <p className="lede">
+                We&rsquo;ll set up a demo strata so you can explore the records, run a meeting, and ask Stratasphere. Or
+                start the free training now.
+              </p>
+              <DemoReveal signupUrl={SIGNUP_URL} />
             </div>
+            <figure className="closer__media">
+              <img
+                src={ART.closer.src}
+                width={ART.closer.width}
+                height={ART.closer.height}
+                alt={ART.closer.alt}
+                loading="lazy"
+              />
+            </figure>
           </div>
         </section>
       </main>

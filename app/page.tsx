@@ -73,7 +73,7 @@ const ART: Record<"hero" | "training" | "meeting" | "stratasphere" | "managers" 
   hero: {
     src: "/illustrations/hero.webp",
     width: 1400,
-    height: 795,
+    height: 716,
     alt: "Three council members of different ages talking around a table with a laptop, notebooks, and coffee.",
   },
   training: {

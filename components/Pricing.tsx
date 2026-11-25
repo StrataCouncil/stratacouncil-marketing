@@ -138,7 +138,7 @@ export function Pricing({ signupUrl, contactHref }: { signupUrl: string; contact
             <span className="plan__unit">per month</span>
           </p>
           <p className="plan__note">No card. Nothing to cancel.</p>
-          <a href={signupUrl} className="button button-primary plan__cta" data-testid="plan-free-cta">
+          <a href={signupUrl} className="button button-secondary plan__cta" data-testid="plan-free-cta">
             Start free
           </a>
           <ul className="plan__list">
@@ -169,7 +169,7 @@ export function Pricing({ signupUrl, contactHref }: { signupUrl: string; contact
             plus {money(r.perLot)} per lot a month. A {EXAMPLE_LOTS}-lot strata pays {money(example)}.
             {interval === "yearly" ? " 12-month commitment, billed monthly." : " Cancel any time."}
           </p>
-          <a href={signupUrl} className="button button-secondary plan__cta" data-testid="plan-paid-cta">
+          <a href={signupUrl} className="button button-primary plan__cta" data-testid="plan-paid-cta">
             Start with Stratasphere
           </a>
           <ul className="plan__list">

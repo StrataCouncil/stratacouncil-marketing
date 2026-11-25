@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DemoReveal } from "@/components/DemoReveal";
+import { DemoRequestForm } from "@/components/DemoRequestForm";
 import { type Art, Device } from "@/components/Device";
 import { MeetingAgenda } from "@/components/MeetingAgenda";
 import { Pricing } from "@/components/Pricing";
@@ -313,7 +313,7 @@ export default function Home() {
                 <TrainingPreview />
               </Device>
               <div className="tool__text">
-                <p className="eyebrow">Council Training</p>
+                <p className="eyebrow">Learn</p>
                 <h2>Practical training for real-world strata governance.</h2>
                 <p className="lede">
                   Free, on-demand lessons, guides, and templates for council members, owners, and strata managers.
@@ -339,7 +339,7 @@ export default function Home() {
                 )}
               </Device>
               <div className="tool__text">
-                <p className="eyebrow">Meeting Mode</p>
+                <p className="eyebrow">Decide</p>
                 <h2>Run effective meetings and capture the details.</h2>
                 <p className="lede">
                   Agendas, live voting, and draft minutes that turn discussion into action.
@@ -355,7 +355,7 @@ export default function Home() {
                 <StratasphereDemo />
               </Device>
               <div className="tool__text">
-                <p className="eyebrow">Stratasphere&trade;</p>
+                <p className="eyebrow">Remember</p>
                 <h2>Your strata knowledge, instantly accessible.</h2>
                 <p className="lede">
                   A private, AI-powered knowledge base for your bylaws, minutes, contracts, and decisions.
@@ -365,11 +365,6 @@ export default function Home() {
                 </a>
               </div>
             </article>
-            <p className="small tools__note">
-              The screens show a fictional strata. Quorum and thresholds are based on the Strata Property Act and the
-              Standard Bylaws. If your bylaws differ, they govern, and council remains responsible for following the Act,
-              its bylaws, and applicable meeting requirements.
-            </p>
           </div>
         </section>
 
@@ -425,7 +420,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="faq">
+        <section className="section section--ink faq-section" id="faq">
           <div className="wrap">
             <div className="section-head">
               <h2>Questions and answers</h2>
@@ -457,10 +452,12 @@ export default function Home() {
             <div className="closer__text">
               <h2>Take a closer look.</h2>
               <p className="lede">
-                We&rsquo;ll set up a demo strata so you can explore the records, run a meeting, and ask Stratasphere. Or
-                start the free training now.
+                We&rsquo;ll set up a demo strata so you can explore the records, run a meeting, and ask Stratasphere. Or{" "}
+                <a href={SIGNUP_URL}>start the free training now</a>.
               </p>
-              <DemoReveal signupUrl={SIGNUP_URL} />
+              <div className="panel closer__form" id="demo-form">
+                <DemoRequestForm page="home" legal />
+              </div>
             </div>
             <figure className="closer__media">
               <img

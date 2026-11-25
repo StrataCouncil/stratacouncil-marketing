@@ -12,21 +12,27 @@ CSS, not a parallel system; the app is unchanged.
   with *better* in clay italic, the two buttons, and the hero illustration:
   the three council members cut out on a transparent ground, no room
   behind them, shown as drawn.
-- **The three tools:** alternating rows divided by thin rules, each with an
-  illustrated laptop on one side, running out to the page edge, and the
-  words on the other, a thin clay rule between them. Each laptop
+- **The three tools:** alternating rows divided by thin rules, eyebrowed
+  Learn, Decide, and Remember, each with a large illustrated laptop on one
+  side and the words on the other, a thin clay rule between them. The
+  laptops are sized by width (175% of their column) so the screens can be
+  read: each screen's inner edge sits beside the words, the drawing runs
+  off the page edge, and it fades out before the words' column. Each laptop
   illustration was drawn for its row (Meeting Mode with its mug). The live app demos (TrainingPreview, MeetingAgenda,
   StratasphereDemo) run on the laptops' screens: `components/Device.tsx`
   places each demo over the drawn screen (percentages per illustration in
-  `.device--training` and so on) and scales it from three times the
-  screen's width, so it runs as it does full size.
-- **For strata managers:** the one dark band, with the illustration of a
+  `.device--training` and so on) and scales it down from 160% of the
+  screen's width (220% on phones), so the screens can be read.
+- **For strata managers:** a dark band, with the illustration of a
   council member at a laptop above the list.
-- **Pricing, plan comparison, and questions:** unchanged.
-- **Take a closer look:** the words, Request a demo and Start free training,
-  and the meeting illustration. Request a demo opens the demo request form
-  in place (`components/DemoReveal.tsx`), and so does arriving at `/#demo`,
-  so every Request a demo link still reaches the form.
+- **Pricing:** the Stratasphere plan is the one on offer, so it is the
+  highlighted card: navy, lifted, with the clay button. Free and Enterprise
+  have outline buttons.
+- **Questions and answers:** a navy band, white questions, light answers,
+  clay plus signs.
+- **Take a closer look:** the words (with a link to start the free
+  training), the demo request form shown outright, and the meeting
+  illustration. Every Request a demo link lands on `/#demo`.
 
 ## Colour and type
 
@@ -52,6 +58,6 @@ The three tools use the approved design's short lines, with two kept
 accurate: Council Training is "free, on-demand lessons, guides, and
 templates" (it is lessons, not courses), and Meeting Mode's minutes are
 "draft minutes", not AI-assisted (they are drafted from the meeting
-record). The fictional-strata and Strata Property Act notes sit under the
-rows. Headlines keep the site's Fraunces 500 with its usual tracking; only
+record). The note about the fictional strata and the Strata Property Act
+under the rows was removed. Headlines keep the site's Fraunces 500 with its usual tracking; only
 the layout changed.

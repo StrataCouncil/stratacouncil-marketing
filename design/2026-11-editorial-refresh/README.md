@@ -10,17 +10,17 @@ CSS, not a parallel system; the app is unchanged.
   Sign in, and one button, Start free training.
 - **Hero:** "Learn. Decide. Remember." with a short clay rule, the headline
   with *better* in clay italic, the two buttons, and the hero illustration
-  fading into the cream.
+  shown as drawn.
 - **The three tools:** alternating rows divided by thin rules, each with an
   illustrated laptop on one side, running out to the page edge, and the
-  words on the other, a thin clay rule between them. Meeting Mode uses the
-  training laptop mirrored. The live app demos (TrainingPreview, MeetingAgenda,
+  words on the other, a thin clay rule between them. Each laptop
+  illustration was drawn for its row (Meeting Mode with its mug). The live app demos (TrainingPreview, MeetingAgenda,
   StratasphereDemo) run on the laptops' screens: `components/Device.tsx`
   places each demo over the drawn screen (percentages per illustration in
   `.device--training` and so on) and scales it from three times the
   screen's width, so it runs as it does full size.
-- **For strata managers:** the one dark band, with the managers
-  illustration above the list.
+- **For strata managers:** the one dark band, with the illustration of a
+  council member at a laptop above the list.
 - **Pricing, plan comparison, and questions:** unchanged.
 - **Take a closer look:** the words, Request a demo and Start free training,
   and the meeting illustration. Request a demo opens the demo request form
@@ -40,8 +40,8 @@ CSS, not a parallel system; the app is unchanged.
 
 One set, made with an AI image tool whose terms allow commercial use, on
 transparent backgrounds, in `public/illustrations` at 1400px wide:
-`hero`, `training`, `meeting-mode`, `stratasphere`, `managers`,
-`closer-look`. People are warm and smiling; no lettering, buildings as a
+`hero`, `training`, `meeting-mode`, `stratasphere`, `managers` (the
+council member at a laptop), `closer-look`. People are warm and smiling; no lettering, buildings as a
 motif, or fake app screens (the laptops show the real demos). The
 original reference image from the brief is not used anywhere.
 

@@ -98,7 +98,7 @@ const ART: Record<"hero" | "training" | "meeting" | "stratasphere" | "managers" 
     src: "/illustrations/managers.webp",
     width: 1400,
     height: 700,
-    alt: "Four people of different ages talking together and smiling.",
+    alt: "A council member at a laptop, smiling, with notebooks and coffee.",
   },
   closer: {
     src: "/illustrations/closer-look.webp",

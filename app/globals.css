@@ -4545,3 +4545,48 @@ html {
   -webkit-mask-image: radial-gradient(ellipse 52% 100% at 55% 100%, #000 70%, transparent 100%);
   mask-image: radial-gradient(ellipse 52% 100% at 55% 100%, #000 70%, transparent 100%);
 }
+
+/* Revised illustrations (2026-11-25): the hero shown as drawn, with no
+   fade; the training and Meeting Mode laptops redrawn (Meeting Mode with
+   its mug, as in the design), their screens measured afresh; the closing
+   illustration larger. */
+.hero__media img {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.device--training .device__screen {
+  left: 22.86%;
+  top: 27.63%;
+  width: 54.64%;
+  height: 53.13%;
+}
+
+.device--meeting .device__screen {
+  left: 26.93%;
+  top: 27.1%;
+  width: 50.87%;
+  height: 53.13%;
+}
+
+.closer {
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+}
+
+.closer__media {
+  margin-right: calc(-1 * (max(0px, (100vw - 1200px) / 2) + 24px));
+}
+
+@media (max-width: 900px) {
+  .closer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .closer__media {
+    margin: 0 -24px;
+  }
+}
+
+/* Shown as drawn, the scene keeps clear of the headline. */
+.hero__media {
+  margin-left: 0;
+}

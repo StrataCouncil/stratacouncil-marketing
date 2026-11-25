@@ -9,8 +9,9 @@ CSS, not a parallel system; the app is unchanged.
 - **Header:** a flat cream bar with a thin rule beneath, sticky. Links,
   Sign in, and one button, Start free training.
 - **Hero:** "Learn. Decide. Remember." with a short clay rule, the headline
-  with *better* in clay italic, the two buttons, and the hero illustration
-  shown as drawn.
+  with *better* in clay italic, the two buttons, and the hero illustration:
+  the three council members cut out on a transparent ground, no room
+  behind them, shown as drawn.
 - **The three tools:** alternating rows divided by thin rules, each with an
   illustrated laptop on one side, running out to the page edge, and the
   words on the other, a thin clay rule between them. Each laptop
@@ -52,4 +53,5 @@ accurate: Council Training is "free, on-demand lessons, guides, and
 templates" (it is lessons, not courses), and Meeting Mode's minutes are
 "draft minutes", not AI-assisted (they are drafted from the meeting
 record). The fictional-strata and Strata Property Act notes sit under the
-rows. Headlines are Fraunces 700, as in the design.
+rows. Headlines keep the site's Fraunces 500 with its usual tracking; only
+the layout changed.

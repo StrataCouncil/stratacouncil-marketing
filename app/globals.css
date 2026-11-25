@@ -67,7 +67,7 @@ body {
 h1,
 h2 {
   font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 700;
+  font-weight: 500;
   font-variation-settings: "SOFT" 100;
   letter-spacing: -0.01em;
   margin: 0;
@@ -76,13 +76,11 @@ h2 {
 h1 {
   font-size: clamp(3rem, 6.6vw, 5.75rem);
   line-height: 1;
-  letter-spacing: -0.025em;
 }
 
 h2 {
   font-size: clamp(2.125rem, 4vw, 3.25rem);
   line-height: 1.05;
-  letter-spacing: -0.02em;
 }
 
 h3 {
@@ -4377,10 +4375,6 @@ html {
 
 .eyebrow--ruled::after {
   width: 80px;
-}
-
-.hero h1 {
-  letter-spacing: -0.03em;
 }
 
 .hero .lede {

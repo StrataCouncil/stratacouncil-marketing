@@ -4757,3 +4757,40 @@ html {
     transform: scale(0.4545);
   }
 }
+
+/* /#demo lands with only Take a closer look in view: the section is at
+   least a screen tall (less the sticky header), so the page can scroll it
+   right up to the header, and its content sits centred in it. */
+/* The page already pads anchors by 96px (html scroll-padding-top); this
+   takes the section back up to the header's 70px. */
+#demo {
+  scroll-margin-top: -26px;
+}
+
+@media (max-width: 640px) {
+  #demo {
+    scroll-margin-top: -34px;
+  }
+  .closer-section {
+    min-height: calc(100svh - 62px);
+  }
+}
+
+.closer-section {
+  min-height: calc(100vh - 70px);
+  min-height: calc(100svh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.closer-section > .wrap {
+  width: 100%;
+}
+
+/* The navy questions band now divides it from what comes before, so the
+   rule above it goes. */
+.closer-section > .wrap {
+  border-top: 0;
+  padding-top: 0;
+}

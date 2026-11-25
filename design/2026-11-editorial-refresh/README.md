@@ -34,7 +34,10 @@ CSS, not a parallel system; the app is unchanged.
   clay plus signs.
 - **Take a closer look:** the words (with a link to start the free
   training), the demo request form shown outright, and the meeting
-  illustration. Every Request a demo link lands on `/#demo`.
+  illustration. Every Request a demo link lands on `/#demo`, which shows
+  only this section: it is at least a screen tall, so the page scrolls it
+  right up to the header, with its content centred in it. The navy
+  questions band divides it from what comes before, so it has no rule.
 
 ## Colour and type
 
